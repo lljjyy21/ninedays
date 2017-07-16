@@ -1,0 +1,3 @@
+
+
+stockName = 'bidu'.upper()
