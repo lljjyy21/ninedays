@@ -3,9 +3,86 @@
 <head>
     <!--Add bootstrap with proper layout-->
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='css/custom.css')}}" rel="stylesheet">
     <title>Title</title>
 </head>
 <body>
-Hello world!
+    <div class="row">
+        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 grey-background container" id="">
+            <div class="center-column">
+                <!-- Separate to logical blocks each input field -->
+                <div class="text-center">
+                    <div>
+                        Start date
+                    </div>
+                    <div>
+                        <input type="date" name="start_date" value="2017-07-16">
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <div>
+                        End date
+                    </div>
+                    <div>
+                        <input type="date" name="end_date" value="2017-07-17">
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <div>
+                        Short MA period
+                    </div>
+                    <div>
+                        <input type="number" name="short_ma">
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <div>
+                        Long MA period
+                    </div>
+                    <div>
+                        <input type="number" name="long_ma">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">
+            <div>
+                <img src="/static/image/logo.jpg" class="img-responsive logo" alt="Logo"/>
+            </div>
+            <div class="text-center">
+                <p class="verical-text">
+                    NINEDAYS
+                </p>
+            </div>
+        </div>
+        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 grey-background container">
+            <div>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+                </p>
+            </div>
+            <div>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+                </p>
+            </div>
+            <div>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
+                </p>
+            </div>
+            <div>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et
+                </p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

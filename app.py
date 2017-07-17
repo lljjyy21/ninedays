@@ -48,8 +48,8 @@ def close_db(error):
 
 @app.route("/")
 def index():
-    return "Hello, World!"
+    return render_template("index.html")
 
 if __name__ == "__main__":
-    init_db()
+    # init_db()
     app.run()
