@@ -50,6 +50,21 @@ def close_db(error):
 def index():
     return render_template("index.html")
 
+
+# TODO: Write test for this call
+# <basic_url>/calculate?stock=<stock_name>&start=<start_date>&end=<end_date>&short=<short_ma>&long=<long_ma>
+@app.route("/calculate", methods=["GET"])
+def calculate_stock_chances():
+    # TODO: Add validation of parameters
+    print(request.args.get('stock'))
+    print(request.args.get('start'))
+    print(request.args.get('end'))
+    print(request.args.get('short'))
+    print(request.args.get('long'))
+
+    pass
+
+
 if __name__ == "__main__":
     # init_db()
     app.run()
