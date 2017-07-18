@@ -10,79 +10,129 @@
     <title>Title</title>
 </head>
 <body>
-    <div class="row">
-        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 grey-background container" id="">
-            <div class="center-column">
-                <!-- Separate to logical blocks each input field -->
-                <div class="text-center">
-                    <div>
-                        Start date
-                    </div>
-                    <div>
-                        <input type="date" name="start_date" value="2017-07-16">
-                    </div>
-                </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 grey-background container" id="">
+                <div class="center-column">
+                    <!-- Separate to logical blocks each input field -->
+                   <div class="row input-field">
+                        <div class="col-xs-8
+                                    col-sm-8 col-sm-offset-2
+                                    col-md-8 col-md-offset-4
+                                    col-lg-8 col-lg-offset-4">
+                            <div>
+                                Stock name
+                            </div>
+                            <div>
+                                <input class="input" type="text" name="stock_name" value="Apple">
+                            </div>
+                        </div>
+                   </div>
 
-                <div class="text-center">
-                    <div>
-                        End date
+                    <div class="row input-field">
+                        <div class="col-xs-8
+                                    col-sm-8 col-sm-offset-2
+                                    col-md-8 col-md-offset-4
+                                    col-lg-8 col-lg-offset-4">
+                            <div>
+                                Start date
+                            </div>
+                            <div>
+                                <input class="input" type="date" name="start_date" value="2017-07-16">
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <input type="date" name="end_date" value="2017-07-17">
-                    </div>
-                </div>
 
-                <div class="text-center">
-                    <div>
-                        Short MA period
+                    <div class="row input-field">
+                        <div class="col-xs-8
+                                    col-sm-8 col-sm-offset-2
+                                    col-md-8 col-md-offset-4
+                                    col-lg-8 col-lg-offset-4">
+                            <div>
+                                End date
+                            </div>
+                            <div>
+                                <input class="input" type="date" name="end_date" value="2017-07-18" size="18">
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <input type="number" name="short_ma">
-                    </div>
-                </div>
 
-                <div class="text-center">
-                    <div>
-                        Long MA period
+                    <div class="row input-field">
+                        <div class="col-xs-8
+                                    col-sm-8 col-sm-offset-2
+                                    col-md-8 col-md-offset-4
+                                    col-lg-8 col-lg-offset-4">
+                            <div>
+                                Short MA period
+                            </div>
+                            <div>
+                                <input class="input" type="number" name="short_ma" value="5" size="18">
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <input type="number" name="long_ma">
+
+                    <div class="row input-field">
+                        <div class="col-xs-8
+                                    col-sm-8 col-sm-offset-2
+                                    col-md-8 col-md-offset-4
+                                    col-lg-8 col-lg-offset-4">
+                            <div>
+                                Long MA period
+                            </div>
+                            <div>
+                                <input class="input" type="number" name="long_ma" value="60" size="18">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">
-            <div>
-                <img src="/static/image/logo.jpg" class="img-responsive logo" alt="Logo"/>
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center logo-field">
+                <div>
+                    <img src="/static/image/logo.jpg" class="img-responsive logo" alt="Logo"/>
+                </div>
+                <div class="text-center letter">
+                    <div>N</div>
+                    <div>I</div>
+                    <div>N</div>
+                    <div>E</div>
+                    <div>D</div>
+                    <div>A</div>
+                    <div>Y</div>
+                    <div>S</div>
+
+                    <!--
+                    <p class="hidden letter">N</p>
+                    <p class="vertical-text">
+                        NINEDAYS
+                    </p>
+                    -->
+                </div>
             </div>
-            <div class="text-center">
-                <p class="verical-text">
-                    NINEDAYS
-                </p>
-            </div>
-        </div>
-        <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 grey-background container">
-            <div>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-                </p>
-            </div>
-            <div>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-                </p>
-            </div>
-            <div>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
-                </p>
-            </div>
-            <div>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et
-                </p>
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 grey-background container">
+                <div class="text-field">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+                    </p>
+                </div>
+                <div class="text-field">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+                    </p>
+                </div>
+                <div class="text-field">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
+                    </p>
+                </div>
+                <div class="text-field">
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et
+                    </p>
+                </div>
             </div>
         </div>
     </div>
+    <script src="{{url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/custom.js')}}"></script>
 </body>
 </html>

@@ -1,27 +1,15 @@
 html{
-    min-height:100%;/* make sure it is at least as tall as the viewport */
+    min-height:100%;
     position:relative;
 }
+
 body{
-    height:100%; /* force the BODY element to match the height of the HTML element */
+    height:100%;
 }
 
-#cloud-container{
-    position:absolute;
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
-    overflow:hidden;
-    z-index:-1; /* Remove this line if it's not going to be a background! */
-}
 
 .grey-background {
     background-color: #e3e3e3;
-}
-
-.center-column {
-    /*display: inline;*/
 }
 
 .logo {
@@ -30,7 +18,8 @@ body{
     margin: auto;
 }
 
-.verical-text {
+/* TODO: Remove if this class is deprecated
+.vertical-text {
     margin-left: 40%;
     text-align: center;
     font-size: 44pt;
@@ -38,8 +27,44 @@ body{
     word-wrap: break-word;
     font-family: monospace;
 }
+*/
 
+.letter {
+    font-size: 34pt;
+    font-family: Georgia, serif;
+}
+
+/*
 .container {
     height: 100vh;
     overflow: auto;
+}
+*/
+
+@media only screen and (max-device-width: 480px) {
+    .logo {
+        max-width: 40px !important;
+        max-height: 40px !important;
+        margin: auto;
+    }
+}
+
+.input-field, .text-field {
+    margin-top: 20px;
+}
+
+.input {
+    width: 160px;
+}
+
+@media only screen and (max-device-width: 480px) {
+    .input {
+        width: 120px;
+    }
+}
+
+@media only screen and (max-device-width: 320px) {
+    .input {
+        width: 100px;
+    }
 }
