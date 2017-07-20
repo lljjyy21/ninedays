@@ -1,7 +1,9 @@
 import os
 import sqlite3
+import json
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
+from finance import stock_processor as sc
 
 app = Flask(__name__)
 app.config.from_object(__name__) # load config from this file
@@ -47,22 +49,28 @@ def close_db(error):
 
 
 @app.route("/")
-def index():
-    return render_template("index.html")
+def index(message=''):
+    return render_template("index.html", message=message)
 
 
 # TODO: Write test for this call
-# <basic_url>/calculate?stock=<stock_name>&start=<start_date>&end=<end_date>&short=<short_ma>&long=<long_ma>
+# <basic_url>/calculate?stock=<stock_name>&start=<start_date>&end=<end_date>&
+# short_ma=<short_ma>&long_ma=<long_ma>&range_days=<range>
 @app.route("/calculate", methods=["GET"])
 def calculate_stock_chances():
-    # TODO: Add validation of parameters
-    print(request.args.get('stock'))
-    print(request.args.get('start'))
-    print(request.args.get('end'))
-    print(request.args.get('short'))
-    print(request.args.get('long'))
+    stock_name = request.args.get('stock')
+    start = request.args.get('start_date')
+    end = request.args.get('end_date')
+    short_ma = request.args.get('short_ma')
+    long_ma = request.args.get('long_ma')
+    range_days = request.args.get('range')
 
-    pass
+    stock = sc.StockProcessor(stock_name, start, end, short_ma, long_ma, range_days)
+
+    message = stock.info()
+    return json.dumps({
+        "message": message
+    })
 
 
 if __name__ == "__main__":

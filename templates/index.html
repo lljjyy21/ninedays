@@ -15,7 +15,7 @@
             <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 grey-background container" id="">
                 <div class="center-column">
                     <!-- Separate to logical blocks each input field -->
-                   <div class="row input-field">
+                    <div class="row input-field">
                         <div class="col-xs-8
                                     col-sm-8 col-sm-offset-2
                                     col-md-8 col-md-offset-4
@@ -24,10 +24,10 @@
                                 Stock name
                             </div>
                             <div>
-                                <input class="input" type="text" name="stock_name" value="Apple">
+                                <input id="stock_name" class="input" type="text" name="stock_name" value="Bidu">
                             </div>
                         </div>
-                   </div>
+                    </div>
 
                     <div class="row input-field">
                         <div class="col-xs-8
@@ -38,7 +38,7 @@
                                 Start date
                             </div>
                             <div>
-                                <input class="input" type="date" name="start_date" value="2017-07-16">
+                                <input id="start_date" class="input" type="date" name="start_date" value="2017-07-16">
                             </div>
                         </div>
                     </div>
@@ -52,7 +52,7 @@
                                 End date
                             </div>
                             <div>
-                                <input class="input" type="date" name="end_date" value="2017-07-18" size="18">
+                                <input id="end_date" class="input" type="date" name="end_date" value="2017-07-18">
                             </div>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                                 Short MA period
                             </div>
                             <div>
-                                <input class="input" type="number" name="short_ma" value="5" size="18">
+                                <input id="short_ma" class="input" type="number" name="short_ma" value="5">
                             </div>
                         </div>
                     </div>
@@ -80,8 +80,31 @@
                                 Long MA period
                             </div>
                             <div>
-                                <input class="input" type="number" name="long_ma" value="60" size="18">
+                                <input id="long_ma" class="input" type="number" name="long_ma" value="60">
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="row input-field">
+                        <div class="col-xs-8
+                                    col-sm-8 col-sm-offset-2
+                                    col-md-8 col-md-offset-4
+                                    col-lg-8 col-lg-offset-4">
+                            <div>
+                                Range
+                            </div>
+                            <div>
+                                <input id="range" class="input" type="number" name="range" value="100">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row input-field">
+                        <div class="col-xs-8
+                                    col-sm-8 col-sm-offset-2
+                                    col-md-8 col-md-offset-4
+                                    col-lg-8 col-lg-offset-4">
+                            <button id="btn" type="button" class="btn btn-primary btn-block input">Calculate</button>
                         </div>
                     </div>
                 </div>
@@ -110,10 +133,10 @@
             </div>
             <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 grey-background container">
                 <div class="text-field">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+                    <p id="stock-calculation">
                     </p>
                 </div>
+                <!--
                 <div class="text-field">
                     <p>
                         Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
@@ -129,6 +152,7 @@
                         Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et
                     </p>
                 </div>
+                -->
             </div>
         </div>
     </div>
