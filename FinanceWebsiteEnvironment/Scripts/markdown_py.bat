@@ -1,1 +1,0 @@
-@"C:\Users\Dmytro\PycharmProjects\FinanceWebsite\FinanceWebsiteEnvironment\Scripts\python.exe" "C:\Users\Dmytro\PycharmProjects\FinanceWebsite\FinanceWebsiteEnvironment\Scripts\markdown_py" %*
