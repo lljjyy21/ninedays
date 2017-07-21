@@ -35,12 +35,47 @@ $(function () {
                 success: function (response) {
                     var response_object = JSON.parse(response);
                     var message = response_object["message"];
-                    $('#stock-calculation').text(message);
+                    var messages = message.split("\n");
+
+                    eraseTitle();
+                    eraseMessages();
+
+                    var title = messages[0];
+                    drawTitle(title);
+                    drawMessages(messages);
                 },
                 error: function (response) {
+                    eraseTitle();
+                    eraseMessages();
                     console.error(response);
                 }
             });
         }
     );
 });
+
+
+function eraseTitle() {
+    $('#stock-title').empty()
+}
+
+function eraseMessages() {
+    $('#stock-calculation').empty()
+}
+
+function drawTitle(title) {
+    var div = document.createElement('div');
+    div.className = 'text-field';
+    div.innerText = title;
+    $('#stock-title').append(div);
+}
+
+function drawMessages(messages) {
+    for (var index in messages) {
+        if (Number(index) === 0) continue;
+        var div = document.createElement('div');
+        div.className = 'text-field';
+        div.innerText = messages[index];
+        $('#stock-calculation').append(div);
+    }
+}
