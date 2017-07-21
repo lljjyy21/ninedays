@@ -23,17 +23,16 @@ class StockProcessor:
 
     # TODO: Refactor
     def info(self):
-        message = ''
         try:
             df = self.get_stock()
             stock_calculator = StockCalculator(df, self.short_ma, self.long_ma, self.range_days)
             day = len(stock_calculator.get_open_price_list())
 
-            message = '\n ** Tech info for "{}"  \n'.format(self.stock)
+            message = 'Tech info for {}\n'.format(self.stock)
             tnum = stock_calculator.num_days_short_moving_average_bigger_than_long_moving_average(day)
             message += 'In pass {} days,{} days MA overcome {} days MA {} times!\n'.format(self.range_days, self.short_ma, self.long_ma, tnum)
-            chanceofrise = stock_calculator.num_days_short_moving_average_bigger_than_long_moving_average_cause_rise(day) / tnum * 100
-            message += 'chancofrise: {}\n'.format(chanceofrise)
+            chanceofrise = (1.0 * stock_calculator.num_days_short_moving_average_bigger_than_long_moving_average_cause_rise(day)) / tnum * 100
+
             COR = "%.2f" % chanceofrise
             message += 'and the chance of rise occur is {}% !\n'.format(COR)
             avgrisepercent = stock_calculator.average_rise_percentage(day) * 100
@@ -42,5 +41,6 @@ class StockProcessor:
             avgrd = "%.2f" % avgriseday
             message += 'in average, they will rise about {}% and {} days continuously!'.format(avgp, avgrd)
         except Exception as e:
+            message = "Sorry, I can't find that stock's data!"
             print(e)
         return message
