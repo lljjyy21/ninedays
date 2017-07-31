@@ -4,6 +4,7 @@ import json
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
 from finance import stock_processor as sc
+from helper import current_date
 
 app = Flask(__name__)
 app.config.from_object(__name__) # load config from this file
@@ -17,6 +18,7 @@ app.config.update(dict(
 ))
 app.config.from_envvar('FINANCE_SETTINGS', silent=True)
 
+app.jinja_env.globals.update(current_date=current_date.get_current_server_date)
 
 # connect to database
 def connect_db():
