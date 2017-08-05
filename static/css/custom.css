@@ -1,10 +1,10 @@
 html{
-    min-height:100%;
-    position:relative;
+    min-height: 100%;
+    position: relative;
 }
 
 body{
-    height:100%;
+    height: 100%;
 }
 
 
@@ -18,35 +18,48 @@ body{
     margin: auto;
 }
 
-/* TODO: Remove if this class is deprecated
-.vertical-text {
-    margin-left: 40%;
-    text-align: center;
-    font-size: 44pt;
-    width:10px;
-    word-wrap: break-word;
-    font-family: monospace;
-}
-*/
-
 .letter {
     font-size: 34pt;
     font-family: Georgia, serif;
 }
 
-/*
-.container {
-    height: 100vh;
-    overflow: auto;
-}
-*/
-
 @media only screen and (max-device-width: 480px) {
     .logo {
-        max-width: 40px !important;
-        max-height: 40px !important;
+        max-width: 35px !important;
+        max-height: 35px !important;
         margin: auto;
     }
+}
+
+.logo-img  {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.image{
+    position:relative;
+    overflow:hidden;
+    padding-bottom: 100%;
+}
+.image img{
+    position:absolute;
+}
+
+
+
+/*TODO: Add media-query for text*/
+.logo-text {
+    font-size: 16pt;
+    font-weight: bold;
+    font-family: Georgia, serif;
+}
+
+#btn-text {
+    margin-top: 100px;
+}
+
+.remove-style {
+    padding: 0;
 }
 
 .input-field, .text-field {
@@ -73,3 +86,89 @@ body{
     margin-bottom: 50px;
     margin-top: 30px;
 }
+
+.bottom-text-block {
+    position: relative;
+    z-index: 999;
+}
+
+.bottom-text {
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 20px;
+}
+
+
+/* Smartphones (portrait and landscape) */
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px) {
+    .logo-text {
+        font-size: 12pt !important;
+    }
+}
+
+/* Smartphones (landscape) */
+@media only screen
+and (min-width : 321px) {
+    .logo-text {
+        font-size: 12pt !important;
+    }
+}
+
+/* Smartphones (portrait) */
+@media only screen
+and (max-width : 320px) {
+    .logo-text {
+        font-size: 12pt !important;
+    }
+}
+
+/* iPads (portrait and landscape) */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px) {
+    .logo-text {
+        font-size: 12pt !important;
+    }
+}
+
+/* iPads (landscape) */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : landscape) {
+    .logo-text {
+        font-size: 12pt !important;
+    }
+}
+
+/* iPads (portrait) */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : portrait) {
+    .logo-text {
+        font-size: 12pt !important;
+    }
+}
+
+/* Desktops and laptops */
+@media only screen
+and (min-width : 1224px) {
+
+}
+
+/* Large screens */
+@media only screen
+and (min-width : 1824px) {
+
+}
+
+/* iPhone 4 */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+
+}
+

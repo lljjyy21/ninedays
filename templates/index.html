@@ -12,7 +12,7 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 grey-background container" id="">
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 grey-background container">
                 <div class="center-column">
                     <!-- Separate to logical blocks each input field -->
                     <div class="row input-field">
@@ -98,64 +98,76 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="row input-field">
-                        <div class="col-xs-8
-                                    col-sm-8 col-sm-offset-2
-                                    col-md-8 col-md-offset-4
-                                    col-lg-8 col-lg-offset-4">
-                            <button id="btn" type="button" class="btn btn-primary btn-block input">Calculate</button>
-                        </div>
-                    </div>
                 </div>
             </div>
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center logo-field">
-                <div>
-                    <img src="/static/image/logo.jpg" class="img-responsive logo" alt="Logo"/>
-                </div>
-                <div class="text-center letter">
-                    <div>N</div>
-                    <div>I</div>
-                    <div>N</div>
-                    <div>E</div>
-                    <div>D</div>
-                    <div>A</div>
-                    <div>Y</div>
-                    <div>S</div>
-
-                    <!--
-                    <p class="hidden letter">N</p>
-                    <p class="vertical-text">
-                        NINEDAYS
-                    </p>
-                    -->
+            <div id="btn" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">
+                <div class="row">
+                    <div id="btn-text" class="text-center letter">
+                        <div>S</div>
+                        <div>T</div>
+                        <div>A</div>
+                        <div>R</div>
+                        <div>T</div>
+                    </div>
                 </div>
             </div>
             <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 grey-background container">
                 <div id="stock-title" class="text-title text-center">
-
                 </div>
 
                 <div id="stock-calculation" class="text-field text-center">
+                </div>
 
+                <div class="row input-field">
+                    <div class="col-xs-8
+                                col-sm-8 col-sm-offset-2
+                                col-md-8 col-md-offset-4
+                                col-lg-8 col-lg-offset-4">
+
+                    </div>
                 </div>
-                <!--
-                <div class="text-field">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
-                    </p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <!--LEFT COLUMN FOOTER-->
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 grey-background footer">
+                <div class="row">
+                    <div class="col-xs-8
+                                col-sm-8 col-sm-offset-2
+                                col-md-8 col-md-offset-4
+                                col-lg-8 col-lg-offset-4">
+                        <p class="logo-text">INPUT</p>
+                    </div>
                 </div>
-                <div class="text-field">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
-                    </p>
+            </div>
+
+            <!--CENTER COLUMN FOOTER-->
+            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <div class="row">
+                    <!--TODO Fix this-->
+                    <div id="logo-block" class="image col-xs-3 cols-sm-3 col-md-3 col-lg-3 logo-img">
+                        <img alt="Logo" id="logo" src="/static/image/logo.jpg" class="img img-responsive full-width"/> <!-- class="logo-img  img-responsive"-->
+                    </div>
+                    <div class="col-xs-9 cols-sm-9 col-md-9 col-lg-9">
+                        <p id="logo-text" class="logo-text">NINEDAYS</p>
+                    </div>
                 </div>
-                <div class="text-field">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et
-                    </p>
+            </div>
+
+            <!--RIGHT COLUMN FOOTER-->
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 grey-background footer">
+                <div class="row">
+                     <div class="col-xs-8
+                                col-sm-8 col-sm-offset-2
+                                col-md-8 col-md-offset-4
+                                col-lg-8 col-lg-offset-4">
+                         <p class="logo-text">OUTPUT</p>
+                    </div>
                 </div>
-                -->
             </div>
         </div>
     </div>

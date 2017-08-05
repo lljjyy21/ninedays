@@ -3,12 +3,73 @@
  */
 
 $(document).ready( function () {
-        $('.container').css('height', $(document).height());
-        $('.vertical-text').css('margin-left', ($('.logo-field').width()/2 - $('.letter').width()/2) + "px" );
-        console.log("width", $(document).width());
-        console.log("height", $(document).height());
+    var page = new Page();
+    page.update();
+});
+
+$(window).resize(function() {
+    var page = new Page();
+    page.update();
+});
+
+function Page() {
+    var body = new Body();
+    var footer = new Footer();
+
+
+    function updatePage() {
+        body.update();
+        footer.update();
     }
-);
+
+    return {
+        update: updatePage
+    };
+}
+
+function Body() {
+    var FOOTER_HEIGHT = 100, MIN_PAGE_HEIGHT = 600;
+    var PAGE_HEIGHT = Math.max(MIN_PAGE_HEIGHT, $(document).height()) - FOOTER_HEIGHT;
+
+    function updateBodyHeight() {
+        $('.container').css('height', PAGE_HEIGHT);
+    }
+
+    function updateFooterHeight() {
+        // NOTE: -1px required to remove unnecessary scroll-bar on the page.
+        $('.footer').css('height', FOOTER_HEIGHT - 1);
+    }
+
+    function updateHeight() {
+        updateBodyHeight();
+        updateFooterHeight();
+    }
+
+    return {
+        update: updateHeight
+    };
+}
+
+function Footer() {
+    function updateLogoImageHeight() {
+    $('#logo-block').css({'padding-bottom': $('#logo').height()});
+}
+
+    function updateFooterTextPaddingTop() {
+        var LOGO_HEIGHT = $('#logo').height()/2 - $('#logo-text').height()/2;
+        $('.logo-text').css({'padding-top': LOGO_HEIGHT});
+    }
+
+    function updateFooter() {
+        updateLogoImageHeight();
+        updateFooterTextPaddingTop();
+    }
+
+    return {
+        update: updateFooter
+    };
+}
+
 
 $(function () {
     $('#btn').click(function () {
