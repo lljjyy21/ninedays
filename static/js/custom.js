@@ -7,7 +7,13 @@ $(document).ready( function () {
     page.update();
 });
 
-$(window).resize(function() {
+$(window).resize(function () {
+    var page = new Page();
+    page.update();
+});
+
+$(window).on("orientationchange", function () {
+    console.log("orientationchange");
     var page = new Page();
     page.update();
 });
@@ -29,7 +35,7 @@ function Page() {
 
 function Body() {
     var FOOTER_HEIGHT = 100, MIN_PAGE_HEIGHT = 600;
-    var PAGE_HEIGHT = Math.max(MIN_PAGE_HEIGHT, $(document).height()) - FOOTER_HEIGHT;
+    var PAGE_HEIGHT = Math.max(MIN_PAGE_HEIGHT, $(window).height()) - FOOTER_HEIGHT;
 
     function updateBodyHeight() {
         $('.container').css('height', PAGE_HEIGHT);
