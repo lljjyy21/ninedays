@@ -66,6 +66,10 @@ body{
     margin-top: 20px;
 }
 
+.input-fields {
+    margin-top: 60px;
+}
+
 .input {
     width: 160px;
 }

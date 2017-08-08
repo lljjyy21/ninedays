@@ -10,7 +10,9 @@
     <title>Title</title>
 </head>
 <body>
-    <div class="container-fluid hidden-xs hidden-sm">
+
+    <!-- BIG TABLETS & LAPTOP & DESKTOP -->
+    <div class="container-fluid hidden-xs hidden-sm invisible-xs invisible-sm">
         <div class="row">
             <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 grey-background container">
                 <div class="center-column">
@@ -24,7 +26,7 @@
                                 STOCK NAME
                             </div>
                             <div>
-                                <input id="stock_name" class="input" type="text" name="stock_name" value="Bidu">
+                                <input id="stock-name" class="input" type="text" name="stock_name" value="Bidu">
                             </div>
                         </div>
                     </div>
@@ -38,7 +40,7 @@
                                 START DATE
                             </div>
                             <div>
-                                <input id="start_date" class="input" type="date" name="start_date" value="2006-01-01">
+                                <input id="start-date" class="input" type="date" name="start_date" value="2006-01-01">
                             </div>
                         </div>
                     </div>
@@ -52,7 +54,7 @@
                                 END DATE
                             </div>
                             <div>
-                                <input id="end_date" class="input" type="date" name="end_date" value="{{ current_date() }}">
+                                <input id="end-date" class="input" type="date" name="end_date" value="{{ current_date() }}">
                             </div>
                         </div>
                     </div>
@@ -66,7 +68,7 @@
                                 SHORT MA
                             </div>
                             <div>
-                                <input id="short_ma" class="input" type="number" name="short_ma" value="5">
+                                <input id="short-ma" class="input" type="number" name="short_ma" value="5">
                             </div>
                         </div>
                     </div>
@@ -80,7 +82,7 @@
                                 LONG MA
                             </div>
                             <div>
-                                <input id="long_ma" class="input" type="number" name="long_ma" value="60">
+                                <input id="long-ma" class="input" type="number" name="long_ma" value="60">
                             </div>
                         </div>
                     </div>
@@ -100,7 +102,7 @@
                     </div>
                 </div>
             </div>
-            <div id="btn" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">
+            <div id="btn" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center btn">
                 <div class="row">
                     <div id="btn-text" class="text-center letter">
                         <div>S</div>
@@ -130,8 +132,7 @@
         </div>
     </div>
 
-
-    <div class="container-fluid hidden-xs hidden-sm">
+    <div class="container-fluid hidden-xs hidden-sm invisible-xs invisible-sm">
         <div class="row">
             <!--LEFT COLUMN FOOTER-->
             <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 grey-background footer">
@@ -150,7 +151,7 @@
                 <div class="row">
                     <!--TODO Fix this-->
                     <div id="logo-block" class="image col-xs-3 cols-sm-3 col-md-3 col-lg-3 logo-img">
-                        <img alt="Logo" id="logo" src="/static/image/logo.jpg" class="img img-responsive full-width"/> <!-- class="logo-img  img-responsive"-->
+                        <img alt="Logo" id="logo" src="/static/image/logo.jpg" class="img img-responsive full-width"/>
                     </div>
                     <div class="col-xs-9 cols-sm-9 col-md-9 col-lg-9">
                         <p id="logo-text" class="logo-text">NINEDAYS</p>
@@ -171,6 +172,112 @@
             </div>
         </div>
     </div>
+
+
+    <!-- MOBILE & TABLETS -->
+    <div id="mobile" class="container-fluid hidden-lg hidden-md invisible-lg invisible-md">
+        <div class="row">
+            <!-- LEFT COLUMN -->
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center grey-background container">
+            </div>
+
+            <!-- CENTER COLUMN -->
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-center center-column">
+                <div id="btn-text" class="text-center letter">
+                    <div class="row">
+                        <div class="col-xs-3 col-sm-3"></div>
+                        <div class="col-xs-6 col-sm-6">
+                            <img alt="Logo" id="logo" src="/static/image/logo.jpg" class="img img-responsive full-width"/>
+                        </div>
+                        <div class="col-xs-3 col-sm-3"></div>
+                    </div>
+
+                    <div>N</div>
+                    <div>I</div>
+                    <div>N</div>
+                    <div>E</div>
+                    <div>D</div>
+                    <div>A</div>
+                    <div>Y</div>
+                    <div>S</div>
+                </div>
+
+                <div class="input-fields">
+                    <div class="row input-field">
+                        <div>
+                            STOCK NAME
+                        </div>
+                        <div>
+                            <input id="stock-name-mobile" class="input input-mobile" type="text" name="stock_name" value="Bidu">
+                        </div>
+                    </div>
+
+                    <div class="row input-field">
+                        <div>
+                            START DATE
+                        </div>
+                        <div>
+                            <input id="start-date-mobile" class="input input-mobile" type="date" name="start_date" value="2006-01-01">
+                        </div>
+                    </div>
+
+                    <div class="row input-field">
+                        <div>
+                            END DATE
+                        </div>
+                        <div>
+                            <input id="end-date-mobile" class="input input-mobile" type="date" name="end_date" value="{{ current_date() }}">
+                        </div>
+                    </div>
+
+                    <div class="row input-field">
+                        <div>
+                            SHORT MA
+                        </div>
+                        <div>
+                            <input id="short-ma-mobile" class="input input-mobile" type="number" name="short_ma" value="5">
+                        </div>
+                    </div>
+
+                    <div class="row input-field">
+                        <div>
+                            LONG MA
+                        </div>
+                        <div>
+                            <input id="long-ma-mobile" class="input input-mobile" type="number" name="long_ma" value="60">
+                        </div>
+                    </div>
+
+                    <div class="row input-field">
+                        <div>
+                            RANGE
+                        </div>
+                        <div>
+                            <input id="range-mobile" class="input input-mobile" type="number" name="range" value="100">
+                        </div>
+                    </div>
+
+                    <div class="row input-field">
+                        <button id="btn" type="button" class="btn">START</button>
+                    </div>
+                </div>
+
+                <div class="raw">
+                    <div id="stock-title-mobile" class="text-title text-center">
+                    </div>
+
+                    <div id="stock-calculation-mobile" class="text-field text-center">
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN -->
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-center grey-background container">
+            </div>
+        </div>
+    </div>
+
     <script src="{{url_for('static', filename='js/jquery-3.2.1.min.js')}}"></script>
     <script src="{{url_for('static', filename='js/custom.js')}}"></script>
 </body>
