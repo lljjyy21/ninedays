@@ -7,7 +7,6 @@ body{
     height: 100%;
 }
 
-
 .grey-background {
     background-color: #e3e3e3;
 }
@@ -45,13 +44,10 @@ body{
     position:absolute;
 }
 
-
-
-/*TODO: Add media-query for text*/
 .logo-text {
     font-size: 16pt;
     font-weight: bold;
-    font-family: Georgia, serif;
+    font-family: Lato;
 }
 
 #btn-text {
@@ -101,7 +97,6 @@ body{
     bottom: 0;
     margin-bottom: 20px;
 }
-
 
 /* Smartphones (portrait and landscape) */
 @media only screen
@@ -175,4 +170,3 @@ only screen and (-webkit-min-device-pixel-ratio : 1.5),
 only screen and (min-device-pixel-ratio : 1.5) {
 
 }
-
