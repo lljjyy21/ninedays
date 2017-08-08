@@ -65,6 +65,9 @@ function Body() {
 
     function updateBodyHeight() {
         $('.container').css('height', PAGE_HEIGHT);
+        if (!isMobileLayout) {
+            $('.container-start-page').css('height', PAGE_HEIGHT + FOOTER_HEIGHT);
+        }
     }
 
     function updateFooterHeight() {
@@ -238,7 +241,6 @@ function OutputDrawer(parameters) {
         }
     }
 
-    // TODO: Doesn't this function do too much?
     function drawContent() {
         strategy();
         eraseContent();

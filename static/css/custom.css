@@ -20,7 +20,7 @@ body{
 
 .letter {
     font-size: 34pt;
-    font-family: Georgia, serif;
+    font-family: Lato;/*Georgia, serif;*/
 }
 
 @media only screen and (max-device-width: 480px) {
