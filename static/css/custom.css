@@ -18,9 +18,11 @@ body{
 }
 
 .letter {
-    font-size: 34pt;
+    font-size: 32pt;
     font-family: Lato;/*Georgia, serif;*/
 }
+
+
 
 @media only screen and (max-device-width: 480px) {
     .logo {
@@ -169,4 +171,8 @@ and (min-width : 1824px) {
 only screen and (-webkit-min-device-pixel-ratio : 1.5),
 only screen and (min-device-pixel-ratio : 1.5) {
 
+}
+
+.inherited-height {
+    height: 100%;
 }

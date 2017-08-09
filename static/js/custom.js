@@ -49,13 +49,13 @@ function Page() {
 }
 
 function Body() {
-    var FOOTER_HEIGHT = 100, MIN_PAGE_HEIGHT = 600;
+    var FOOTER_HEIGHT = 100, MIN_PAGE_HEIGHT = 650;
     var PAGE_HEIGHT = Math.max(MIN_PAGE_HEIGHT, $(window).height()) - FOOTER_HEIGHT;
     var isMobileLayout = $('#mobile').is(':visible');
     calculatePageHeight();
 
     function calculatePageHeight() {
-        console.log($(window).height(), $(document).height(), MIN_PAGE_HEIGHT);
+        console.log("Page height", $(window).height(), $(document).height(), MIN_PAGE_HEIGHT);
         console.log(isMobileLayout);
         if (isMobileLayout) {
             PAGE_HEIGHT = $(document).height();

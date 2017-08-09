@@ -14,12 +14,19 @@
     <!-- BIG TABLETS & LAPTOP & DESKTOP -->
     <div class="container-fluid hidden-xs hidden-sm invisible-xs invisible-sm">
         <div class="row">
-            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 grey-background container-start-page"></div>
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 container-start-page">
+                <div class="row inherited-height">
+                    <div class="col-md-11 col-lg-11 grey-background inherited-height">
+                    </div>
+                    <div class="col-md-1 col-lg-1">
+                    </div>
+                </div>
+            </div>
             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center">
                 <div class="row">
                     <div class="col-xs-2 col-sm-2"></div>
                     <div class="col-xs-8 col-sm-8">
-                        <img alt="Logo" id="start-logo" src="/static/image/logo.jpg" class="img img-responsive full-width"/>
+                        <img alt="logo" id="start-logo" src="/static/image/logo.jpg" class="img img-responsive full-width"/>
                     </div>
                     <div class="col-xs-2 col-sm-2"></div>
                 </div>
@@ -36,97 +43,116 @@
                         <div>S</div>
                     </div>
                 </div>
-
+                <div class="row input-field">
+                    <div class="col-lg-4 col-md-4"></div>
+                    <div class="col-lg-4 col-md-4">
+                        <a href="#functional-page">
+                            <img id="scroll-down" alt="scroll-down" src="static/image/scroll.png" class="img-responsive full-width"/>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-md-4"></div>
+                 </div>
             </div>
-            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 grey-background container-start-page"></div>
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 container-start-page">
+                <div class="row inherited-height">
+                    <div class="col-md-1 col-lg-1">
+                    </div>
+                    <div class="col-md-11 col-lg-11 grey-background inherited-height">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="container-fluid hidden-xs hidden-sm invisible-xs invisible-sm">
+    <div id="functional-page" class="container-fluid hidden-xs hidden-sm invisible-xs invisible-sm">
         <div class="row">
-            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 grey-background container">
-                <div class="center-column">
-                    <!-- Separate to logical blocks each input field -->
-                    <div class="row input-field">
-                        <div class="col-xs-8
-                                    col-sm-8 col-sm-offset-2
-                                    col-md-8 col-md-offset-4
-                                    col-lg-8 col-lg-offset-4">
-                            <div>
-                                STOCK NAME
-                            </div>
-                            <div>
-                                <input id="stock-name" class="input" type="text" name="stock_name" value="Bidu">
-                            </div>
-                        </div>
-                    </div>
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 container">
+                <div class="row inherited-height">
+                    <div class="col-lg-11 col-md-11 grey-background inherited-height">
 
-                    <div class="row input-field">
-                        <div class="col-xs-8
-                                    col-sm-8 col-sm-offset-2
-                                    col-md-8 col-md-offset-4
-                                    col-lg-8 col-lg-offset-4">
-                            <div>
-                                START DATE
+                        <div class="center-column">
+                            <div class="row input-field">
+                                <div class="col-xs-8
+                                            col-sm-8 col-sm-offset-2
+                                            col-md-8 col-md-offset-4
+                                            col-lg-8 col-lg-offset-4">
+                                    <div>
+                                        STOCK NAME
+                                    </div>
+                                    <div>
+                                        <input id="stock-name" class="input" type="text" name="stock_name" value="Bidu">
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <input id="start-date" class="input" type="date" name="start_date" value="2006-01-01">
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="row input-field">
-                        <div class="col-xs-8
-                                    col-sm-8 col-sm-offset-2
-                                    col-md-8 col-md-offset-4
-                                    col-lg-8 col-lg-offset-4">
-                            <div>
-                                END DATE
+                            <div class="row input-field">
+                                <div class="col-xs-8
+                                            col-sm-8 col-sm-offset-2
+                                            col-md-8 col-md-offset-4
+                                            col-lg-8 col-lg-offset-4">
+                                    <div>
+                                        START DATE
+                                    </div>
+                                    <div>
+                                        <input id="start-date" class="input" type="date" name="start_date" value="2006-01-01">
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <input id="end-date" class="input" type="date" name="end_date" value="{{ current_date() }}">
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="row input-field">
-                        <div class="col-xs-8
-                                    col-sm-8 col-sm-offset-2
-                                    col-md-8 col-md-offset-4
-                                    col-lg-8 col-lg-offset-4">
-                            <div>
-                                SHORT MA
+                            <div class="row input-field">
+                                <div class="col-xs-8
+                                            col-sm-8 col-sm-offset-2
+                                            col-md-8 col-md-offset-4
+                                            col-lg-8 col-lg-offset-4">
+                                    <div>
+                                        END DATE
+                                    </div>
+                                    <div>
+                                        <input id="end-date" class="input" type="date" name="end_date" value="{{ current_date() }}">
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <input id="short-ma" class="input" type="number" name="short_ma" value="5">
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="row input-field">
-                        <div class="col-xs-8
-                                    col-sm-8 col-sm-offset-2
-                                    col-md-8 col-md-offset-4
-                                    col-lg-8 col-lg-offset-4">
-                            <div>
-                                LONG MA
+                            <div class="row input-field">
+                                <div class="col-xs-8
+                                            col-sm-8 col-sm-offset-2
+                                            col-md-8 col-md-offset-4
+                                            col-lg-8 col-lg-offset-4">
+                                    <div>
+                                        SHORT MA
+                                    </div>
+                                    <div>
+                                        <input id="short-ma" class="input" type="number" name="short_ma" value="5">
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <input id="long-ma" class="input" type="number" name="long_ma" value="60">
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="row input-field">
-                        <div class="col-xs-8
-                                    col-sm-8 col-sm-offset-2
-                                    col-md-8 col-md-offset-4
-                                    col-lg-8 col-lg-offset-4">
-                            <div>
-                                RANGE
+                            <div class="row input-field">
+                                <div class="col-xs-8
+                                            col-sm-8 col-sm-offset-2
+                                            col-md-8 col-md-offset-4
+                                            col-lg-8 col-lg-offset-4">
+                                    <div>
+                                        LONG MA
+                                    </div>
+                                    <div>
+                                        <input id="long-ma" class="input" type="number" name="long_ma" value="60">
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <input id="range" class="input" type="number" name="range" value="100">
+
+                            <div class="row input-field">
+                                <div class="col-xs-8
+                                            col-sm-8 col-sm-offset-2
+                                            col-md-8 col-md-offset-4
+                                            col-lg-8 col-lg-offset-4">
+                                    <div>
+                                        RANGE
+                                    </div>
+                                    <div>
+                                        <input id="range" class="input" type="number" name="range" value="100">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -143,19 +169,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 grey-background container">
-                <div id="stock-title" class="text-title text-center">
-                </div>
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 container">
+                <div class="row inherited-height">
+                    <div class="col-lg-11 col-md-11 col-lg-offset-1 col-md-offset-1 inherited-height grey-background">
+                        <div id="stock-title" class="text-title text-center">
+                        </div>
 
-                <div id="stock-calculation" class="text-field text-center">
-                </div>
-
-                <div class="row input-field">
-                    <div class="col-xs-8
-                                col-sm-8 col-sm-offset-2
-                                col-md-8 col-md-offset-4
-                                col-lg-8 col-lg-offset-4">
-
+                        <div id="stock-calculation" class="text-field text-center">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -165,13 +186,15 @@
     <div class="container-fluid hidden-xs hidden-sm invisible-xs invisible-sm">
         <div class="row">
             <!--LEFT COLUMN FOOTER-->
-            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 grey-background footer">
-                <div class="row">
-                    <div class="col-xs-8
-                                col-sm-8 col-sm-offset-2
-                                col-md-8 col-md-offset-4
-                                col-lg-8 col-lg-offset-4">
-                        <p class="logo-text">INPUT</p>
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 footer">
+                <div class="row inherited-height">
+                    <div class="col-lg-11 col-md-11 inherited-height grey-background">
+                        <div class="col-xs-8
+                                    col-sm-8 col-sm-offset-2
+                                    col-md-8 col-md-offset-4
+                                    col-lg-8 col-lg-offset-4">
+                            <p class="logo-text">INPUT</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -181,7 +204,7 @@
                 <div class="row">
                     <!--TODO Fix this-->
                     <div id="logo-block" class="image col-xs-3 cols-sm-3 col-md-3 col-lg-3 logo-img">
-                        <img alt="Logo" id="logo" src="/static/image/logo.jpg" class="img img-responsive full-width"/>
+                        <img alt="logo" id="logo" src="/static/image/logo.jpg" class="img img-responsive full-width"/>
                     </div>
                     <div class="col-xs-9 cols-sm-9 col-md-9 col-lg-9">
                         <p id="logo-text" class="logo-text">NINEDAYS</p>
@@ -190,13 +213,15 @@
             </div>
 
             <!--RIGHT COLUMN FOOTER-->
-            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 grey-background footer">
-                <div class="row">
-                     <div class="col-xs-8
-                                col-sm-8 col-sm-offset-2
-                                col-md-8 col-md-offset-4
-                                col-lg-8 col-lg-offset-4">
-                         <p class="logo-text">OUTPUT</p>
+            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 footer">
+                <div class="row inherited-height">
+                    <div class="col-md-offset-1 col-md-11 col-lg-offset-1 col-lg-11 inherited-height grey-background">
+                        <div class="col-xs-8
+                                    col-sm-8 col-sm-offset-2
+                                    col-md-8 col-md-offset-4
+                                    col-lg-8 col-lg-offset-4">
+                             <p class="logo-text">OUTPUT</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -213,11 +238,11 @@
 
             <!-- CENTER COLUMN -->
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-center center-column">
-                <div id="btn-text" class="text-center letter">
+                <div class="text-center letter">
                     <div class="row">
                         <div class="col-xs-3 col-sm-3"></div>
                         <div class="col-xs-6 col-sm-6">
-                            <img alt="Logo" id="logo" src="/static/image/logo.jpg" class="img img-responsive full-width"/>
+                            <img alt="logo" id="logo" src="/static/image/logo.jpg" class="img img-responsive full-width"/>
                         </div>
                         <div class="col-xs-3 col-sm-3"></div>
                     </div>
