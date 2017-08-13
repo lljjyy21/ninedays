@@ -33,7 +33,28 @@ body{
 }
 
 .margin-logo {
-    margin-top: 200px;
+    margin-top: 170px;
+}
+
+
+@media (min-width: 1200px) {
+    .scroll-arrow-block {
+        margin-top: 45px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .scroll-arrow-block {
+        margin-top: 65px;
+    }
+}
+
+
+
+
+.scroll-arrow {
+    max-height: 20px;
+    max-width: 25px;
 }
 
 @media only screen and (max-device-width: 480px) {
