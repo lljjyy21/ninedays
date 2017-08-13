@@ -26,11 +26,15 @@ body{
 }
 
 .letter {
-    font-size: 32pt;
+    font-size: 22pt;
+    font-weight: bold;
     font-family: Lato;/*Georgia, serif;*/
+    -webkit-font-smoothing: subpixel-antialiased;
 }
 
-
+.margin-logo {
+    margin-top: 200px;
+}
 
 @media only screen and (max-device-width: 480px) {
     .logo {
