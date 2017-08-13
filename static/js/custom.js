@@ -31,6 +31,7 @@ function Page() {
     var body = new Body();
     var footer = new Footer();
     var inputField = new InputField();
+    var verticalCenterButtonText = new VerticalCenterButtonText();
     var isMobileLayout = $('#mobile').is(':visible');
 
     function updatePage() {
@@ -40,6 +41,7 @@ function Page() {
         }
         else {
             footer.update();
+            verticalCenterButtonText.update();
         }
     }
 
@@ -118,6 +120,23 @@ function InputField() {
 
     return {
         update: updateInputFieldWidth
+    };
+}
+
+
+function VerticalCenterButtonText() {
+
+    function updateTextMargin() {
+        var text = $('#btn-text');
+        var verticalTextHeight = text.height(),
+            centerColumnHeight = $('#functional-page').height();
+
+        var marginTop = centerColumnHeight/2 - verticalTextHeight/2;
+        text.css({'margin-top': marginTop});
+    }
+
+    return {
+        update: updateTextMargin
     };
 }
 
