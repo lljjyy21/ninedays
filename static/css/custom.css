@@ -79,12 +79,6 @@ body{
     position:absolute;
 }
 
-.logo-text {
-    font-size: 16pt;
-    font-weight: bold;
-    font-family: Lato;
-}
-
 #btn-text {
 }
 
@@ -102,6 +96,27 @@ body{
 
 .input {
     width: 160px;
+}
+
+.io-text {
+    font-size: 12pt;
+    font-family: Lato;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .logo-text {
+        font-size: 8pt;
+        font-weight: bold;
+        font-family: Lato;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .logo-text {
+        font-size: 9.5pt;
+        font-weight: bold;
+        font-family: Lato;
+    }
 }
 
 @media only screen and (max-device-width: 480px) {
@@ -130,79 +145,6 @@ body{
     position: fixed;
     bottom: 0;
     margin-bottom: 20px;
-}
-
-/* Smartphones (portrait and landscape) */
-@media only screen
-and (min-device-width : 320px)
-and (max-device-width : 480px) {
-    .logo-text {
-        font-size: 12pt !important;
-    }
-}
-
-/* Smartphones (landscape) */
-@media only screen
-and (min-width : 321px) {
-    .logo-text {
-        font-size: 12pt !important;
-    }
-}
-
-/* Smartphones (portrait) */
-@media only screen
-and (max-width : 320px) {
-    .logo-text {
-        font-size: 12pt !important;
-    }
-}
-
-/* iPads (portrait and landscape) */
-@media only screen
-and (min-device-width : 768px)
-and (max-device-width : 1024px) {
-    .logo-text {
-        font-size: 12pt !important;
-    }
-}
-
-/* iPads (landscape) */
-@media only screen
-and (min-device-width : 768px)
-and (max-device-width : 1024px)
-and (orientation : landscape) {
-    .logo-text {
-        font-size: 12pt !important;
-    }
-}
-
-/* iPads (portrait) */
-@media only screen
-and (min-device-width : 768px)
-and (max-device-width : 1024px)
-and (orientation : portrait) {
-    .logo-text {
-        font-size: 12pt !important;
-    }
-}
-
-/* Desktops and laptops */
-@media only screen
-and (min-width : 1224px) {
-
-}
-
-/* Large screens */
-@media only screen
-and (min-width : 1824px) {
-
-}
-
-/* iPhone 4 */
-@media
-only screen and (-webkit-min-device-pixel-ratio : 1.5),
-only screen and (min-device-pixel-ratio : 1.5) {
-
 }
 
 .inherited-height {
