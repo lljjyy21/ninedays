@@ -249,7 +249,6 @@ function OutputDrawer(parameters) {
 
     function drawTitle() {
         var div = document.createElement('div');
-        div.className = 'text-field';
         div.innerText = title;
         $(stockTitleIdName).append(div);
     }
@@ -260,7 +259,7 @@ function OutputDrawer(parameters) {
                 continue;
             }
             var div = document.createElement('div');
-            div.className = 'text-field';
+            div.className = 'input-field';
             div.innerText = messages[index];
             $(stockCalculationsIdName).append(div);
         }

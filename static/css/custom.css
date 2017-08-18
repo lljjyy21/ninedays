@@ -89,8 +89,12 @@ body{
     padding: 0;
 }
 
-.input-field, .text-field {
+.input-field {
     margin-top: 20px;
+}
+
+.text-field {
+    margin-top: 50px;
 }
 
 .input-fields {
