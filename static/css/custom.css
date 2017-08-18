@@ -36,6 +36,9 @@ body{
     margin-top: 170px;
 }
 
+.padding-top-70px {
+    padding-top: 70px;
+}
 
 @media (min-width: 1200px) {
     .scroll-arrow-block {
