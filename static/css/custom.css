@@ -4,6 +4,7 @@ html{
 }
 
 body{
+    font-family: Lato;
     height: 100%;
 }
 
@@ -85,6 +86,17 @@ body{
 #btn-text {
 }
 
+.btn-area:focus,
+.btn-area:active,
+.btn-area:visited,
+.btn-area:hover,
+.btn-area:before,
+.btn-area:after {
+    outline: none !important;
+    border: none;
+    text-decoration: none;
+}
+
 .remove-style {
     padding: 0;
 }
@@ -117,6 +129,11 @@ input {
     padding-left: 37px;
 }
 
+.input-date-mobile {
+    text-align: left;
+    padding-left: 7px;
+}
+
 .input {
     width: 160px;
 }
@@ -130,14 +147,7 @@ input {
     font-weight: bold;
 }
 
-@media only screen and (min-width: 992px) and (max-width: 1199px) {
-    .logo-text {
-        font-size: 8pt;
-        font-weight: bold;
-        font-family: Lato;
-    }
-}
-
+/*Desktop*/
 @media only screen and (min-width: 1200px) {
     .logo-text {
         font-size: 9.5pt;
@@ -146,12 +156,27 @@ input {
     }
 }
 
+/*Big tablet*/
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .logo-text {
+        font-size: 8pt;
+        font-weight: bold;
+        font-family: Lato;
+    }
+}
+
+/*Small tablet & Big phone*/
 @media only screen and (max-device-width: 480px) {
     .input {
         width: 120px;
     }
+
+    .letter {
+        font-size: 14pt;
+    }
 }
 
+/*Small phone*/
 @media only screen and (max-device-width: 320px) {
     .input {
         width: 100px;
@@ -177,3 +202,8 @@ input {
 .inherited-height {
     height: 100%;
 }
+
+.text-mobile {
+    font-size: 9pt;
+}
+

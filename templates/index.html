@@ -203,16 +203,20 @@
     <div id="mobile" class="container-fluid hidden-lg hidden-md invisible-lg invisible-md">
         <div class="row">
             <!-- LEFT COLUMN -->
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center left-column-background container">
+            <div class="col-xs-2 col-sm-2 text-center left-column-background container">
             </div>
 
             <!-- CENTER COLUMN -->
-            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 text-center center-column">
+            <div class="col-xs-8 col-sm-8 text-center center-column">
                 <div class="text-center letter">
                     <div class="row">
                         <div class="col-xs-3 col-sm-3"></div>
                         <div class="col-xs-6 col-sm-6">
-                            <img alt="logo" id="logo" src="/static/image/logo.jpg" class="img img-responsive full-width"/>
+                            <div class="row">
+                                <div class="col-xs-8 col-sm-8 col-xs-offset-2 col-sm-offset-2">
+                                    <img alt="logo" id="logo" src="/static/image/logo.jpg" class="img img-responsive full-width"/>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-xs-3 col-sm-3"></div>
                     </div>
@@ -229,61 +233,61 @@
 
                 <div class="input-fields">
                     <div class="row input-field">
-                        <div>
+                        <div class="text-mobile">
                             STOCK NAME
                         </div>
                         <div>
-                            <input id="stock-name-mobile" class="input input-mobile" type="text" name="stock_name" value="Bidu">
+                            <input id="stock-name-mobile" class="input input-mobile text-mobile" type="text" name="stock_name" value="Bidu">
                         </div>
                     </div>
 
                     <div class="row input-field">
-                        <div>
+                        <div class="text-mobile">
                             START DATE
                         </div>
                         <div>
-                            <input id="start-date-mobile" class="input input-mobile" type="date" name="start_date" value="2006-01-01">
+                            <input id="start-date-mobile" class="input input-mobile text-mobile" type="date" name="start_date" value="2006-01-01">
                         </div>
                     </div>
 
                     <div class="row input-field">
-                        <div>
+                        <div class="text-mobile">
                             END DATE
                         </div>
                         <div>
-                            <input id="end-date-mobile" class="input input-mobile" type="date" name="end_date" value="{{ current_date() }}">
+                            <input id="end-date-mobile" class="input input-mobile text-mobile" type="date" name="end_date" value="{{ current_date() }}">
                         </div>
                     </div>
 
                     <div class="row input-field">
-                        <div>
+                        <div class="text-mobile">
                             SHORT MA
                         </div>
                         <div>
-                            <input id="short-ma-mobile" class="input input-mobile" type="number" name="short_ma" value="5">
+                            <input id="short-ma-mobile" class="input input-mobile text-mobile" type="number" name="short_ma" value="5">
                         </div>
                     </div>
 
                     <div class="row input-field">
-                        <div>
+                        <div class="text-mobile">
                             LONG MA
                         </div>
                         <div>
-                            <input id="long-ma-mobile" class="input input-mobile" type="number" name="long_ma" value="60">
+                            <input id="long-ma-mobile" class="input input-mobile text-mobile" type="number" name="long_ma" value="60">
                         </div>
                     </div>
 
                     <div class="row input-field">
-                        <div>
+                        <div class="text-mobile">
                             RANGE
                         </div>
                         <div>
-                            <input id="range-mobile" class="input input-mobile" type="number" name="range" value="100">
+                            <input id="range-mobile" class="input input-mobile text-mobile" type="number" name="range" value="100">
                         </div>
                     </div>
 
                     <div class="row input-field">
-                        <button id="btn" type="button" class="btn">START</button>
+                        <button id="btn" type="button" class="btn text-mobile">START</button>
                     </div>
                 </div>
 
@@ -298,7 +302,7 @@
             </div>
 
             <!-- RIGHT COLUMN -->
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center right-column-background container">
+            <div class="col-xs-2 col-sm-2 text-center right-column-background container">
             </div>
         </div>
     </div>
