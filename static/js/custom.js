@@ -124,8 +124,12 @@ function InputField() {
         inputs.css({'width': centerColumnWidth});
     }
 
+    function updateInputField() {
+        updateInputFieldWidth();
+    }
+
     return {
-        update: updateInputFieldWidth
+        update: updateInputField
     };
 }
 

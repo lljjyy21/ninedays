@@ -101,6 +101,22 @@ body{
     margin-top: 60px;
 }
 
+
+.input-desktop {
+    background-color: #e6f2e7;
+}
+
+input {
+    border: none;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.input-date {
+    text-align: left;
+    padding-left: 37px;
+}
+
 .input {
     width: 160px;
 }
