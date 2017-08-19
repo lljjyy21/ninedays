@@ -199,6 +199,15 @@ input {
     margin-bottom: 20px;
 }
 
+.bottom-entry {
+    margin-top: 70px;
+    margin-bottom: 70px;
+}
+
+.bottom-extra-space {
+    margin-bottom: 80px;
+}
+
 .inherited-height {
     height: 100%;
 }
