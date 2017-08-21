@@ -151,7 +151,7 @@ function VerticalCenterButtonText() {
 }
 
 
-$('.btn').on('click touchstart', function() {
+$('.btn-area').on('click touchstart', function() {
     var stockCalculationsDrawer = new StockCalculationsDrawer();
     stockCalculationsDrawer.getAndDrawCalculations();
 });

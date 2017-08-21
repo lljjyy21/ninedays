@@ -83,7 +83,8 @@ body{
     position:absolute;
 }
 
-#btn-text {
+.btn-area {
+    cursor: pointer;
 }
 
 .btn-area:focus,
