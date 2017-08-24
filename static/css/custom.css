@@ -126,8 +126,7 @@ input {
 }
 
 .input-date {
-    text-align: left;
-    padding-left: 37px;
+    text-align: center;
 }
 
 .input-date-mobile {
@@ -217,3 +216,7 @@ input {
     font-size: 9pt;
 }
 
+.error-message {
+    color: #ff0000;
+    font-size: 12pt;
+}

@@ -46,6 +46,7 @@ function Page() {
             inputField.update();
         }
         else {
+            inputField.update();
             footer.update();
             verticalCenterButtonText.update();
         }
@@ -124,8 +125,20 @@ function InputField() {
         inputs.css({'width': centerColumnWidth});
     }
 
+    function updateInputDateAlignment() {
+        var inputDate = $('.input-date'),
+            isMobileLayout = $('#mobile').is(':visible');
+        if (isMobileLayout) {
+            inputDate.css('padding-left', "6%");
+        }
+        else {
+            inputDate.css('padding-left', "10%");
+        }
+    }
+
     function updateInputField() {
         updateInputFieldWidth();
+        updateInputDateAlignment();
     }
 
     return {
@@ -152,6 +165,7 @@ function VerticalCenterButtonText() {
 
 
 $('.btn-area').on('click touchstart', function() {
+    //console.error('twice?');
     var stockCalculationsDrawer = new StockCalculationsDrawer();
     stockCalculationsDrawer.getAndDrawCalculations();
 });
@@ -165,7 +179,7 @@ function StockCalculationsDrawer() {
         longMaIdName = undefined,
         rangeIdName = undefined;
 
-    function strategy() {
+    function assignHTMLElementIdsDependingOnDeviceLayout() {
         var isMobileLayout = $('#mobile').is(':visible');
 
         if (isMobileLayout) {
@@ -187,7 +201,7 @@ function StockCalculationsDrawer() {
     }
 
     function getAndDrawCalculations() {
-        strategy();
+        assignHTMLElementIdsDependingOnDeviceLayout();
 
         var stock = $(stockIdName).val(),
             start_date = $(startDateIdName).val(),
@@ -198,16 +212,30 @@ function StockCalculationsDrawer() {
 
         console.log("Before ajax request");
 
+
+        //TODO: Test
+        var inputFieldsValidation = new InputFieldsValidation();
+        var isValidInput = inputFieldsValidation.isValid();
+
+        if (isValidInput) {
+            state.update();
+            var stateObject = state.get();
+        }
+        else {
+            state.reset();
+            return;
+        }
+
         $.ajax({
             url: '/calculate',
             type: 'GET',
             data: {
-                stock: stock,
-                start_date: start_date,
-                end_date: end_date,
-                short_ma: short_ma,
-                long_ma: long_ma,
-                range: range
+                stock: stateObject.stockName,
+                start_date: stateObject.startDate,
+                end_date: stateObject.endDate,
+                short_ma: stateObject.shortMA,
+                long_ma: stateObject.longMA,
+                range: stateObject.range
             },
             success: function (response) {
                 console.log("response");
@@ -217,11 +245,12 @@ function StockCalculationsDrawer() {
                     title = messages[0];
 
                 var outputDrawer = new OutputDrawer({title: title, messages: messages});
+                outputDrawer.erase();
                 outputDrawer.draw();
             },
             error: function (response) {
                 var outputDrawer = new OutputDrawer({title: "", messages: ""});
-                outputDrawer.draw();
+                outputDrawer.erase();
 
                 console.error(response);
             }
@@ -240,7 +269,7 @@ function OutputDrawer(parameters) {
         stockTitleIdName = undefined,
         stockCalculationsIdName = undefined;
 
-    function strategy() {
+    function assignHTMLElementIdsDependingOnDeviceLayout() {
         if ($('#mobile').is(':visible')) {
             stockTitleIdName = '#stock-title-mobile';
             stockCalculationsIdName = '#stock-calculation-mobile';
@@ -270,8 +299,7 @@ function OutputDrawer(parameters) {
     }
 
     function drawContent() {
-        strategy();
-        eraseContent();
+        assignHTMLElementIdsDependingOnDeviceLayout();
         drawTitle();
         drawMessages();
     }
@@ -285,11 +313,242 @@ function OutputDrawer(parameters) {
     }
 
     function eraseContent() {
+        assignHTMLElementIdsDependingOnDeviceLayout();
         eraseTitle();
         eraseMessages();
     }
 
     return {
-        draw: drawContent
+        draw: drawContent,
+        erase: eraseContent
     };
 }
+
+function InputFieldsValidation() {
+
+    var stockIdName = undefined,
+        startDateIdName = undefined,
+        endDateIdName = undefined,
+        shortMaIdName = undefined,
+        longMaIdName = undefined,
+        rangeIdName = undefined;
+
+    function assignHTMLElementIdsDependingOnDeviceLayout() {
+        var isMobileLayout = $('#mobile').is(':visible');
+
+        if (isMobileLayout) {
+            stockIdName = '#stock-name-mobile';
+            startDateIdName = '#start-date-mobile';
+            endDateIdName = '#end-date-mobile';
+            shortMaIdName = '#short-ma-mobile';
+            longMaIdName = '#long-ma-mobile';
+            rangeIdName = '#range';
+        }
+        else {
+            stockIdName = '#stock-name';
+            startDateIdName = '#start-date';
+            endDateIdName = '#end-date';
+            shortMaIdName = '#short-ma';
+            longMaIdName = '#long-ma';
+            rangeIdName = '#range';
+        }
+    }
+
+    assignHTMLElementIdsDependingOnDeviceLayout();
+
+    var startDate = stringDateToInteger($(startDateIdName).val()),
+        endDate = stringDateToInteger($(endDateIdName).val()),
+        longMA = stringToInteger($(longMaIdName).val()),
+        shortMA = stringToInteger($(shortMaIdName).val()),
+        range = stringToInteger($(rangeIdName).val());
+
+    // Converter from anything to integers if values valid, otherwise returns undefined
+    function stringToInteger(num) {
+        var initialNumber = Number(num);
+        var parsedIntegerNumber = Math.floor(initialNumber);
+        if (String(parsedIntegerNumber) === num && String(initialNumber) === num) {
+            return parsedIntegerNumber;
+        }
+        return undefined;
+    }
+
+    // Convert date represented as a string to a number of days, otherwise return undefined
+    function stringDateToInteger(date) {
+        var updatedDate = Date.parse(date);
+        if (Number(updatedDate) === updatedDate) {
+            // Calculate number of days
+            updatedDate = Math.ceil(updatedDate / (1000*3600*24));
+            return updatedDate;
+        }
+        return undefined;
+    }
+
+    // Range is bigger or equal than maximum MA entry
+    function rangeIsBiggerOrEqualThanMA() {
+        var MA = Math.max(shortMA, longMA);
+        return MA <= range;
+    }
+
+    // Short ma is bigger than long ma
+    function shortMAIsBiggerThanLongMA () {
+        return shortMA > longMA;
+    }
+
+    function shortMAIsSmallerOrEqualThanLongMA () {
+        return !shortMAIsBiggerThanLongMA();
+    }
+
+    // Range is smaller than data set period
+    function rangeIsSmallerThanSetPeriod () {
+        return range < (endDate - startDate);
+    }
+
+    // TODO: Theoretically, this function is redundant
+    function rangeIsBiggerOrEqualThanPeriod () {
+        return !rangeIsSmallerThanSetPeriod();
+    }
+
+    function validateInputFields () {
+        if (shortMAIsSmallerOrEqualThanLongMA() &&
+            rangeIsBiggerOrEqualThanMA() &&
+            rangeIsSmallerThanSetPeriod()) {
+            return true;
+        }
+        return false;
+    }
+
+    return {
+        isValid: validateInputFields
+    }
+}
+
+
+function InputState() {
+
+    var stockName = undefined,
+        startDate = undefined,
+        endDate = undefined,
+        longMA = undefined,
+        shortMA = undefined,
+        range = undefined;
+
+    updateState();
+
+    var stockIdName = undefined,
+        startDateIdName = undefined,
+        endDateIdName = undefined,
+        shortMaIdName = undefined,
+        longMaIdName = undefined,
+        rangeIdName = undefined;
+
+    function assignHTMLElementIdsDependingOnDeviceLayout() {
+        var isMobileLayout = $('#mobile').is(':visible');
+
+        if (isMobileLayout) {
+            stockIdName = '#stock-name-mobile';
+            startDateIdName = '#start-date-mobile';
+            endDateIdName = '#end-date-mobile';
+            shortMaIdName = '#short-ma-mobile';
+            longMaIdName = '#long-ma-mobile';
+            rangeIdName = '#range';
+        }
+        else {
+            stockIdName = '#stock-name';
+            startDateIdName = '#start-date';
+            endDateIdName = '#end-date';
+            shortMaIdName = '#short-ma';
+            longMaIdName = '#long-ma';
+            rangeIdName = '#range';
+        }
+    }
+
+    function updateState() {
+        assignHTMLElementIdsDependingOnDeviceLayout();
+        stockName = $(stockIdName).val();
+        startDate = $(startDateIdName).val();
+        endDate = $(endDateIdName).val();
+        longMA = $(longMaIdName).val();
+        shortMA = $(shortMaIdName).val();
+        range = $(rangeIdName).val();
+    }
+
+    function getState() {
+        var object = {
+            'stockName': stockName,
+            'startDate': startDate,
+            'endDate': endDate,
+            'longMA': longMA,
+            'shortMA': shortMA,
+            'range': range
+        };
+        return object;
+    }
+
+    function resetInputFields() {
+        assignHTMLElementIdsDependingOnDeviceLayout();
+        $(stockIdName).val(stockName);
+        $(startDateIdName).val(startDate);
+        $(endDateIdName).val(endDate);
+        $(longMaIdName).val(longMA);
+        $(shortMaIdName).val(shortMA);
+        $(rangeIdName).val(range);
+    }
+
+    function showFlushMessage() {
+        $('.error-message').flash_message({
+            text: 'Input is incorrect.',
+            how: 'append'
+        });
+    }
+
+    function resetState() {
+        // Clear output section
+        var outputDrawer = new OutputDrawer({});
+        outputDrawer.erase();
+
+        // Reset input values
+        resetInputFields();
+
+        // Show flush message
+        showFlushMessage();
+    }
+
+    return {
+        update: updateState,
+        get: getState,
+        reset: resetState
+    }
+}
+
+var state = new InputState();
+
+
+// NOTE: Solution is used from https://jsfiddle.net/BaylorRae/vwvAd/
+(function($) {
+  $.fn.flash_message = function(options) {
+
+    options = $.extend({
+      text: 'Done',
+      time: 1000,
+      how: 'before',
+      class_name: ''
+    }, options);
+
+    return $(this).each(function() {
+      if ($(this).parent().find('.flash_message').get(0))
+        return;
+
+      var message = $('<span />', {
+        'class': 'flash_message ' + options.class_name,
+        text: options.text
+      }).hide().fadeIn('fast');
+
+      $(this)[options.how](message);
+
+      message.delay(options.time).fadeOut('normal', function() {
+        $(this).remove();
+      });
+
+    });
+  };
+})(jQuery);

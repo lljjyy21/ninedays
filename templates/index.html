@@ -73,11 +73,6 @@
                                 <div>
                                     <input id="stock-name" class="input input-desktop" type="text" name="stock_name" value="Bidu">
                                 </div>
-                                <div class="row hidden">
-                                    <div class="alert alert-danger">
-                                        STOCK NAME IS INCORRECT!
-                                    </div>
-                                </div>
                             </div>
 
                             <div class="row input-field text-center">
@@ -151,8 +146,9 @@
                         <div id="stock-title" class="input-field text-center output-header">
                         </div>
 
-                        <div id="stock-calculation" class="text-field text-center">
+                        <div class="text-center error-message"></div>
 
+                        <div id="stock-calculation" class="text-field text-center">
                         </div>
                     </div>
                 </div>
@@ -246,7 +242,7 @@
                             START DATE
                         </div>
                         <div>
-                            <input id="start-date-mobile" class="input input-mobile text-mobile" type="date" name="start_date" value="2006-01-01">
+                            <input id="start-date-mobile" class="input input-mobile text-mobile input-date" type="date" name="start_date" value="2006-01-01">
                         </div>
                     </div>
 
@@ -255,7 +251,7 @@
                             END DATE
                         </div>
                         <div>
-                            <input id="end-date-mobile" class="input input-mobile text-mobile" type="date" name="end_date" value="{{ current_date() }}">
+                            <input id="end-date-mobile" class="input input-mobile text-mobile input-date" type="date" name="end_date" value="{{ current_date() }}">
                         </div>
                     </div>
 
@@ -287,8 +283,10 @@
                     </div>
 
                     <div class="row bottom-entry">
-                        <button id="btn" type="button" class="btn text-mobile">START</button>
+                        <button id="btn" type="button" class="btn text-mobile btn-area">START</button>
+                        <div class="text-center error-message"></div>
                     </div>
+
                 </div>
 
                 <div class="raw">
