@@ -164,8 +164,9 @@ function VerticalCenterButtonText() {
 }
 
 
-$('.btn-area').on('click touchstart', function() {
-    //console.error('twice?');
+$('.btn-area').on('click touchstart', function(e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
     var stockCalculationsDrawer = new StockCalculationsDrawer();
     stockCalculationsDrawer.getAndDrawCalculations();
 });
