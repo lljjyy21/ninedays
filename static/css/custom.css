@@ -220,3 +220,11 @@ input {
     color: #ff0000;
     font-size: 12pt;
 }
+
+.scroll-arrow-positioning {
+    bottom: 0;
+    margin-bottom: 20px;
+    position: absolute;
+    margin-left: 0;
+    margin-right: 0;
+}

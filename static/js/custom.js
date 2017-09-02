@@ -3,19 +3,19 @@
  */
 
 $(window).on("load", function () {
-    console.log("onload");
+    //console.log("onload");
     var page = new Page();
     page.update();
 });
 
 $(window).resize(function () {
-    console.log("resize");
+    //console.log("resize");
     var page = new Page();
     page.update();
 });
 
 $(window).on("orientationchange", function () {
-    console.log("onorientationchange");
+    //console.log("onorientationchange");
     var page = new Page();
     page.update();
 });
@@ -37,6 +37,7 @@ function Page() {
     var body = new Body();
     var footer = new Footer();
     var inputField = new InputField();
+    var scrollArrow = new ScrollArrow();
     var verticalCenterButtonText = new VerticalCenterButtonText();
     var isMobileLayout = $('#mobile').is(':visible');
 
@@ -47,6 +48,7 @@ function Page() {
         }
         else {
             inputField.update();
+            scrollArrow.update();
             footer.update();
             verticalCenterButtonText.update();
         }
@@ -64,8 +66,8 @@ function Body() {
     calculatePageHeight();
 
     function calculatePageHeight() {
-        console.log("Page height", $(window).height(), $(document).height(), MIN_PAGE_HEIGHT);
-        console.log(isMobileLayout);
+        //console.log("Page height", $(window).height(), $(document).height(), MIN_PAGE_HEIGHT);
+        //console.log(isMobileLayout);
         if (isMobileLayout) {
             PAGE_HEIGHT = $(document).height();
             FOOTER_HEIGHT = 0;
@@ -85,7 +87,7 @@ function Body() {
     }
 
     function updateHeight() {
-        console.log(PAGE_HEIGHT, FOOTER_HEIGHT);
+        //console.log(PAGE_HEIGHT, FOOTER_HEIGHT);
         updateBodyHeight();
         if (!isMobileLayout) {
             updateFooterHeight();
@@ -115,6 +117,20 @@ function Footer() {
     return {
         update: updateFooter
     };
+}
+
+function ScrollArrow() {
+    var rowWidth = $('#textLogo').width()/2,
+        scrollArrow = $('#scrollArrow').width()/2,
+        bootstrapPadding = 15;
+
+    function updateScrollArrowPosition() {
+        $('#scrollArrow').css('margin-left', rowWidth - scrollArrow - bootstrapPadding);
+    }
+
+    return {
+        update: updateScrollArrowPosition
+    }
 }
 
 function InputField() {
@@ -211,7 +227,7 @@ function StockCalculationsDrawer() {
             long_ma = $(longMaIdName).val(),
             range = $(rangeIdName).val();
 
-        console.log("Before ajax request");
+        //console.log("Before ajax request");
 
 
         //TODO: Test
@@ -239,7 +255,7 @@ function StockCalculationsDrawer() {
                 range: stateObject.range
             },
             success: function (response) {
-                console.log("response");
+                //console.log("response");
                 var response_object = JSON.parse(response);
                 var message = response_object["message"];
                 var messages = message.split("\n"),
