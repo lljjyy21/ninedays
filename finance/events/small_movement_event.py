@@ -7,6 +7,7 @@ class SmallMovementEvent(BaseEvent):
     def __init__(self, open_price, close_price, high_price=None):
         BaseEvent.__init__(self, open_price, close_price, high_price)
         self.rise_percentage = None
+        self._validate_input()
 
     def _calculate_rise_percentage(self):
         self.rise_percentage = np.true_divide((self.close_price - self.open_price), self.open_price)
