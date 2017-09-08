@@ -59,21 +59,27 @@ class PassResistanceLineEventTest(ExtendedTestCase):
 
     def test_pass_resistance_line_event_with_wrong_high_price_input(self):
         time_period = 5
-        pass_resistance_line_event = PassResistanceLineEvent(None, None, None, time_period)
+        open_price, close_price = None, None
+        high_price = None
 
-        self.assertRaises(TypeError, pass_resistance_line_event.get_events_sequence)
+        self.assertRaises(TypeError, PassResistanceLineEvent, open_price, close_price, high_price, time_period)
         self.assertRaisesWithMessage("High price is not numpy array",
-                                     pass_resistance_line_event.get_events_sequence)
+                                     PassResistanceLineEvent, open_price, close_price, high_price, time_period)
 
     def test_pass_resistance_line_event_with_wrong_time_period_input(self):
+        open_price, close_price = None, None
         high_price = np.array([10.0, 11.0, 15.0, 16.0, 12.0, 20.0, 10.0, 11.0, 11.0, 12.0, 15.0])
         time_periods = [-1000, -1, 0, 1]
         for time_period in time_periods:
-            pass_resistance_line_event = PassResistanceLineEvent(None, None, high_price, time_period)
-
-            self.assertRaises(ValueError, pass_resistance_line_event.get_events_sequence)
+            self.assertRaises(ValueError, PassResistanceLineEvent, open_price, close_price, high_price, time_period)
             self.assertRaisesWithMessage("Time period is less than 2 days",
-                                         pass_resistance_line_event.get_events_sequence)
+                                         PassResistanceLineEvent, open_price, close_price, high_price, time_period)
+
+        time_period = None
+        self.assertRaises(TypeError, PassResistanceLineEvent, open_price, close_price, high_price, time_period)
+        self.assertRaisesWithMessage("Time period is not int",
+                                     PassResistanceLineEvent, open_price, close_price, high_price, time_period)
+
 
 if __name__ == '__main__':
     main()
