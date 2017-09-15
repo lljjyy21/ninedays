@@ -20,12 +20,6 @@ $(window).on("orientationchange", function () {
     page.update();
 });
 
-$(".btn-area").hover(function () {
-    $(".btn-area").css("background-color", "#cecece");
-}, function () {
-    $(".btn-area").css("background-color", "");
-});
-
 $(document).bind("ajaxSend", function(){
 
 }).bind("ajaxStop", function(){
