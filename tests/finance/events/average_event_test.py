@@ -90,5 +90,6 @@ class AverageEventTest(ExtendedTestCase):
         self.assertRaisesWithMessage("Close price is not numpy array",
                                      AverageEvent, open_price, close_price)
 
+
 if __name__ == '__main__':
     main()
