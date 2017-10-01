@@ -12,10 +12,6 @@ Front-end:
 4.5. Black strategy name under the wheel UI
 4.6. Hint showing all small result when mouse hover on the wheel for few sec
 
-5. In IE font is incorrect (it converts to default). It has to be as specified.
-
-
-
 Back-end:
 
 0. Feature: Implement events with strategies

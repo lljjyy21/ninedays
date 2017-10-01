@@ -1,10 +1,20 @@
+@font-face {
+    font-family: LatoRegular;
+    src: url('../fonts/Lato-Regular.eot');
+    src: url('../fonts/Lato-Regular.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Lato-Regular.woff') format('woff'),
+         url('../fonts/Lato-Regular.ttf') format('truetype'),
+         url('../fonts/Lato-Regular.woff2') format('woff2');
+}
+
+
 html{
     min-height: 100%;
     position: relative;
 }
 
 body{
-    font-family: Lato;
+    font-family: LatoRegular;
     height: 100%;
 }
 
@@ -29,7 +39,7 @@ body{
 .letter {
     font-size: 22pt;
     font-weight: bold;
-    font-family: Lato;/*Georgia, serif;*/
+    font-family: LatoRegular;
     -webkit-font-smoothing: subpixel-antialiased;
 }
 
@@ -140,7 +150,7 @@ input {
 
 .io-text {
     font-size: 12pt;
-    font-family: Lato;
+    font-family: LatoRegular;
 }
 
 .output-header {
@@ -152,7 +162,7 @@ input {
     .logo-text {
         font-size: 9.5pt;
         font-weight: bold;
-        font-family: Lato;
+        font-family: LatoRegular;
     }
 }
 
@@ -161,7 +171,7 @@ input {
     .logo-text {
         font-size: 8pt;
         font-weight: bold;
-        font-family: Lato;
+        font-family: LatoRegular;
     }
 }
 
