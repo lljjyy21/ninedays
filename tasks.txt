@@ -2,6 +2,7 @@ Bugs and features:
 
 Front-end:
 2. Date container needs resize
+# TODO: Check with Tom if it is solved
 3. The font for the mobile version needs change to the font used in the desktop version.
 
 4. Result display: Wheel UI
