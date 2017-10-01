@@ -4,7 +4,11 @@ import json
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
 from finance import stock_processor as sc
+from finance import stock_data_processor as sdp
+from finance.metrics.stock_metric_calculator import StockMetricCalculator
+
 from helper import current_date
+from helper.input_type_validator import TypeValidator
 
 app = Flask(__name__)
 app.config.from_object(__name__) # load config from this file
@@ -60,6 +64,8 @@ def index(message=''):
 # short_ma=<short_ma>&long_ma=<long_ma>&range_days=<range>
 @app.route("/calculate", methods=["GET"])
 def calculate_stock_chances():
+
+    # WARNING: This can be true if someone sends request directly (trying to hack the website)
     stock_name = request.args.get('stock')
     start = request.args.get('start_date')
     end = request.args.get('end_date')
@@ -67,8 +73,21 @@ def calculate_stock_chances():
     long_ma = request.args.get('long_ma')
     range_days = request.args.get('range')
 
-    stock = sc.StockProcessor(stock_name, start, end, short_ma, long_ma, range_days)
+    type_validator = TypeValidator(start, end, short_ma, long_ma, range_days)
+    if not type_validator.validate():
+        return json.dumps({
+            "message": "Sorry, the input data is in a wrong format!"
+        })
 
+    stock_data_processor = sdp.StockDataProcessor(stock_name, start, end)
+    data = stock_data_processor.get_stock_data()
+
+    stock = sc.StockProcessor(data, stock_name, start, end, short_ma, long_ma, range_days)
+
+    # TODO: Test this
+    # stock_metric_calculator = StockMetricCalculator(data)
+
+    # TODO: Make a separate class which will be responsible for drawing messages in the proper format
     message = stock.info()
     return json.dumps({
         "message": message

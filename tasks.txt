@@ -1,0 +1,35 @@
+Bugs and features:
+
+Front-end:
+2. Date container needs resize
+3. The font for the mobile version needs change to the font used in the desktop version.
+
+4. Result display: Wheel UI
+4.1. Center circle: White
+4.2. Blank wheel: Grey
+4.3. Filled wheel: Green(same as the website)
+4.4. Center number: Black
+4.5. Black strategy name under the wheel UI
+4.6. Hint showing all small result when mouse hover on the wheel for few sec
+
+5. In IE font is incorrect (it converts to default). It has to be as specified.
+
+
+
+Back-end:
+
+0. Feature: Implement events with strategies
+
+0.1 CI on Bitbucket, guide https://confluence.atlassian.com/bitbucket/get-started-with-bitbucket-pipelines-792298921.html
+
+1. Bug: On hover event for text, not background
+
+2. Continuous integration & delivery with Heroku https://www.heroku.com/continuous-delivery
+
+3. Document more properly the whole project!
+// https://milmazz.uno/article/2014/08/27/how-to-document-your-javascript-code/
+// JSDoc: http://usejsdoc.org/
+
+4. Bug: when resize screen desktop and mobile versions are not connected to each other and have different values.
+
+10. Optional: change all element brackets in JavaScript to the same style.

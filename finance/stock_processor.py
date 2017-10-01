@@ -1,22 +1,24 @@
 import datetime as dt
 import pandas_datareader.data as web
 from stock_calculator import StockCalculator
-#import Function as func
 
 
 class StockProcessor:
-    def __init__(self, stock_name, start_date, end_date, short_ma, long_ma, range_days, data_source='google'):
+    def __init__(self, stock_data, stock_name, start_date, end_date, short_ma, long_ma, range_days, data_source='google'):
         self.stock = stock_name.upper()
+
+        # WARNING: This is potential bug
         self.start = dt.datetime.strptime(start_date, '%Y-%m-%d')
         self.end = dt.datetime.strptime(end_date, '%Y-%m-%d')
-        print("-" * 25)
-        print(self.start, self.end)
-        print("-" * 25)
         self.short_ma = int(short_ma)
         self.long_ma = int(long_ma)
         self.range_days = int(range_days)
+
         self.data_source = data_source
 
+        self.df = stock_data
+
+    # TODO: This need to be extracted in the separate class
     def get_stock(self):
         df = web.DataReader('NASDAQ:' + self.stock, self.data_source, self.start, self.end)
         return df
@@ -24,8 +26,7 @@ class StockProcessor:
     # TODO: Refactor
     def info(self):
         try:
-            df = self.get_stock()
-            stock_calculator = StockCalculator(df, self.short_ma, self.long_ma, self.range_days)
+            stock_calculator = StockCalculator(self.df, self.short_ma, self.long_ma, self.range_days)
             day = len(stock_calculator.get_open_price_list())
 
             message = 'Tech info for {}\n'.format(self.stock)

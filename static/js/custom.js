@@ -127,6 +127,13 @@ function ScrollArrow() {
     }
 }
 
+// Calculate width of text from DOM element or string. By Phil Freo <http://philfreo.com>
+$.fn.textWidth = function(text, font) {
+    if (!$.fn.textWidth.fakeEl) $.fn.textWidth.fakeEl = $('<span>').hide().appendTo(document.body);
+    $.fn.textWidth.fakeEl.text(text || this.val() || this.text()).css('font', font || this.css('font'));
+    return $.fn.textWidth.fakeEl.width();
+};
+
 function InputField() {
     var centerColumnWidth = $('#mobile').find('.center-column').width()/2,
         inputs = $('.input-mobile');
@@ -138,11 +145,21 @@ function InputField() {
     function updateInputDateAlignment() {
         var inputDate = $('.input-date'),
             isMobileLayout = $('#mobile').is(':visible');
+
+        var span = $("span").val(inputDate.first().val());
+        //var textWidth = $.fn.textWidth(inputDate.first().text(), 14);
+        console.warn("input date", inputDate.first().outerWidth);
+        console.warn("input date text", inputDate.first().val());
+
+        console.warn("Input width", span.width(), span);
+        //console.warn("Text width", textWidth);
+
         if (isMobileLayout) {
             inputDate.css('padding-left', "6%");
         }
         else {
-            inputDate.css('padding-left', "10%");
+            inputDate.css('text-align', 'left');
+            inputDate.css('padding-left', );
         }
     }
 

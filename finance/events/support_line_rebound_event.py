@@ -15,7 +15,7 @@ class SupportLineReboundEvent(LineEvent):
         for j in range(self.time_period, self.price.shape[0]):
             min_first_index, min_second_index = j - self.time_period, j - self.time_period + 1
 
-            print("Initial", min_first_index, min_second_index)
+            # print("Initial", min_first_index, min_second_index)
 
             for i in range(self.time_period):
                 index = i + j - self.time_period

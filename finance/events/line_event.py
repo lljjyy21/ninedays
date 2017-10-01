@@ -10,6 +10,7 @@ class LineEvent(BaseEvent):
         self.price_value = price_value
         self.time_period = time_period
         self._validate_input()
+        self.price = price
 
     def _validate_input(self):
         if self.price_value == 'high':

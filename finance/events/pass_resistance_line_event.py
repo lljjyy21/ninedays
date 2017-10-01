@@ -1,41 +1,37 @@
-from finance.events.base_event import BaseEvent
+from finance.events.line_event import LineEvent
 import numpy as np
 
 
 # TODO: Add documentation
-class PassResistanceLineEvent(BaseEvent):
-    def __init__(self, open_price, close_price, high_price, time_period):
-            BaseEvent.__init__(self, open_price, close_price, high_price)
-            self.time_period = time_period
-            self._validate_input()
+class PassResistanceLineEvent(LineEvent):
+    def __init__(self, price, time_period):
+            LineEvent.__init__(self, price, time_period)
 
-    def _validate_input(self):
-        self._validate_high_price()
-        self._validate_time_period()
-
-    def _validate_time_period(self):
-        if not isinstance(self.time_period, (int, long)):
-            raise TypeError("Time period is not int")
-        if self.time_period < 2:
-            raise ValueError("Time period is less than 2 days")
-
-    # TODO: Re-implement with different from brute-force algorithm
+    # TODO: Think if this algorithm can be reimplemented in more efficient algorithm
     def get_events_sequence(self):
-        event_sequence = np.zeros((self.high_price.shape[0],), dtype=np.int8)
+        event_sequence = np.zeros((self.price.shape[0],), dtype=np.int8)
 
-        for j in range(self.time_period, self.high_price.shape[0]):
-            max_first_index, max_second_index = 0, 1
+        for j in range(self.time_period, self.price.shape[0]):
+            # TODO: DEBUG this code accurately one more time
+            max_first_index, max_second_index = j - self.time_period, j - self.time_period + 1
+
+            # print("Initial", max_first_index, max_second_index)
+
             for i in range(self.time_period):
-                if self.high_price[max_first_index] < self.high_price[i + j - self.time_period]:
+                index = i + j - self.time_period
+
+                if round(self.price[max_first_index], 2) < round(self.price[index], 2):
                     max_second_index = max_first_index
-                    max_first_index = i + j - self.time_period
-                elif self.high_price[max_second_index] < self.high_price[i + j - self.time_period]:
-                    max_second_index = i + j - self.time_period
+                    max_first_index = index
+                elif max_first_index != index and round(self.price[max_second_index], 2) < round(self.price[index], 2):
+                    max_second_index = index
             num_days_between_peaks = max_first_index - max_second_index
-            diff_price_between_peaks = 1.0 * (self.high_price[max_first_index] - self.high_price[max_second_index])
+            diff_price_between_peaks = 1.0 * (self.price[max_first_index] - self.price[max_second_index])
             slope = diff_price_between_peaks/num_days_between_peaks
 
-            if self.high_price[max_first_index] + slope * (j - max_first_index) < self.high_price[j]:
+            # print(max_first_index, max_second_index)
+
+            if self.price[max_first_index] + slope * (j - max_first_index) < self.price[j]:
                 event_sequence[j] = 1
 
         return event_sequence

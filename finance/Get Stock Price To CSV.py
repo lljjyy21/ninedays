@@ -1,10 +1,10 @@
 # GET STOCK DATA TO CSV FILE
 import datetime as dt
-import matplotlib.pyplot as plt
-from matplotlib import style
+#import matplotlib.pyplot as plt
+#from matplotlib import style
 import pandas as pd
 import pandas_datareader.data as web
-import xlsxwriter
+#import xlsxwriter
 import datetime
 
 now = datetime.datetime.now()
@@ -19,7 +19,7 @@ eyy = now.year
 emm = now.month
 edd = now.day
 
-# enter stock code !!!!!!
+# enter stock name !!!!!!
 stockName = 'bidu'.upper()
 
 # enter place to get data !!!!!!

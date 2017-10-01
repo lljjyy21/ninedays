@@ -1,13 +1,13 @@
 # READ CSV FILE AND PLOT
 import datetime as dt
-import matplotlib.pyplot as plt
-from matplotlib import style
+#import matplotlib.pyplot as plt
+#from matplotlib import style
 import pandas as pd
 import pandas_datareader.data as web
 import Function as func
 import var as v
 
-style.use('ggplot')
+#style.use('ggplot')
 
 # enter stock code !!!!!!
 stockName = v.stockName
@@ -32,7 +32,7 @@ range = 100
 print('\n ** Tech info for "{}"  \n'.format(v.stockName))
 tnum = func.Time_shortMA_bigger_than_longMA(day,maDaysShort,maDaysLong,range)
 print('In pass {} days,{} days MA overcome {} days MA {} times!'.format(range,maDaysShort,maDaysLong,tnum))
-chanceofrise = func.Times_shortMA_bigger_than_longMA_cause_rise(day,maDaysShort,maDaysLong,range)/tnum * 100
+chanceofrise = (1.0 * func.Times_shortMA_bigger_than_longMA_cause_rise(day,maDaysShort,maDaysLong,range))/tnum * 100
 COR = "%.2f" % chanceofrise
 print('and the chance of rise occur is {}% !'.format(COR))
 avgrisepercent = func.Avg_rise_percentage(day,maDaysShort,maDaysLong,range) * 100
