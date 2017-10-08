@@ -135,9 +135,6 @@ input {
     text-align: center;
 }
 
-.input-date {
-    text-align: center;
-}
 
 .input-date-mobile {
     text-align: left;
@@ -241,4 +238,16 @@ input {
 
 #btn-text:hover {
     color: #cecece;
+}
+
+input[type=date]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+}
+
+
+
+input[type=date]::-webkit-calendar-picker-indicator {
+    -webkit-appearance: none;
+    display: none;
 }
