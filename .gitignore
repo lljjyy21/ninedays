@@ -40,3 +40,6 @@ tmtagsHistory
 *.sublime-workspace
 .bundle
 
+# Other
+*.txt
+

@@ -1,4 +1,23 @@
-Bugs and features:
+Bugs and features(based on Bitbucket issue tracker):
+
+1. Issue 3: Create grid of circles with statistics(https://bitbucket.org/ChameleonTartu/financewebsite/issues/3/create-a-grid-of-circles-which-show)
+- Solution for wheels is found, clarify with Tom
+- Potential solution solution for on hover event (https://www.w3schools.com/css/tryit.asp?filename=trycss_tooltip)
+- Create a grid
+- Prepare backend to return dummy response (to testify this ticket)
+
+2. Fix events and prepare backend + finalize Continuous integration(https://bitbucket.org/ChameleonTartu/financewebsite/issues/4/test-strategies-and-setup-pipeline-for)
+- Do testing, fix code
+- Setup pipeline
+- Connect Front-end and Back-end
+
+3. Fix alignment in date field(https://bitbucket.org/ChameleonTartu/financewebsite/issues/5/fix-alignment-of-the-date-in-input-field)
+- Create StackOverflow answer(waiting for community help)
+
+4. Deploy system to servers
+
+
+
 
 Front-end:
 2. Date container needs resize

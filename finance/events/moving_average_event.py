@@ -9,6 +9,7 @@ class MovingAverageEvent(BaseEvent):
         BaseEvent.__init__(self, open_price, close_price, high_price)
         self.short_ma = short_ma
         self.long_ma = long_ma
+        self.price = self.close_price
         self._validate_input()
 
     def _validate_input(self):
@@ -33,7 +34,6 @@ class MovingAverageEvent(BaseEvent):
         if self.short_ma > self.long_ma:
             raise ValueError("Short MA is bigger than long MA")
 
-    # TODO: abstract 'price' is placeholder before Tom's response
     def get_events_sequence(self):
         event_sequence = np.array(self.price.shape, dtype=np.int8)
 

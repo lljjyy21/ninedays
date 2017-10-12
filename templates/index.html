@@ -7,6 +7,7 @@
 
     <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{url_for('static', filename='css/custom.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='css/css-circular-prog-bar.css')}}" rel="stylesheet">
     <title>Title</title>
 </head>
 <body>
@@ -48,7 +49,7 @@
                     </div>
                 </div>
 
-                <div id="scrollArrow" class="row scroll-arrow-positioning"> <!-- scroll-arrow-block -->
+                <div id="scrollArrow" class="row scroll-arrow-positioning">
                     <a href="#functional-page">
                         <img id="scroll-down" alt="scroll-down" src="static/image/scroll_black.png" class="center-block scroll-arrow img-responsive full-width"/>
                     </a>
@@ -148,13 +149,77 @@
                     <div class="col-lg-1 col-md-1 inherited-height btn-area">
                     </div>
                     <div class="col-lg-11 col-md-11 inherited-height padding-top-70px right-column-background">
+
+                        <!-- START -->
+                        <!-- TODO: Add wheels for events output here, desktop version -->
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <!-- Add over50 if p > 50-->
+                                <div id="average-event" class="progress-circle p0">
+                                   <span class="average-event">0%</span>
+                                   <div class="left-half-clipper">
+                                      <div class="first50-bar"></div>
+                                      <div class="value-bar"></div>
+                                   </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div id="moving-average-event" class="progress-circle p0">
+                                   <span class="moving-average-event">0%</span>
+                                   <div class="left-half-clipper">
+                                      <div class="first50-bar"></div>
+                                      <div class="value-bar"></div>
+                                   </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div id="pass-resistance-line-event" class="progress-circle p0">
+                                   <span class="pass-resistance-line-event">0%</span>
+                                   <div class="left-half-clipper">
+                                      <div class="first50-bar"></div>
+                                      <div class="value-bar"></div>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-offset-2 col-sm-4">
+                                <div id="small-movement-event" class="progress-circle p0">
+                                   <span class="small-movement-event">0%</span>
+                                   <div class="left-half-clipper">
+                                      <div class="first50-bar"></div>
+                                      <div class="value-bar"></div>
+                                   </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div id="support-line-rebound-event" class="progress-circle p0">
+                                   <span class="support-line-rebound-event">0%</span>
+                                   <div class="left-half-clipper">
+                                      <div class="first50-bar"></div>
+                                      <div class="value-bar"></div>
+                                   </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--
                         <div id="stock-title" class="input-field text-center output-header">
                         </div>
+                        <div id="stock-calculation" class="text-field text-center">
+                        </div>
+                        -->
+
+                        <!-- END -->
 
                         <div class="text-center error-message"></div>
 
-                        <div id="stock-calculation" class="text-field text-center">
-                        </div>
+
                     </div>
                 </div>
             </div>

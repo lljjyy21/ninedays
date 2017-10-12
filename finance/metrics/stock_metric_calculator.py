@@ -86,3 +86,10 @@ class StockMetricCalculator:
             return 0.0
 
         return round((100.0 * number_of_continuous_days)/next_day_rise_after_event)
+
+    def get_metrics(self):
+        metrics = dict()
+        metrics["chance-of-rise"] = self.calculate_chance_of_rise()
+        metrics["average-rise-percent"] = self.calculate_average_rise_percent()
+        metrics["average-continuous-days"] = self.calculate_average_continuous_days()
+        return metrics

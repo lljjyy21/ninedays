@@ -266,8 +266,28 @@ function StockCalculationsDrawer() {
                 range: stateObject.range
             },
             success: function (response) {
-                //console.log("response");
+
                 var response_object = JSON.parse(response);
+
+                console.log("response_object", response_object);
+
+                // Figure out how to process this thing
+                if (response_object.hasOwnProperty("error")) {
+                    return;
+                }
+
+
+                // get events
+                var average_event = response_object["average-event"],
+                    moving_average_event = response_object["moving-average-event"],
+                    pass_resistance_event = response_object["pass-resistance-event"],
+                    small_movement_event = response_object["small-movement-event"],
+                    support_line_rebound_event = response_object["support-line-rebound-event"];
+
+
+
+                // TODO: We need to completely rewrite this logic
+                /*
                 var message = response_object["message"];
                 var messages = message.split("\n"),
                     title = messages[0];
@@ -275,6 +295,7 @@ function StockCalculationsDrawer() {
                 var outputDrawer = new OutputDrawer({title: title, messages: messages});
                 outputDrawer.erase();
                 outputDrawer.draw();
+                */
             },
             error: function (response) {
                 var outputDrawer = new OutputDrawer({title: "", messages: ""});

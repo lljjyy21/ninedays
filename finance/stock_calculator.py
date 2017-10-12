@@ -6,6 +6,8 @@ class StockCalculator:
         self.range_days = range_days
         self.open_price_list = self._data_frame_to_list('Open')
         self.close_price_list = self._data_frame_to_list('Close')
+        self.high_price_list = self._data_frame_to_list('High')
+        self.low_price_list = self._data_frame_to_list('Low')
 
     def _data_frame_to_list(self, data_type):
         try:
@@ -15,8 +17,25 @@ class StockCalculator:
             print(e)
         return new_list
 
-    def get_open_price_list(self):
-        return self.open_price_list
+    @staticmethod
+    def get_open_price_list(data_frame):
+        stock_calculator = StockCalculator(data_frame, None, None, None)
+        return stock_calculator._data_frame_to_list('Open')
+
+    @staticmethod
+    def get_close_price_list(data_frame):
+        stock_calculator = StockCalculator(data_frame, None, None, None)
+        return stock_calculator._data_frame_to_list('Close')
+
+    @staticmethod
+    def get_high_price_list(data_frame):
+        stock_calculator = StockCalculator(data_frame, None, None, None)
+        return stock_calculator._data_frame_to_list('High')
+
+    @staticmethod
+    def get_low_price_list(data_frame):
+        stock_calculator = StockCalculator(data_frame, None, None, None)
+        return stock_calculator._data_frame_to_list('Low')
 
     def calculate_percent_of_occurrence(self, num_event, num_total):
         try:
