@@ -16,7 +16,7 @@ from finance.events.moving_average_event import MovingAverageEvent
 from finance.events.pass_resistance_line_event import PassResistanceLineEvent
 from finance.events.small_movement_event import SmallMovementEvent
 from finance.events.support_line_rebound_event import SupportLineReboundEvent
-from finance.stock_calculator import StockCalculator
+    from finance.stock_calculator import StockCalculator
 
 
 app = Flask(__name__)
