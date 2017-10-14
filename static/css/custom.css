@@ -251,3 +251,9 @@ input[type=date]::-webkit-calendar-picker-indicator {
     -webkit-appearance: none;
     display: none;
 }
+
+.center-wheels {
+    margin: auto !important;
+    margin-top: 15px !important;
+    margin-bottom: 15px !important;
+}

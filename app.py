@@ -16,7 +16,7 @@ from finance.events.moving_average_event import MovingAverageEvent
 from finance.events.pass_resistance_line_event import PassResistanceLineEvent
 from finance.events.small_movement_event import SmallMovementEvent
 from finance.events.support_line_rebound_event import SupportLineReboundEvent
-    from finance.stock_calculator import StockCalculator
+from finance.stock_calculator import StockCalculator
 
 
 app = Flask(__name__)
@@ -87,7 +87,6 @@ def calculate_stock_chances():
     small_movement_metric_calculator = StockMetricCalculator(data, small_movement_event)
     support_line_rebound_metric_calculator = StockMetricCalculator(data, support_line_rebound_event)
 
-
     return json.dumps({
         "average-event": average_event_metric_calculator.get_metrics(),
         "moving-average-event": {}, #moving_average_metric_calculator.get_metrics(),
@@ -98,4 +97,4 @@ def calculate_stock_chances():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(use_reloader=True)

@@ -147,19 +147,12 @@ function InputField() {
             isMobileLayout = $('#mobile').is(':visible');
 
         var span = $("span").val(inputDate.first().val());
-        //var textWidth = $.fn.textWidth(inputDate.first().text(), 14);
-        console.warn("input date", inputDate.first().outerWidth);
-        console.warn("input date text", inputDate.first().val());
-
-        console.warn("Input width", span.width(), span);
-        //console.warn("Text width", textWidth);
-
         if (isMobileLayout) {
             inputDate.css('padding-left', "6%");
         }
         else {
             inputDate.css('text-align', 'left');
-            inputDate.css('padding-left', );
+            inputDate.css('padding-left', '');
         }
     }
 
@@ -278,12 +271,20 @@ function StockCalculationsDrawer() {
 
 
                 // get events
-                var average_event = response_object["average-event"],
-                    moving_average_event = response_object["moving-average-event"],
-                    pass_resistance_event = response_object["pass-resistance-event"],
-                    small_movement_event = response_object["small-movement-event"],
-                    support_line_rebound_event = response_object["support-line-rebound-event"];
+                var EVENT_NAMES = ["average-event",
+                                   "moving-average-event",
+                                   "pass-resistance-line-event",
+                                   "small-movement-event",
+                                   "support-line-rebound-event"];
 
+                for (var index in EVENT_NAMES) {
+                    if (EVENT_NAMES.hasOwnProperty(index)) {
+                        var eventName = EVENT_NAMES[index];
+                        if (response_object.hasOwnProperty(eventName)) {
+                            drawWheelByEvent(eventName, response_object[eventName])
+                        }
+                    }
+                }
 
 
                 // TODO: We need to completely rewrite this logic
@@ -601,3 +602,28 @@ var state = new InputState();
     });
   };
 })(jQuery);
+
+
+
+function drawWheelByEvent(eventName, eventBody) {
+    console.log("\n", eventName);
+    var chanceOfRise = eventBody["chance-of-rise"] === undefined ? 0.0 : parseFloat(eventBody["chance-of-rise"]),
+        averageRisePercent = eventBody["average-rise-percent"] === undefined ? 0.0 : parseFloat(eventBody["average-rise-percent"]),
+        averageContinuousDays = eventBody["average-continuous-days"] === undefined ? 0.0 : parseFloat(eventBody["average-continuous-days"]);
+
+    var wheel = $("#" + eventName);
+    wheel.removeClass();
+    wheel.addClass("center-wheels progress-circle");
+    if (chanceOfRise > 50.0) {
+        wheel.addClass("over50");
+    }
+    wheel.addClass("p" + Math.round(chanceOfRise));
+
+    var wheelText = $("." + eventName);
+    wheelText.text((Math.round(chanceOfRise*10)/10).toFixed(1) + "%");
+
+
+    console.log("chanceOfRise", chanceOfRise);
+    console.log("averageRisePercent", averageRisePercent);
+    console.log("averageContinuousDays", averageContinuousDays);
+}
