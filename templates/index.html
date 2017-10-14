@@ -8,7 +8,8 @@
     <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{url_for('static', filename='css/custom.css')}}" rel="stylesheet">
     <link href="{{url_for('static', filename='css/css-circular-prog-bar.css')}}" rel="stylesheet">
-    <title>Title</title>
+
+    <title>NINEDAYS</title>
 </head>
 <body>
 
@@ -149,19 +150,19 @@
                     <div class="col-lg-1 col-md-1 inherited-height btn-area">
                     </div>
                     <div class="col-lg-11 col-md-11 inherited-height padding-top-70px right-column-background">
-
-                        <!-- START -->
-                        <!-- TODO: Add wheels for events output here, desktop version -->
-
                         <div class="row">
                             <div class="col-sm-offset-3 col-sm-6">
-                                <!-- Add over50 if p > 50-->
                                 <div id="average-event" class="center-wheels progress-circle p0">
-                                   <span class="average-event">0%</span>
+                                   <span class="average-event" rel="tooltip" title="Chance of rise: 0%
+Average rise percent: 0%
+Average continuous days: 0%">0%</span>
                                    <div class="left-half-clipper">
                                       <div class="first50-bar"></div>
                                       <div class="value-bar"></div>
                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-center">Average</p>
                                 </div>
                             </div>
                         </div>
@@ -169,11 +170,16 @@
                         <div class="row">
                             <div class="col-sm-offset-3 col-sm-6">
                                 <div id="moving-average-event" class="center-wheels progress-circle p0">
-                                   <span class="moving-average-event">0%</span>
-                                   <div class="left-half-clipper">
-                                      <div   class="first50-bar"></div>
-                                      <div class="value-bar"></div>
-                                   </div>
+                                    <span class="moving-average-event" rel="tooltip" title="Chance of rise: 0%
+Average rise percent: 0%
+Average continuous days: 0%">0%</span>
+                                    <div class="left-half-clipper">
+                                        <div class="first50-bar"></div>
+                                        <div class="value-bar"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-center">Moving average</p>
                                 </div>
                             </div>
                         </div>
@@ -181,11 +187,16 @@
                         <div class="row">
                             <div class="col-sm-offset-3 col-sm-6">
                                 <div id="pass-resistance-line-event" class="center-wheels progress-circle p0">
-                                   <span class="pass-resistance-line-event">0%</span>
+                                   <span class="pass-resistance-line-event" rel="tooltip" title="Chance of rise: 0%
+Average rise percent: 0%
+Average continuous days: 0%">0%</span>
                                    <div class="left-half-clipper">
                                       <div class="first50-bar"></div>
                                       <div class="value-bar"></div>
                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-center">Pass resistance line</p>
                                 </div>
                             </div>
                         </div>
@@ -193,11 +204,16 @@
                         <div class="row">
                             <div class="col-sm-offset-3 col-sm-6">
                                 <div id="small-movement-event" class="center-wheels progress-circle p0">
-                                   <span class="small-movement-event">0%</span>
+                                   <span class="small-movement-event" rel="tooltip" title="Chance of rise: 0%
+Average rise percent: 0%
+Average continuous days: 0%">0%</span>
                                    <div class="left-half-clipper">
                                       <div class="first50-bar"></div>
                                       <div class="value-bar"></div>
                                    </div>
+                                </div>
+                                <div>
+                                    <p class="text-center">Small movement</p>
                                 </div>
                             </div>
                         </div>
@@ -205,27 +221,21 @@
                         <div class="row">
                             <div class="col-sm-offset-3 col-sm-6">
                                 <div id="support-line-rebound-event" class="center-wheels progress-circle p0">
-                                   <span class="support-line-rebound-event">0%</span>
+                                   <span class="support-line-rebound-event" rel="tooltip" title="Chance of rise: 0%
+Average rise percent: 0%
+Average continuous days: 0%">0%</span>
                                    <div class="left-half-clipper">
                                       <div class="first50-bar"></div>
                                       <div class="value-bar"></div>
                                    </div>
                                 </div>
+                                <div>
+                                    <p class="text-center">Support line rebound</p>
+                                </div>
                             </div>
                         </div>
 
-                        <!--
-                        <div id="stock-title" class="input-field text-center output-header">
-                        </div>
-                        <div id="stock-calculation" class="text-field text-center">
-                        </div>
-                        -->
-
-                        <!-- END -->
-
                         <div class="text-center error-message"></div>
-
-
                     </div>
                 </div>
             </div>

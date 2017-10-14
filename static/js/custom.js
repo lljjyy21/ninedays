@@ -623,6 +623,14 @@ function drawWheelByEvent(eventName, eventBody) {
     wheelText.text((Math.round(chanceOfRise*10)/10).toFixed(1) + "%");
 
 
+    var title = 'Chance of rise: ' + chanceOfRise + '%\r\n' +
+                'Average rise percent: ' + averageRisePercent + '%\r\n' +
+                'Average continuous days: ' + averageContinuousDays + '%';
+
+    wheelText.attr('title', title);
+
+    console.log("title", title);
+
     console.log("chanceOfRise", chanceOfRise);
     console.log("averageRisePercent", averageRisePercent);
     console.log("averageContinuousDays", averageContinuousDays);

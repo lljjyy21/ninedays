@@ -255,5 +255,5 @@ input[type=date]::-webkit-calendar-picker-indicator {
 .center-wheels {
     margin: auto !important;
     margin-top: 15px !important;
-    margin-bottom: 15px !important;
+    /*margin-bottom: 15px !important;*/
 }
