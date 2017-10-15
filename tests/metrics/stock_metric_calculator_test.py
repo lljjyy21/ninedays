@@ -1,7 +1,7 @@
 from unittest import TestCase, main, skip
-from finance.metrics.stock_metric_calculator import StockMetricCalculator
-from finance.events.average_event import AverageEvent
-from finance.stock_data_processor import StockDataProcessor
+from ...finance.metrics.stock_metric_calculator import StockMetricCalculator
+from ...finance.events.average_event import AverageEvent
+from ...finance.stock_data_processor import StockDataProcessor
 
 
 class StockMetricCalculatorTest(TestCase):

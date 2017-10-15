@@ -1,6 +1,6 @@
 from unittest import TestCase, main
-from tests.extended_test import ExtendedTestCase
-from finance.events.pass_resistance_line_event import PassResistanceLineEvent
+from ...tests.extended_test import ExtendedTestCase
+from ...finance.events.pass_resistance_line_event import PassResistanceLineEvent
 import numpy as np
 
 

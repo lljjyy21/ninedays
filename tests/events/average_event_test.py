@@ -1,11 +1,16 @@
 # TODO: Fix tests
 from unittest import main
-from ...import extended_test
-from ....finance.events import average_event as ae
+from ...tests import extended_test
+from ...finance.events import average_event as ae
 import numpy as np
+
+from ...tests.stock_stub import get_stub
 
 
 class AverageEventTest(extended_test.ExtendedTestCase):
+
+    def setUp(self):
+        self.data = get_stub()
 
     def test_average_event_with_zero_inputs(self):
         open_price, close_price = np.empty([0, 0]), np.empty([0, 0])

@@ -1,6 +1,6 @@
 from unittest import main
-from tests.extended_test import ExtendedTestCase
-from finance.events.support_line_rebound_event import SupportLineReboundEvent
+from ...tests.extended_test import ExtendedTestCase
+from ...finance.events.support_line_rebound_event import SupportLineReboundEvent
 import numpy as np
 
 

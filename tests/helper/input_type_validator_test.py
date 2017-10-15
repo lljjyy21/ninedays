@@ -1,5 +1,5 @@
 from unittest import TestCase, main
-from helper.input_type_validator import TypeValidator
+from ...helper.input_type_validator import TypeValidator
 
 
 class InputValidatorTest(TestCase):

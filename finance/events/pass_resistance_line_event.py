@@ -1,4 +1,4 @@
-from finance.events.line_event import LineEvent
+from line_event import LineEvent
 import numpy as np
 
 

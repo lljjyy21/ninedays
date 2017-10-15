@@ -1,6 +1,6 @@
 from unittest import main
-from tests.extended_test import ExtendedTestCase
-from finance.events.small_movement_event import SmallMovementEvent
+from ...tests.extended_test import ExtendedTestCase
+from ...finance.events.small_movement_event import SmallMovementEvent
 import numpy as np
 
 

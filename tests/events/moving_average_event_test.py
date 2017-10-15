@@ -1,6 +1,6 @@
 from unittest import main, skip
-from tests.extended_test import ExtendedTestCase
-from finance.events.moving_average_event import MovingAverageEvent
+from ...tests.extended_test import ExtendedTestCase
+from ...finance.events.moving_average_event import MovingAverageEvent
 import numpy as np
 
 

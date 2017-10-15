@@ -1,5 +1,5 @@
 from unittest import TestCase, main
-from finance.stock_data_processor import StockDataProcessor
+from ..finance.stock_data_processor import StockDataProcessor
 
 
 class StockDataProcessorTest(TestCase):
@@ -35,6 +35,7 @@ class StockDataProcessorTest(TestCase):
 
     # NOTE: This test is not mocked. Therefore, it may be broken because of external services or
     # lack of internet connection
+    # TODO: Fix this test
     def test_stock_data_processor_proper_parameters(self):
         name = "BIDU"
         start, end = "2017-02-01", "2017-02-01"
