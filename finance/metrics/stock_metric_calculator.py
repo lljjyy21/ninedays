@@ -16,11 +16,21 @@ class StockMetricCalculator:
         shifted_rise_sequence[rise_sequence.shape[0] - 1] = 0
         return shifted_rise_sequence
 
+    def _double_shifted_sequence_of_rises(self):
+        rise_sequence = self._sequence_of_rises()
+        shifted_rise_sequence = np.zeros(rise_sequence.shape, dtype=np.int8)
+
+        shifted_rise_sequence[0:rise_sequence.shape[0] - 2] = rise_sequence[2: rise_sequence.shape[0]]
+        shifted_rise_sequence[rise_sequence.shape[0] - 2] = 0
+        shifted_rise_sequence[rise_sequence.shape[0] - 1] = 0
+        return shifted_rise_sequence
+
     def _sequence_of_rises(self):
         rise_sequence = np.zeros(self.close_price.shape, dtype=np.int8)
         for i in range(1, self.close_price.shape[0]):
-            if self.close_price[i - 1] < self.close_price[i] and \
-               self.open_price[i - 1] < self.open_price[i] < self.close_price[i]:
+            #if self.close_price[i - 1] < self.close_price[i] and \
+            #   self.open_price[i - 1] < self.open_price[i] < self.close_price[i]:
+            if self.close_price[i - 1] < self.open_price[i]:
                 rise_sequence[i] = 1
 
         return rise_sequence
@@ -36,9 +46,14 @@ class StockMetricCalculator:
 
     def calculate_chance_of_rise(self):
         shifted_sequence_of_rises = self._shifted_sequence_of_rises()
-        event_occurrence = (self.event_sequence == 1).sum()
-        next_day_rise_after_event = ((shifted_sequence_of_rises == 1) & (self.event_sequence == 1)).sum()
+        double_shifted_sequence_of_rises = self._double_shifted_sequence_of_rises()
 
+
+        event_occurrence = (self.event_sequence == 1).sum()
+        # next_day_rise_after_event = ((shifted_sequence_of_rises == 1) & (self.event_sequence == 1)).sum()
+        next_day_rise_after_event = ((double_shifted_sequence_of_rises == 1) & (self.event_sequence == 1)).sum()
+
+        print("Event occurance", event_occurrence)
         # TODO: Double-check with Tom expected behavior
         if event_occurrence == 0:
             return 0.0

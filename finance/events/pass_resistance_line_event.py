@@ -3,6 +3,7 @@ import numpy as np
 
 
 # TODO: Add documentation
+# NOTE: Function works properly on Tom's data set
 class PassResistanceLineEvent(LineEvent):
     def __init__(self, price, time_period):
             LineEvent.__init__(self, price, time_period)
