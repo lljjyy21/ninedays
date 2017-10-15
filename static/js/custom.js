@@ -3,19 +3,16 @@
  */
 
 $(window).on("load", function () {
-    //console.log("onload");
     var page = new Page();
     page.update();
 });
 
 $(window).resize(function () {
-    //console.log("resize");
     var page = new Page();
     page.update();
 });
 
 $(window).on("orientationchange", function () {
-    //console.log("onorientationchange");
     var page = new Page();
     page.update();
 });
@@ -60,8 +57,6 @@ function Body() {
     calculatePageHeight();
 
     function calculatePageHeight() {
-        //console.log("Page height", $(window).height(), $(document).height(), MIN_PAGE_HEIGHT);
-        //console.log(isMobileLayout);
         if (isMobileLayout) {
             PAGE_HEIGHT = $(document).height();
             FOOTER_HEIGHT = 0;
@@ -81,7 +76,6 @@ function Body() {
     }
 
     function updateHeight() {
-        //console.log(PAGE_HEIGHT, FOOTER_HEIGHT);
         updateBodyHeight();
         if (!isMobileLayout) {
             updateFooterHeight();
@@ -126,13 +120,6 @@ function ScrollArrow() {
         update: updateScrollArrowPosition
     }
 }
-
-// Calculate width of text from DOM element or string. By Phil Freo <http://philfreo.com>
-$.fn.textWidth = function(text, font) {
-    if (!$.fn.textWidth.fakeEl) $.fn.textWidth.fakeEl = $('<span>').hide().appendTo(document.body);
-    $.fn.textWidth.fakeEl.text(text || this.val() || this.text()).css('font', font || this.css('font'));
-    return $.fn.textWidth.fakeEl.width();
-};
 
 function InputField() {
     var centerColumnWidth = $('#mobile').find('.center-column').width()/2,
@@ -231,8 +218,6 @@ function StockCalculationsDrawer() {
             long_ma = $(longMaIdName).val(),
             range = $(rangeIdName).val();
 
-        //console.log("Before ajax request");
-
 
         //TODO: Test
         var inputFieldsValidation = new InputFieldsValidation();
@@ -246,6 +231,13 @@ function StockCalculationsDrawer() {
             state.reset();
             return;
         }
+
+
+        var EVENT_NAMES = ["average-event",
+                           "moving-average-event",
+                           "pass-resistance-line-event",
+                           "small-movement-event",
+                           "support-line-rebound-event"];
 
         $.ajax({
             url: '/calculate',
@@ -262,20 +254,19 @@ function StockCalculationsDrawer() {
 
                 var response_object = JSON.parse(response);
 
-                console.log("response_object", response_object);
-
-                // Figure out how to process this thing
-                if (response_object.hasOwnProperty("error")) {
-                    return;
+                for (var index in EVENT_NAMES) {
+                    if (EVENT_NAMES.hasOwnProperty(index)) {
+                        var eventName = EVENT_NAMES[index];
+                        if (response_object.hasOwnProperty(eventName)) {
+                            drawWheelByEvent(eventName, response_object[eventName])
+                        }
+                    }
                 }
+            },
+            error: function (response) {
+                // TODO: Show error message
 
-
-                // get events
-                var EVENT_NAMES = ["average-event",
-                                   "moving-average-event",
-                                   "pass-resistance-line-event",
-                                   "small-movement-event",
-                                   "support-line-rebound-event"];
+                var response_object = JSON.parse(response);
 
                 for (var index in EVENT_NAMES) {
                     if (EVENT_NAMES.hasOwnProperty(index)) {
@@ -285,24 +276,6 @@ function StockCalculationsDrawer() {
                         }
                     }
                 }
-
-
-                // TODO: We need to completely rewrite this logic
-                /*
-                var message = response_object["message"];
-                var messages = message.split("\n"),
-                    title = messages[0];
-
-                var outputDrawer = new OutputDrawer({title: title, messages: messages});
-                outputDrawer.erase();
-                outputDrawer.draw();
-                */
-            },
-            error: function (response) {
-                var outputDrawer = new OutputDrawer({title: "", messages: ""});
-                outputDrawer.erase();
-
-                console.error(response);
             }
         });
     }
@@ -606,12 +579,14 @@ var state = new InputState();
 
 
 function drawWheelByEvent(eventName, eventBody) {
-    console.log("\n", eventName);
     var chanceOfRise = eventBody["chance-of-rise"] === undefined ? 0.0 : parseFloat(eventBody["chance-of-rise"]),
         averageRisePercent = eventBody["average-rise-percent"] === undefined ? 0.0 : parseFloat(eventBody["average-rise-percent"]),
         averageContinuousDays = eventBody["average-continuous-days"] === undefined ? 0.0 : parseFloat(eventBody["average-continuous-days"]);
 
-    var wheel = $("#" + eventName);
+    var mobileExtension = $('#mobile').is(':visible') ? "mobile-" : "";
+
+    var wheel = $("#" + mobileExtension + eventName);
+    console.log("wheel id", wheel);
     wheel.removeClass();
     wheel.addClass("center-wheels progress-circle");
     if (chanceOfRise > 50.0) {
@@ -628,10 +603,4 @@ function drawWheelByEvent(eventName, eventBody) {
                 'Average continuous days: ' + averageContinuousDays + '%';
 
     wheelText.attr('title', title);
-
-    console.log("title", title);
-
-    console.log("chanceOfRise", chanceOfRise);
-    console.log("averageRisePercent", averageRisePercent);
-    console.log("averageContinuousDays", averageContinuousDays);
 }

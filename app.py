@@ -58,7 +58,11 @@ def calculate_stock_chances():
     type_validator = TypeValidator(start, end, short_ma, long_ma, range_days)
     if not type_validator.validate():
         return json.dumps({
-            "error": "Sorry, the input data is in a wrong format!"
+            "average-event": {},
+            "moving-average-event": {},
+            "pass-resistance-line-event": {},
+            "small-movement-event": {},
+            "support-line-rebound-event": {}
         })
 
     # Data converter
