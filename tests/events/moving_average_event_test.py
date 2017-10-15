@@ -10,7 +10,7 @@ import numpy as np
 class MovingAverageEventTest(ExtendedTestCase):
 
     @skip("while moving average is not ready")
-    def test_support_line_rebound_zero_inputs(self):
+    def test_moving_average_event_zero_inputs(self):
         pass
 
     @skip("while moving average is not ready")

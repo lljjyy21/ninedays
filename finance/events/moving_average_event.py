@@ -35,7 +35,7 @@ class MovingAverageEvent(BaseEvent):
             raise ValueError("Short MA is bigger than long MA")
 
     def get_events_sequence(self):
-        event_sequence = np.array(self.price.shape, dtype=np.int8)
+        event_sequence = np.zeros((self.price.shape[0],), dtype=np.int8)
 
         short_ma_sum, long_ma_sum = 0, 0
         for i in range(self.price.shape[0]):

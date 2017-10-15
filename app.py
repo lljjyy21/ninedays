@@ -80,20 +80,20 @@ def calculate_stock_chances():
 
     # Initialize all events
     average_event = AverageEvent(open_price, close_price)
-    # moving_average_event = MovingAverageEvent(open_price, close_price, high_price, input_data.get_short_ma(), input_data.get_long_ma())
+    moving_average_event = MovingAverageEvent(open_price, close_price, high_price, input_data.get_short_ma(), input_data.get_long_ma())
     pass_resistance_line_event = PassResistanceLineEvent(high_price, input_data.get_range())
     small_movement_event = SmallMovementEvent(open_price, close_price)
     support_line_rebound_event = SupportLineReboundEvent(low_price, input_data.get_range())
 
     average_event_metric_calculator = StockMetricCalculator(data, average_event)
-    # moving_average_metric_calculator = StockMetricCalculator(data, moving_average_event)
+    moving_average_metric_calculator = StockMetricCalculator(data, moving_average_event)
     pass_resistance_line_metric_calculator = StockMetricCalculator(data, pass_resistance_line_event)
     small_movement_metric_calculator = StockMetricCalculator(data, small_movement_event)
     support_line_rebound_metric_calculator = StockMetricCalculator(data, support_line_rebound_event)
 
     return json.dumps({
         "average-event": average_event_metric_calculator.get_metrics(),
-        "moving-average-event": {}, #moving_average_metric_calculator.get_metrics(),
+        "moving-average-event": moving_average_metric_calculator.get_metrics(),
         "pass-resistance-line-event": pass_resistance_line_metric_calculator.get_metrics(),
         "small-movement-event": small_movement_metric_calculator.get_metrics(),
         "support-line-rebound-event": support_line_rebound_metric_calculator.get_metrics()
