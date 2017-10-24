@@ -1,0 +1,22 @@
+Bugs:
+- There is no synchronization between mobile and laptop version, so for some devices if rotate from portrait to horizontal modes differences may occur(both inputs and wheels).
+- No proper error message in case when application failed(the message was present but with new design of output is not clear how to process the case)
+
+Suggestions:
+- If this website will be public, it is nice to track, at least, number of visits and users behaviour to potentially improve the design. For example, we can connect Google Analytics & Hotjar
+- I assume that if website will have huge load in the future it will require support(we can try subscription based support)
+- Moving average algorithm. At the moment I use my implementation because we had a strange bug in your initial code, I propose to continue using my approach because all methods are unified and if you decide to add new events, it will not be easy and straightforward. Only the concern regarding my solution is that I need to spend a little bit more time to improve tests.
+- If you have already bought a domain, I propose to connect it to Heroku for initial testing purpose. If you will have a website with high load, I think Amazon is a way to go. If amount of visitors will not be more than 1000 or so. I think 2 dynos in different regions(Europe & US) will be fairly enough.
+- I think it generally will be good idea if I add documentation to the current project when it will be 100% done
+- Your initial aim was to look on practices I have used and learn from them, I can go with you inside the project and describe each part
+
+Improvements & Concerns:
+- We need to upgrade Python version(it is minor thing but still something I need to take a look into) (leave it to later)
+- Minor thing but when project will be 100% done, I will need to do rigorous cleaning and code refactoring(for project maintainability) (yes)
+- If you decide to do this project public, we need to add license to it (not at the moment)
+- Reduce amount of files to load(make js files binary), so it may reduce kilobytes to load, especially helpful for mobile devices and tablets (yes, if have time)
+
+
+- support rebound line -> open price
+- resistance line -> open price
+- Monday -> Saturday (29.10, China)

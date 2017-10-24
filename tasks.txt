@@ -1,4 +1,9 @@
-Bugs and features(based on Bitbucket issue tracker):
+Recent tasks:
+- Error message between ranges and input (desktop & mobile)
+- Border around the button (mobile)
+
+
+    Bugs and features(based on Bitbucket issue tracker):
 
 1. Issue 3: Create grid of circles with statistics(https://bitbucket.org/ChameleonTartu/financewebsite/issues/3/create-a-grid-of-circles-which-show)
 - Solution for wheels is found, clarify with Tom
@@ -37,8 +42,6 @@ Back-end:
 0. Feature: Implement events with strategies
 
 0.1 CI on Bitbucket, guide https://confluence.atlassian.com/bitbucket/get-started-with-bitbucket-pipelines-792298921.html
-
-1. Bug: On hover event for text, not background
 
 2. Continuous integration & delivery with Heroku https://www.heroku.com/continuous-delivery
 

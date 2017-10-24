@@ -1,23 +1,20 @@
 from .base_event import BaseEvent
+import numpy as np
 
 
 class LineEvent(BaseEvent):
-    def __init__(self, price, time_period, price_value='high'):
-        if price_value == 'high':
-            BaseEvent.__init__(self, None, None, price, None)
-        else:
-            BaseEvent.__init__(self, None, None, None, price)
-        self.price_value = price_value
+    def __init__(self, open_price, time_period):
+        BaseEvent.__init__(self, open_price)
         self.time_period = time_period
         self._validate_input()
-        self.price = price
 
     def _validate_input(self):
-        if self.price_value == 'high':
-            self._validate_high_price()
-        else:
-            self._validate_low_price()
+        self._validate_price()
         self._validate_time_period()
+
+    def _validate_price(self):
+        if type(self.open_price) is not np.ndarray:
+            raise TypeError("Price is not numpy array")
 
     def _validate_time_period(self):
         if not isinstance(self.time_period, (int, long)):

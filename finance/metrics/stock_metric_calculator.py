@@ -53,7 +53,8 @@ class StockMetricCalculator:
         # next_day_rise_after_event = ((shifted_sequence_of_rises == 1) & (self.event_sequence == 1)).sum()
         next_day_rise_after_event = ((double_shifted_sequence_of_rises == 1) & (self.event_sequence == 1)).sum()
 
-        print("Event occurance", event_occurrence)
+        print(double_shifted_sequence_of_rises)
+
         # TODO: Double-check with Tom expected behavior
         if event_occurrence == 0:
             return 0.0
