@@ -25,20 +25,31 @@ $(document).bind("ajaxSend", function(){
 });
 
 function Page() {
-    var body = new Body();
+    var body = new BodyStyle();
     var footer = new Footer();
-    var inputField = new InputField();
+    var inputFieldsStyle = new InputFieldsStyle();
     var scrollArrow = new ScrollArrow();
     var verticalCenterButtonText = new VerticalCenterButtonText();
     var isMobileLayout = $('#mobile').is(':visible');
 
     function updatePage() {
+        // Update values of input fields
+        if (applicationState.stateChanged()) {
+            if (applicationState.state === applicationState.deviceStatuses.MOBILE) {
+                inputFieldsState.updateDesktop();
+            }
+            else {
+                inputFieldsState.updateMobile();
+            }
+            applicationState.updateCurrentDeviceState();
+        }
+
         body.update();
         if (isMobileLayout) {
-            inputField.update();
+            inputFieldsStyle.update();
         }
         else {
-            inputField.update();
+            inputFieldsStyle.update();
             scrollArrow.update();
             footer.update();
             verticalCenterButtonText.update();
@@ -50,7 +61,7 @@ function Page() {
     };
 }
 
-function Body() {
+function BodyStyle() {
     var FOOTER_HEIGHT = 100, MIN_PAGE_HEIGHT = 650;
     var PAGE_HEIGHT = Math.max(MIN_PAGE_HEIGHT, $(window).height()) - FOOTER_HEIGHT;
     var isMobileLayout = $('#mobile').is(':visible');
@@ -121,7 +132,7 @@ function ScrollArrow() {
     }
 }
 
-function InputField() {
+function InputFieldsStyle() {
     var centerColumnWidth = $('#mobile').find('.center-column').width()/2,
         inputs = $('.input-mobile');
 
@@ -224,11 +235,11 @@ function StockCalculationsDrawer() {
         var isValidInput = inputFieldsValidation.isValid();
 
         if (isValidInput) {
-            state.update();
-            var stateObject = state.get();
+            inputFieldsState.update();
+            var stateObject = inputFieldsState.get();
         }
         else {
-            state.reset();
+            inputFieldsState.reset();
             return;
         }
 
@@ -285,7 +296,7 @@ function StockCalculationsDrawer() {
     };
 }
 
-
+// TODO: deprecated, delete
 function OutputDrawer(parameters) {
     var title = parameters.title === undefined ? "" : parameters.title,
         messages = parameters.messages === undefined ? "" : parameters.messages,
@@ -426,11 +437,6 @@ function InputFieldsValidation() {
         return range < (endDate - startDate);
     }
 
-    // TODO: Theoretically, this function is redundant
-    function rangeIsBiggerOrEqualThanPeriod () {
-        return !rangeIsSmallerThanSetPeriod();
-    }
-
     function validateInputFields () {
         if (shortMAIsSmallerOrEqualThanLongMA() &&
             rangeIsBiggerOrEqualThanMA() &&
@@ -442,6 +448,45 @@ function InputFieldsValidation() {
 
     return {
         isValid: validateInputFields
+    }
+}
+
+function ApplicationState() {
+
+    var device = Object.freeze({'MOBILE': 0, 'DESKTOP': 1}),
+        deviceStateObject = new DeviceStateManager(),
+        deviceState = deviceStateObject.getCurrentState();
+
+
+    function DeviceStateManager() {
+
+        function getCurrentDeviceState() {
+            if ($('#mobile').is(':visible')) {
+                return device.MOBILE;
+            }
+            return device.DESKTOP;
+        }
+
+        function updateDeviceState() {
+            deviceState = getCurrentDeviceState();
+        }
+
+        return {
+            getCurrentState: getCurrentDeviceState,
+            updateCurrentState: updateDeviceState
+        }
+    }
+
+
+    function stateChanged() {
+        return deviceState !== deviceStateObject.getCurrentState();
+    }
+
+    return {
+        stateChanged: stateChanged,
+        updateCurrentDeviceState: deviceStateObject.updateCurrentState,
+        deviceStatuses: device,
+        state: deviceState
     }
 }
 
@@ -473,7 +518,7 @@ function InputState() {
             endDateIdName = '#end-date-mobile';
             shortMaIdName = '#short-ma-mobile';
             longMaIdName = '#long-ma-mobile';
-            rangeIdName = '#range';
+            rangeIdName = '#range-mobile';
         }
         else {
             stockIdName = '#stock-name';
@@ -524,10 +569,10 @@ function InputState() {
         });
     }
 
+    // TODO: Reset wheels
     function resetState() {
         // Clear output section
-        var outputDrawer = new OutputDrawer({});
-        outputDrawer.erase();
+        // TODO
 
         // Reset input values
         resetInputFields();
@@ -536,14 +581,52 @@ function InputState() {
         showFlushMessage();
     }
 
+
+    var mobileIdNames = ['#stock-name-mobile', '#start-date-mobile',
+                         '#end-date-mobile', '#short-ma-mobile',
+                         '#long-ma-mobile', '#range-mobile'],
+        desktopIdNames = ['#stock-name', '#start-date', '#end-date', '#short-ma', '#long-ma', '#range'];
+
+    function updateMobileToDesktop() {
+        for (var i in mobileIdNames) {
+            if (mobileIdNames.hasOwnProperty(i) && desktopIdNames.hasOwnProperty(i)) {
+                var mobileIdName = mobileIdNames[i],
+                    desktopIdName = desktopIdNames[i],
+                    mobile = $(mobileIdName),
+                    desktop = $(desktopIdName);
+                desktop.val(mobile.val());
+            }
+        }
+    }
+
+    function updateDesktopToMobile() {
+        for (var i in desktopIdNames) {
+            if (desktopIdNames.hasOwnProperty(i) && mobileIdNames.hasOwnProperty(i)) {
+                var mobileIdName = mobileIdNames[i],
+                    desktopIdName = desktopIdNames[i],
+                    mobile = $(mobileIdName),
+                    desktop = $(desktopIdName);
+
+                mobile.val(desktop.val());
+            }
+        }
+    }
+
     return {
         update: updateState,
         get: getState,
-        reset: resetState
+        reset: resetState,
+        updateMobile: updateDesktopToMobile,
+        updateDesktop: updateMobileToDesktop
     }
 }
 
-var state = new InputState();
+var inputFieldsState = new InputState(),
+    applicationState = new ApplicationState();
+
+
+
+
 
 
 // NOTE: Solution is used from https://jsfiddle.net/BaylorRae/vwvAd/
@@ -583,24 +666,30 @@ function drawWheelByEvent(eventName, eventBody) {
         averageRisePercent = eventBody["average-rise-percent"] === undefined ? 0.0 : parseFloat(eventBody["average-rise-percent"]),
         averageContinuousDays = eventBody["average-continuous-days"] === undefined ? 0.0 : parseFloat(eventBody["average-continuous-days"]);
 
-    var mobileExtension = $('#mobile').is(':visible') ? "mobile-" : "";
+    var wheelParentDiv = $("#" + eventName),
+        wheelMobileParentDiv = $("#mobile-" + eventName),
+        classes = ["center-wheels", "progress-circle", (chanceOfRise > 50.0) ? "over50" : "", "p" + Math.round(chanceOfRise)];
 
-    var wheel = $("#" + mobileExtension + eventName);
-    console.log("wheel id", wheel);
-    wheel.removeClass();
-    wheel.addClass("center-wheels progress-circle");
-    if (chanceOfRise > 50.0) {
-        wheel.addClass("over50");
-    }
-    wheel.addClass("p" + Math.round(chanceOfRise));
+    updateWheelParentDiv(wheelParentDiv, classes);
+    updateWheelParentDiv(wheelMobileParentDiv, classes);
 
     var wheelText = $("." + eventName);
     wheelText.text((Math.round(chanceOfRise*10)/10).toFixed(1) + "%");
-
 
     var title = 'Chance of rise: ' + chanceOfRise + '%\r\n' +
                 'Average rise percent: ' + averageRisePercent + '%\r\n' +
                 'Average continuous days: ' + averageContinuousDays + '%';
 
     wheelText.attr('title', title);
+}
+
+function updateWheelParentDiv(wheel, classes) {
+    wheel.removeClass();
+
+    for (var i in classes) {
+        if (classes.hasOwnProperty(i)) {
+            var className = classes[i];
+            wheel.addClass(className);
+        }
+    }
 }
