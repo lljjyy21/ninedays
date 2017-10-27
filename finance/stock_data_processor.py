@@ -16,7 +16,7 @@ class StockDataProcessor:
             self.end = dt.datetime.strptime(end, '%Y-%m-%d')
             if self.start > self.end:
                 raise Exception
-        except Exception as e:
+        except Exception as _:
             raise RuntimeError
         self.stock_data = None
 
@@ -24,7 +24,7 @@ class StockDataProcessor:
         if self.stock_data is None:
             try:
                 self.stock_data = web.DataReader('NASDAQ:' + self.name, self.data_source, self.start, self.end)
-            except NotImplementedError as e:
+            except NotImplementedError as _:
                 raise RuntimeError
         data = self.stock_data[:]
 

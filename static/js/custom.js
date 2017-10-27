@@ -144,7 +144,6 @@ function InputFieldsStyle() {
         var inputDate = $('.input-date'),
             isMobileLayout = $('#mobile').is(':visible');
 
-        var span = $("span").val(inputDate.first().val());
         if (isMobileLayout) {
             inputDate.css('padding-left', "6%");
         }
@@ -222,6 +221,7 @@ function StockCalculationsDrawer() {
     function getAndDrawCalculations() {
         assignHTMLElementIdsDependingOnDeviceLayout();
 
+        // TODO: Delete variables if unused
         var stock = $(stockIdName).val(),
             start_date = $(startDateIdName).val(),
             end_date = $(endDateIdName).val(),
@@ -294,68 +294,6 @@ function StockCalculationsDrawer() {
 
     return {
         getAndDrawCalculations: getAndDrawCalculations
-    };
-}
-
-// TODO: deprecated, delete
-function OutputDrawer(parameters) {
-    var title = parameters.title === undefined ? "" : parameters.title,
-        messages = parameters.messages === undefined ? "" : parameters.messages,
-        stockTitleIdName = undefined,
-        stockCalculationsIdName = undefined;
-
-    function assignHTMLElementIdsDependingOnDeviceLayout() {
-        if ($('#mobile').is(':visible')) {
-            stockTitleIdName = '#stock-title-mobile';
-            stockCalculationsIdName = '#stock-calculation-mobile';
-        }
-        else {
-            stockTitleIdName = '#stock-title';
-            stockCalculationsIdName = '#stock-calculation';
-        }
-    }
-
-    function drawTitle() {
-        var div = document.createElement('div');
-        div.innerText = title;
-        $(stockTitleIdName).append(div);
-    }
-
-    function drawMessages() {
-        for (var index in messages) {
-            if (Number(index) === 0) {
-                continue;
-            }
-            var div = document.createElement('div');
-            div.className = 'input-field';
-            div.innerText = messages[index];
-            $(stockCalculationsIdName).append(div);
-        }
-    }
-
-    function drawContent() {
-        assignHTMLElementIdsDependingOnDeviceLayout();
-        drawTitle();
-        drawMessages();
-    }
-
-    function eraseTitle() {
-        $(stockTitleIdName).empty()
-    }
-
-    function eraseMessages() {
-        $(stockCalculationsIdName).empty()
-    }
-
-    function eraseContent() {
-        assignHTMLElementIdsDependingOnDeviceLayout();
-        eraseTitle();
-        eraseMessages();
-    }
-
-    return {
-        draw: drawContent,
-        erase: eraseContent
     };
 }
 
@@ -564,13 +502,13 @@ function InputState() {
     }
 
     function showFlushMessage() {
-        $('.error-message').css('visibility', 'hidden');
-        $('.error-message').flash_message({
+        var error_message = $('.error-message');
+        error_message.css('visibility', 'hidden');
+        error_message.flash_message({
             text: 'Input is incorrect.',
             how: 'append'
         });
-
-        $('.error-message').css('visibility', 'visible');
+        error_message.css('visibility', 'visible');
     }
 
     function resetState() {

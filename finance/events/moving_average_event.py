@@ -21,13 +21,14 @@ class MovingAverageEvent(BaseEvent):
     def _validate_and_cast_short_ma(self):
         try:
             self.short_ma = int(self.short_ma)
-        except TypeError as e:
+        except TypeError as _:
             raise TypeError("Short MA is not integer")
+        return
 
     def _validate_and_cast_long_ma(self):
         try:
             self.long_ma = int(self.long_ma)
-        except TypeError as e:
+        except TypeError as _:
             raise TypeError("Long MA is not integer")
 
     def _validate_long_ma_bigger_or_equal_than_short_ma(self):

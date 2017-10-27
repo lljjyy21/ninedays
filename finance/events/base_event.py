@@ -15,15 +15,19 @@ class BaseEvent(object):
         self._validate_open_price()
         self._validate_close_price()
         self._validate_open_and_close_prices_shapes()
+        return
 
     def _validate_open_price(self):
         if type(self.open_price) is not np.ndarray:
             raise TypeError("Open price is not numpy array")
+        return
 
     def _validate_close_price(self):
         if type(self.close_price) is not np.ndarray:
             raise TypeError("Close price is not numpy array")
+        return
 
     def _validate_open_and_close_prices_shapes(self):
         if self.open_price.shape != self.close_price.shape:
             raise ValueError("Open price and close price arrays are different shapes")
+        return

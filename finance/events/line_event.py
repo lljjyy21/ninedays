@@ -21,3 +21,4 @@ class LineEvent(BaseEvent):
             raise TypeError("Time period is not int")
         if self.time_period < 2:
             raise ValueError("Time period is less than 2 days")
+        return

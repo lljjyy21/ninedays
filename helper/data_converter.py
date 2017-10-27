@@ -1,5 +1,6 @@
 import datetime
 
+
 class DataConverter(object):
 
     def __init__(self, start, end, short_ma, long_ma, range_in_days):

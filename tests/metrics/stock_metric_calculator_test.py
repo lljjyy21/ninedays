@@ -20,7 +20,6 @@ class StockMetricCalculatorTest(TestCase):
         average_event = AverageEvent(open_price, close_price)
         self.average_event_metric = StockMetricCalculator(data, average_event)
 
-        # TODO Check this method separately
         moving_average_event = MovingAverageEvent(open_price, close_price, high_price, short_ma, long_ma)
         self.moving_average_event_metric = StockMetricCalculator(data, moving_average_event)
 
@@ -33,16 +32,11 @@ class StockMetricCalculatorTest(TestCase):
         support_line_rebound_event = SupportLineReboundEvent(open_price, period)
         self.support_line_rebound_event_metric = StockMetricCalculator(data, support_line_rebound_event)
 
-    # NOTE: Chance of rise for all events
-    # TODO
-    @skip("for a while")
     def test_stock_metric_calculator_chance_of_rise_for_average_event(self):
         self.assertEqual(100.0, self.average_event_metric.calculate_chance_of_rise())
 
-    # TODO
-    @skip("for a while")
     def test_stock_metric_calculator_chance_of_rise_for_moving_average_event(self):
-        self.assertEqual(0.0, self.moving_average_event_metric.calculate_chance_of_rise())
+        self.assertEqual(100.0, self.moving_average_event_metric.calculate_chance_of_rise())
 
     def test_stock_metric_calculator_chance_of_rise_for_pass_resistance_line_event(self):
         self.assertEqual(40.0, self.pass_resistance_line_event_metric.calculate_chance_of_rise())

@@ -1,9 +1,6 @@
 import os
-import sqlite3
 import json
-from flask import Flask, request, session, g, redirect, url_for, abort, \
-     render_template, flash
-from finance import stock_processor as sc
+from flask import Flask, request, render_template
 from finance import stock_data_processor as sdp
 from finance.metrics.stock_metric_calculator import StockMetricCalculator
 
@@ -16,11 +13,10 @@ from finance.events.moving_average_event import MovingAverageEvent
 from finance.events.pass_resistance_line_event import PassResistanceLineEvent
 from finance.events.small_movement_event import SmallMovementEvent
 from finance.events.support_line_rebound_event import SupportLineReboundEvent
-from finance.stock_calculator import StockCalculator
 
 
 app = Flask(__name__)
-app.config.from_object(__name__) # load config from this file
+app.config.from_object(__name__)  # load config from this file
 
 # Load default config and override config from an environment variable
 app.config.update(dict(
@@ -57,43 +53,43 @@ def calculate_stock_chances():
     # Data validator
     type_validator = TypeValidator(start, end, short_ma, long_ma, range_days)
 
-    EMPTY_METRICS = {
+    empty_metrics = {
         "chance-of-rise": 0,
         "average-rise-percent": 0,
         "average-continuous-days": 0
     }
 
-    EMPTY_OBJECT = {
-        "average-event": EMPTY_METRICS,
-        "moving-average-event": EMPTY_METRICS,
-        "pass-resistance-line-event": EMPTY_METRICS,
-        "small-movement-event": EMPTY_METRICS,
-        "support-line-rebound-event": EMPTY_METRICS
+    empty_response_object = {
+        "average-event": empty_metrics,
+        "moving-average-event": empty_metrics,
+        "pass-resistance-line-event": empty_metrics,
+        "small-movement-event": empty_metrics,
+        "support-line-rebound-event": empty_metrics
     }
 
     if not type_validator.validate():
-        return json.dumps(EMPTY_OBJECT), 404
+        return json.dumps(empty_response_object), 404
 
-    # Data converter
-    input_data = DataConverter(start, end, short_ma, long_ma, range_days)
-
-    # TODO: Clarify that this this the write way to get data
+    # TODO: Clarify that this is the write way to get data
     try:
         stock_data_processor = sdp.StockDataProcessor(stock_name, start, end)
         data = stock_data_processor.get_stock_data()
     except Exception as e:
         print(e)
-        return json.dumps(EMPTY_OBJECT), 400
+        return json.dumps(empty_response_object), 400
 
-    # Get all prices from dataset
+    # Get all prices from data-set
     open_price = StockMetricCalculator.data_frame_to_numpy_array(data, 'Open')
     close_price = StockMetricCalculator.data_frame_to_numpy_array(data, 'Close')
     high_price = StockMetricCalculator.data_frame_to_numpy_array(data, 'High')
     low_price = StockMetricCalculator.data_frame_to_numpy_array(data, 'Low')
 
+    input_data = DataConverter(start, end, short_ma, long_ma, range_days)
+
     # Initialize all events
     average_event = AverageEvent(open_price, close_price)
-    moving_average_event = MovingAverageEvent(open_price, close_price, high_price, input_data.get_short_ma(), input_data.get_long_ma())
+    moving_average_event = MovingAverageEvent(open_price, close_price, high_price,
+                                              input_data.get_short_ma(), input_data.get_long_ma())
     pass_resistance_line_event = PassResistanceLineEvent(high_price, input_data.get_range())
     small_movement_event = SmallMovementEvent(open_price, close_price)
     support_line_rebound_event = SupportLineReboundEvent(low_price, input_data.get_range())
