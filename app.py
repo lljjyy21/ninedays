@@ -56,21 +56,34 @@ def calculate_stock_chances():
 
     # Data validator
     type_validator = TypeValidator(start, end, short_ma, long_ma, range_days)
+
+    EMPTY_METRICS = {
+        "chance-of-rise": 0,
+        "average-rise-percent": 0,
+        "average-continuous-days": 0
+    }
+
+    EMPTY_OBJECT = {
+        "average-event": EMPTY_METRICS,
+        "moving-average-event": EMPTY_METRICS,
+        "pass-resistance-line-event": EMPTY_METRICS,
+        "small-movement-event": EMPTY_METRICS,
+        "support-line-rebound-event": EMPTY_METRICS
+    }
+
     if not type_validator.validate():
-        return json.dumps({
-            "average-event": {},
-            "moving-average-event": {},
-            "pass-resistance-line-event": {},
-            "small-movement-event": {},
-            "support-line-rebound-event": {}
-        })
+        return json.dumps(EMPTY_OBJECT), 404
 
     # Data converter
     input_data = DataConverter(start, end, short_ma, long_ma, range_days)
 
     # TODO: Clarify that this this the write way to get data
-    stock_data_processor = sdp.StockDataProcessor(stock_name, start, end)
-    data = stock_data_processor.get_stock_data()
+    try:
+        stock_data_processor = sdp.StockDataProcessor(stock_name, start, end)
+        data = stock_data_processor.get_stock_data()
+    except Exception as e:
+        print(e)
+        return json.dumps(EMPTY_OBJECT), 400
 
     # Get all prices from dataset
     open_price = StockMetricCalculator.data_frame_to_numpy_array(data, 'Open')
@@ -97,7 +110,7 @@ def calculate_stock_chances():
         "pass-resistance-line-event": pass_resistance_line_metric_calculator.get_metrics(),
         "small-movement-event": small_movement_metric_calculator.get_metrics(),
         "support-line-rebound-event": support_line_rebound_metric_calculator.get_metrics()
-    })
+    }), 200
 
 
 if __name__ == "__main__":

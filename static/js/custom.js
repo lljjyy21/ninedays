@@ -274,10 +274,10 @@ function StockCalculationsDrawer() {
                     }
                 }
             },
-            error: function (response) {
-                // TODO: Show error message
+            error: function (error) {
+                inputFieldsState.reset();
 
-                var response_object = JSON.parse(response);
+                var response_object = JSON.parse(error.responseText);
 
                 for (var index in EVENT_NAMES) {
                     if (EVENT_NAMES.hasOwnProperty(index)) {
@@ -287,6 +287,7 @@ function StockCalculationsDrawer() {
                         }
                     }
                 }
+
             }
         });
     }
@@ -563,17 +564,16 @@ function InputState() {
     }
 
     function showFlushMessage() {
+        $('.error-message').css('visibility', 'hidden');
         $('.error-message').flash_message({
             text: 'Input is incorrect.',
             how: 'append'
         });
+
+        $('.error-message').css('visibility', 'visible');
     }
 
-    // TODO: Reset wheels
     function resetState() {
-        // Clear output section
-        // TODO
-
         // Reset input values
         resetInputFields();
 

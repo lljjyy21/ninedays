@@ -47,6 +47,14 @@ body{
     margin-top: 170px;
 }
 
+.margin-error-message {
+    margin-top: 100px;
+}
+
+.margin-error-message-mobile {
+    margin-top: 50px;
+}
+
 .padding-top-70px {
     padding-top: 70px;
 }
@@ -224,7 +232,8 @@ input {
 }
 
 .error-message {
-    color: #ff0000;
+    color: #ff3333;
+    height: 30px;
     font-size: 12pt;
 }
 
