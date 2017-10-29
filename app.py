@@ -88,10 +88,10 @@ def calculate_stock_chances():
 
     # Initialize all events
     average_event = AverageEvent(open_price, close_price)
-    moving_average_event = MovingAverageEvent(close_price,,
-    pass_resistance_line_event = PassResistanceLineEvent(high_price, input_data.get_range())
+    moving_average_event = MovingAverageEvent(close_price,short_ma, long_ma)
+    pass_resistance_line_event = PassResistanceLineEvent(open_price, input_data.get_range())
     small_movement_event = SmallMovementEvent(open_price, close_price)
-    support_line_rebound_event = SupportLineReboundEvent(low_price, input_data.get_range())
+    support_line_rebound_event = SupportLineReboundEvent(open_price, input_data.get_range())
 
     average_event_metric_calculator = StockMetricCalculator(data, average_event)
     moving_average_metric_calculator = StockMetricCalculator(data, moving_average_event)
