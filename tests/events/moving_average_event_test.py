@@ -5,80 +5,84 @@ import numpy as np
 
 
 # TODO: Add documentation
-
-# TODO: Add proper tests after Tom's response
 class MovingAverageEventTest(ExtendedTestCase):
 
-    @skip("while moving average is not ready")
     def test_moving_average_event_zero_inputs(self):
-        pass
+        price = np.empty([0, 0])
+        short_ma, long_ma = 3, 6
+        moving_average_event = MovingAverageEvent(price, short_ma, long_ma)
 
-    @skip("while moving average is not ready")
-    def test_moving_average_event_with_wrong_high_price_input(self):
+        expected = np.array([], dtype=np.int8)
+        real = moving_average_event.get_events_sequence()
+
+        self.assertEqual(expected.shape, real.shape)
+        self.assertTrue((expected == real).all())
+        self.assertEqual(expected.dtype, real.dtype)
+
+    def test_moving_average_event_with_wrong_price_input(self):
         short_ma, long_ma = 3, 6
         price = None
 
         self.assertRaises(TypeError, MovingAverageEvent, price, short_ma, long_ma)
-        self.assertRaisesWithMessage("Low price is not numpy array",
+        self.assertRaisesWithMessage("Price is not numpy array",
                                      MovingAverageEvent, price, short_ma, long_ma)
 
+    def test_moving_average_event_with_wrong_ma_inputs(self):
 
-    @skip("while moving average is not ready")
-    def test_pass_resistance_line_event_with_wrong_time_period_input(self):
-        pass
-        """
-        low_price = np.array([10.0, 11.0, 15.0, 16.0, 12.0, 20.0, 10.0, 11.0, 11.0, 12.0, 15.0])
-        time_periods = [-1000, -1, 0, 1]
-        for time_period in time_periods:
-            self.assertRaises(ValueError, MovingAverageEvent, low_price, time_period)
-            self.assertRaisesWithMessage("Time period is less than 2 days",
-                                         MovingAverageEvent, low_price, time_period)
+        price = np.array([10.0, 11.0, 15.0, 16.0, 12.0, 20.0, 10.0, 11.0, 11.0, 12.0, 15.0])
 
-        time_period = None
-        self.assertRaises(TypeError, MovingAverageEvent, low_price, time_period)
-        self.assertRaisesWithMessage("Time period is not int",
-                                     MovingAverageEvent, low_price, time_period)
-        """
+        short_ma, long_ma = -1, 10
+        self.assertRaises(ValueError, MovingAverageEvent, price, short_ma, long_ma)
+        self.assertRaisesWithMessage("Short MA should be, at least, 1 day long",
+                                     MovingAverageEvent, price, short_ma, long_ma)
 
-    @skip("while moving average is not ready")
-    def test_pass_resistance_line_event_with_proper_input(self):
-        pass
+        short_ma, long_ma = 5, -1
+        self.assertRaises(ValueError, MovingAverageEvent, price, short_ma, long_ma)
+        self.assertRaisesWithMessage("Long MA should be, at least, 1 day long",
+                                     MovingAverageEvent, price, short_ma, long_ma)
 
-        """
-        low_price = np.array([10.0, 10.0, 10.0, 10.0, 10.0, 10.5, 10.5, 10.5])
-        time_period = 5
-        pass_resistance_line_event = MovingAverageEvent(low_price, time_period)
+        short_ma, long_ma = 3, 3
+        self.assertRaises(ValueError, MovingAverageEvent, price, short_ma, long_ma)
+        self.assertRaisesWithMessage("Short MA is bigger or equal than long MA",
+                                     MovingAverageEvent, price, short_ma, long_ma)
 
-        expected = np.array([0, 0, 0, 0, 0, 1, 1, 1], dtype=np.int8)
-        real = pass_resistance_line_event.get_events_sequence()
+        short_ma, long_ma = 4, 3
+        self.assertRaises(ValueError, MovingAverageEvent, price, short_ma, long_ma)
+        self.assertRaisesWithMessage("Short MA is bigger or equal than long MA",
+                                     MovingAverageEvent, price, short_ma, long_ma)
 
-        print(expected)
-        print(real)
+        wrong_long_mas = [None, (), [], {}, dict(), np.empty([0, 0])]
+        short_ma = 2
 
-        self.assertEqual(expected.shape, real.shape)
-        self.assertTrue((expected == real).all())
-        self.assertEqual(expected.dtype, real.dtype)
-        """
+        for long_ma in wrong_long_mas:
+            self.assertRaises(TypeError, MovingAverageEvent, price, short_ma, long_ma)
+            self.assertRaisesWithMessage("Long MA is not integer",
+                                         MovingAverageEvent, price, short_ma, long_ma)
 
-    @skip("while moving average is not ready")
-    def test_pass_resistance_line_event_with_another_proper_input(self):
-        pass
+    def test_moving_average_event_with_proper_input(self):
+        price = np.array([9.0, 10.0, 10.0, 10.0, 10.0, 10.5, 10.5, 10.5, 10.5])
+        short_ma, long_ma = 2, 4
 
-        """
-        low_price = np.array([10.0, 11.0, 15.0, 16.0, 12.0, 15.01, 10.0, 11.0, 11.0, 12.0, 14.7])
-        time_period = 5
-        pass_resistance_line_event = MovingAverageEvent(low_price, time_period)
+        moving_average_event = MovingAverageEvent(price, short_ma, long_ma)
 
-        expected = np.array([0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1], dtype=np.int8)
-        real = pass_resistance_line_event.get_events_sequence()
-
-        print(expected)
-        print(real)
+        expected = np.array([0, 0, 0, 1, 0, 1, 1, 1, 0], dtype=np.int8)
+        real = moving_average_event.get_events_sequence()
 
         self.assertEqual(expected.shape, real.shape)
         self.assertTrue((expected == real).all())
         self.assertEqual(expected.dtype, real.dtype)
-        """
+
+    def test_moving_average_event_with_another_proper_input(self):
+        price = np.array([10.0, 11.0, 15.0, 16.0, 12.0, 15.01, 10.0, 11.0, 11.0, 12.0, 14.7])
+        short_ma, long_ma = 2, 5
+        moving_average_event = MovingAverageEvent(price, short_ma, long_ma)
+
+        expected = np.array([0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1], dtype=np.int8)
+        real = moving_average_event.get_events_sequence()
+
+        self.assertEqual(expected.shape, real.shape)
+        self.assertTrue((expected == real).all())
+        self.assertEqual(expected.dtype, real.dtype)
 
 
 if __name__ == '__main__':
