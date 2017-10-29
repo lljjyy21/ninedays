@@ -2,11 +2,9 @@ import numpy as np
 
 
 class BaseEvent(object):
-    def __init__(self, open_price, close_price=None, high_price=None, low_price=None):
+    def __init__(self, open_price, close_price=None):
         self.open_price = open_price
         self.close_price = close_price
-        self.high_price = high_price
-        self.low_price = low_price
 
     def get_events_sequence(self):
         pass

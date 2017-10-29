@@ -4,8 +4,8 @@ import numpy as np
 
 # TODO: Add documentation
 class AverageEvent(BaseEvent):
-    def __init__(self, open_price, close_price, high_price=None):
-        BaseEvent.__init__(self, open_price, close_price, high_price)
+    def __init__(self, open_price, close_price):
+        BaseEvent.__init__(self, open_price, close_price)
         self._validate_input()
         self.rise_percentage = np.true_divide((self.close_price - self.open_price), self.open_price) * 100
 

@@ -5,15 +5,15 @@ import numpy as np
 # TODO: Implement
 # TODO: Add documentation
 class MovingAverageEvent(BaseEvent):
-    def __init__(self, open_price, close_price, high_price, short_ma, long_ma):
-        BaseEvent.__init__(self, open_price, close_price, high_price)
+    def __init__(self, close_price, short_ma, long_ma):
+        BaseEvent.__init__(self, None, close_price)
         self.short_ma = short_ma
         self.long_ma = long_ma
         self.price = self.close_price
         self._validate_input()
 
     def _validate_input(self):
-        BaseEvent._validate_input(self)
+        self._validate_close_price()
         self._validate_and_cast_short_ma()
         self._validate_and_cast_long_ma()
         self._validate_long_ma_bigger_or_equal_than_short_ma()

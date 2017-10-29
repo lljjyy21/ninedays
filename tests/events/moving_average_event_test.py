@@ -15,15 +15,13 @@ class MovingAverageEventTest(ExtendedTestCase):
 
     @skip("while moving average is not ready")
     def test_moving_average_event_with_wrong_high_price_input(self):
-        pass
-        """
-        time_period = 5
-        low_price = None
+        short_ma, long_ma = 3, 6
+        price = None
 
-        self.assertRaises(TypeError, MovingAverageEvent, low_price, time_period)
+        self.assertRaises(TypeError, MovingAverageEvent, price, short_ma, long_ma)
         self.assertRaisesWithMessage("Low price is not numpy array",
-                                     MovingAverageEvent, low_price, time_period)
-        """
+                                     MovingAverageEvent, price, short_ma, long_ma)
+
 
     @skip("while moving average is not ready")
     def test_pass_resistance_line_event_with_wrong_time_period_input(self):

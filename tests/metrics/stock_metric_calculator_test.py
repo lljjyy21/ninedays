@@ -20,7 +20,7 @@ class StockMetricCalculatorTest(TestCase):
         average_event = AverageEvent(open_price, close_price)
         self.average_event_metric = StockMetricCalculator(data, average_event)
 
-        moving_average_event = MovingAverageEvent(open_price, close_price, high_price, short_ma, long_ma)
+        moving_average_event = MovingAverageEvent(close_price, short_ma, long_ma)
         self.moving_average_event_metric = StockMetricCalculator(data, moving_average_event)
 
         pass_resistance_line_event = PassResistanceLineEvent(open_price, period)
@@ -58,7 +58,7 @@ class StockMetricCalculatorTest(TestCase):
 
     @skip("Fix after input from Tom")
     def test_stock_metric_calculator_average_rise_percent_for_pass_resistance_line_event(self):
-        self.assertEqual(2.28, self.passu_resistance_line_event_metric.calculate_average_rise_percent())
+        self.assertEqual(2.28, self.pass_resistance_line_event_metric.calculate_average_rise_percent())
 
     @skip("Fix after input from Tom")
     def test_stock_metric_calculator_average_rise_percent_for_small_movement_event(self):

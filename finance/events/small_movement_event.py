@@ -4,8 +4,8 @@ import numpy as np
 
 # TODO: Add documentation
 class SmallMovementEvent(BaseEvent):
-    def __init__(self, open_price, close_price, high_price=None):
-        BaseEvent.__init__(self, open_price, close_price, high_price)
+    def __init__(self, open_price, close_price):
+        BaseEvent.__init__(self, open_price, close_price)
         self.rise_percentage = None
         self._validate_input()
 
