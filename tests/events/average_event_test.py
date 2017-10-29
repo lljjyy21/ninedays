@@ -38,7 +38,7 @@ class AverageEventTest(extended_test.ExtendedTestCase):
         open_price, close_price = np.array([1.0, 2.0, 3.0, 3.0, 5.0, 5.0]), np.array([2.0, 3.0, 4.0, 10.0, 5.0, 10.0])
         average_event = ae.AverageEvent(open_price, close_price, None)
 
-        expected = np.array([0, 0, 0, 1, 0, 1], dtype=np.int8)
+        expected = np.array([0, 0, 0, 1, 0, 0], dtype=np.int8)
         real = average_event.get_events_sequence()
 
         self.assertEqual(expected.shape, real.shape)
@@ -49,7 +49,7 @@ class AverageEventTest(extended_test.ExtendedTestCase):
         open_price, close_price = np.array([1.0, 1.0, 1.0, 1.0]), np.array([2.0, 2.1, 2.2, 2.3])
         average_event = ae.AverageEvent(open_price, close_price, None)
 
-        expected = np.array([0, 1, 1, 1], dtype=np.int8)
+        expected = np.array([0, 0, 1, 1], dtype=np.int8)
         real = average_event.get_events_sequence()
 
         self.assertEqual(expected.shape, real.shape)

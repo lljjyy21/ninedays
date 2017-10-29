@@ -20,6 +20,4 @@ class AverageEvent(BaseEvent):
             if np.around(average_percentage, decimals=2) < round(self.rise_percentage[i], 2):
                 events_sequence[i] = 1
 
-        print(events_sequence)
-
         return events_sequence

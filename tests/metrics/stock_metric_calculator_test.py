@@ -33,7 +33,7 @@ class StockMetricCalculatorTest(TestCase):
         self.support_line_rebound_event_metric = StockMetricCalculator(data, support_line_rebound_event)
 
     def test_stock_metric_calculator_chance_of_rise_for_average_event(self):
-        self.assertEqual(100.0, self.average_event_metric.calculate_chance_of_rise())
+        self.assertEqual(42.86, self.average_event_metric.calculate_chance_of_rise())
 
     def test_stock_metric_calculator_chance_of_rise_for_moving_average_event(self):
         self.assertEqual(100.0, self.moving_average_event_metric.calculate_chance_of_rise())
@@ -58,7 +58,7 @@ class StockMetricCalculatorTest(TestCase):
 
     @skip("Fix after input from Tom")
     def test_stock_metric_calculator_average_rise_percent_for_pass_resistance_line_event(self):
-        self.assertEqual(2.28, self.pass_resistance_line_event_metric.calculate_average_rise_percent())
+        self.assertEqual(2.28, self.passu_resistance_line_event_metric.calculate_average_rise_percent())
 
     @skip("Fix after input from Tom")
     def test_stock_metric_calculator_average_rise_percent_for_small_movement_event(self):
