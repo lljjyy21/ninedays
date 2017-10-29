@@ -56,5 +56,6 @@ class StockDataProcessorTest(TestCase):
         sdp = StockDataProcessor(name, start, end)
         self.assertNotEqual(data, sdp.get_stock_data().to_dict())
 
+
 if __name__ == '__main__':
     main()
