@@ -283,14 +283,14 @@ input[type=date]::-webkit-calendar-picker-indicator {
     border-radius: 2px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
 
-    background-color: #3399ff;
-    color: #ecf0f1;
+    background-color: #e2ebed; /*#3399ff;*/
+    color: #333333; /*#ecf0f1;*/
 
     transition: background-color .3s;
 }
 
-.material-btn:hover, .material-btn:focus {
-    background-color: #0066cc;
+.material-btn:hover, .material-btn:focus, .material-btn:active {
+    background-color: #b1c9ce; /* #0066cc; */
 }
 
 .material-btn > * {
