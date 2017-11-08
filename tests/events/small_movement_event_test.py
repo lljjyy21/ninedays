@@ -1,3 +1,4 @@
+# coding=utf-8
 from unittest import main
 from ...tests.extended_test import ExtendedTestCase
 from ...finance.events.small_movement_event import SmallMovementEvent
@@ -6,11 +7,24 @@ import numpy as np
 
 class SmallMovementEventTest(ExtendedTestCase):
 
+    def setUp(self):
+        self.event_class_name = 'small-movement-event'
+        self.description = u'Small movement (SM): Basic requirement: when the total stock price percentage change is ' \
+                           u'less than 1 percent (± 1%) for more than 3 business days. Event triggers when today' \
+                           u' day\'s stock price percentage change is more than 1%.'
+        self.open_price, self.close_price = np.empty([0, 0]), np.empty([0, 0])
+
+    def test_small_movement_event_metadata(self):
+        small_movement_event = SmallMovementEvent(self.open_price, self.close_price)
+
+        self.assertEqual(small_movement_event.class_name, self.event_class_name)
+        self.assertEqual(small_movement_event.description, self.description)
+
     def test_small_movement_event_with_zero_inputs(self):
-        open_price, close_price = np.empty([0, 0]), np.empty([0, 0])
-        small_movement_event = SmallMovementEvent(open_price, close_price)
+        small_movement_event = SmallMovementEvent(self.open_price, self.close_price)
 
         expected = np.empty([0, 0], dtype=np.int8)
+
         self.assertTrue((expected == small_movement_event.get_events_sequence()).all())
         self.assertEqual(expected.dtype, small_movement_event.get_events_sequence().dtype)
 

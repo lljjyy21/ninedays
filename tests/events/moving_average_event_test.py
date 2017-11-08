@@ -1,3 +1,4 @@
+# coding: utf-8
 from unittest import main, skip
 from ...tests.extended_test import ExtendedTestCase
 from ...finance.events.moving_average_event import MovingAverageEvent
@@ -7,10 +8,21 @@ import numpy as np
 # TODO: Add documentation
 class MovingAverageEventTest(ExtendedTestCase):
 
+    def setUp(self):
+        self.event_class_name = 'moving-average-event'
+        self.description = u'Moving average (MA): When short period moving average price is higher than long period ' \
+                           u'moving average price. Two MA periods are changeable based on user input'
+        self.price = np.empty([0, 0])
+        self.short_ma, self.long_ma = 3, 6
+
+    def test_moving_average_event_metadata(self):
+        moving_average_event = MovingAverageEvent(self.price, self.short_ma, self.long_ma)
+
+        self.assertEqual(moving_average_event.class_name, self.event_class_name)
+        self.assertEqual(moving_average_event.description, self.description)
+
     def test_moving_average_event_zero_inputs(self):
-        price = np.empty([0, 0])
-        short_ma, long_ma = 3, 6
-        moving_average_event = MovingAverageEvent(price, short_ma, long_ma)
+        moving_average_event = MovingAverageEvent(self.price, self.short_ma, self.long_ma)
 
         expected = np.array([], dtype=np.int8)
         real = moving_average_event.get_events_sequence()
@@ -20,12 +32,11 @@ class MovingAverageEventTest(ExtendedTestCase):
         self.assertEqual(expected.dtype, real.dtype)
 
     def test_moving_average_event_with_wrong_price_input(self):
-        short_ma, long_ma = 3, 6
         price = None
 
-        self.assertRaises(TypeError, MovingAverageEvent, price, short_ma, long_ma)
+        self.assertRaises(TypeError, MovingAverageEvent, price, self.short_ma, self.long_ma)
         self.assertRaisesWithMessage("Price is not numpy array",
-                                     MovingAverageEvent, price, short_ma, long_ma)
+                                     MovingAverageEvent, price, self.short_ma, self.long_ma)
 
     def test_moving_average_event_with_wrong_ma_inputs(self):
 

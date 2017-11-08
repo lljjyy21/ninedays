@@ -1,3 +1,4 @@
+# coding: utf-8
 from base_event import BaseEvent
 import numpy as np
 
@@ -5,6 +6,10 @@ import numpy as np
 # TODO: Implement
 # TODO: Add documentation
 class MovingAverageEvent(BaseEvent):
+    class_name = 'moving-average-event'
+    description = u'Moving average (MA): When short period moving average price is higher than long period moving ' \
+                  u'average price. Two MA periods are changeable based on user input'
+
     def __init__(self, close_price, short_ma, long_ma):
         BaseEvent.__init__(self, None, close_price)
         self.short_ma = short_ma

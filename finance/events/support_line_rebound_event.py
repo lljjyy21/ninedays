@@ -1,9 +1,14 @@
+# coding=utf-8
 from line_event import LineEvent
 import numpy as np
 
 
 # TODO: Add documentation
 class SupportLineReboundEvent(LineEvent):
+    class_name = 'support-rebound-line-event'
+    description = u'Support line rebound (S line): Similar to the (R line) event, just change the highest price to ' \
+                  u'lowest price. The event happens when today’s price is within support price × 1.05 and support price'
+
     def __init__(self, open_price, time_period):
         LineEvent.__init__(self, open_price, time_period)
 

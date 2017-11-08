@@ -1,15 +1,22 @@
+# coding: utf-8
 from line_event import LineEvent
 import numpy as np
 
 
 # TODO: Add documentation
 class PassResistanceLineEvent(LineEvent):
+    class_name = 'pass-resistance-line-event'
+    description = u'Pass Resistance line (R line): Connect 2 highest price in a specific period will create the ' \
+                  u'Resistance line, the price difference divides the days between two points can get the slope ' \
+                  u'of the line, which uses [number of (days between today and the one of the peak price date)], ' \
+                  u'[the slope] and the [date and price of one of the peak price] can be used to calculate today’s ' \
+                  u'resistance price. The event happens when today’s price is higher than the resistance price'
+
     def __init__(self, open_price, time_period):
         LineEvent.__init__(self, open_price, time_period)
 
-    # TODO: Think if this algorithm can be reimplemented in more efficient algorithm
     def get_events_sequence(self):
-        event_sequence = np.zeros((self.open_price.shape[0],), dtype=np.int8)
+        event_sequence = np.zeros(self.open_price.shape, dtype=np.int8)
 
         for j in range(self.time_period, self.open_price.shape[0]):
             [max_first_index, max_second_index] = j - self.time_period, j - self.time_period + 1

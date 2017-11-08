@@ -1,9 +1,14 @@
+# coding: utf-8
 from .base_event import BaseEvent
 import numpy as np
 
 
 # TODO: Add documentation
 class AverageEvent(BaseEvent):
+    class_name = 'average-event'
+    description = u'More than average (Avg): Event triggers when stock price rise percent is higher than average rise ' \
+                  u'percentage in the calculation period'
+
     def __init__(self, open_price, close_price):
         BaseEvent.__init__(self, open_price, close_price)
         self._validate_input()

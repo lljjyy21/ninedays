@@ -1,4 +1,4 @@
-# TODO: Fix tests
+# coding: utf-8
 from unittest import main
 from ...tests import extended_test
 from ...finance.events import average_event as ae
@@ -10,11 +10,19 @@ from ...tests.stock_stub import get_stub
 class AverageEventTest(extended_test.ExtendedTestCase):
 
     def setUp(self):
-        self.data = get_stub()
+        self.event_class_name = 'average-event'
+        self.description = u'More than average (Avg): Event triggers when stock price rise percent is higher than ' \
+                           u'average rise percentage in the calculation period'
+        self.open_price, self.close_price = np.empty([0, 0]), np.empty([0, 0])
+
+    def test_average_event_metadata(self):
+        average_event = ae.AverageEvent(self.open_price, self.close_price)
+
+        self.assertEqual(average_event.class_name, self.event_class_name)
+        self.assertEqual(average_event.description, self.description)
 
     def test_average_event_with_zero_inputs(self):
-        open_price, close_price = np.empty([0, 0]), np.empty([0, 0])
-        average_event = ae.AverageEvent(open_price, close_price)
+        average_event = ae.AverageEvent(self.open_price, self.close_price)
 
         expected = np.empty([0, 0], dtype=np.int8)
         real = average_event.get_events_sequence()

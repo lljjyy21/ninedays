@@ -1,9 +1,15 @@
+# coding=utf-8
 from .base_event import BaseEvent
 import numpy as np
 
 
 # TODO: Add documentation
 class SmallMovementEvent(BaseEvent):
+    class_name = 'small-movement-event'
+    description = u'Small movement (SM): Basic requirement: when the total stock price percentage change is less than' \
+                  u' 1 percent (± 1%) for more than 3 business days. Event triggers when today day\'s stock price' \
+                  u' percentage change is more than 1%.'
+
     def __init__(self, open_price, close_price):
         BaseEvent.__init__(self, open_price, close_price)
         self.rise_percentage = None
@@ -24,10 +30,11 @@ class SmallMovementEvent(BaseEvent):
 
         num_of_days_with_small_movement = 0
         for i in range(0, len(self.rise_percentage)):
-            if num_of_days_with_small_movement > 3 and abs(self.rise_percentage[i]) > 0.01:
+            # TODO: Extract round(...) in a variable
+            if num_of_days_with_small_movement > 3 and round(abs(self.rise_percentage[i]), 2) > 0.01:
                 events_sequence[i] = 1
                 num_of_days_with_small_movement = 0
-            elif abs(self.rise_percentage[i]) > 0.01:
+            elif round(abs(self.rise_percentage[i]), 2) > 0.01:
                 num_of_days_with_small_movement = 0
             else:
                 num_of_days_with_small_movement += 1

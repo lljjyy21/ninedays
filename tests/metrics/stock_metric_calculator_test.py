@@ -46,35 +46,40 @@ class StockMetricCalculatorTest(TestCase):
     def test_stock_metric_calculator_chance_of_rise_for_support_line_rebound_event(self):
         self.assertEqual(11.11, self.support_line_rebound_event_metric.calculate_chance_of_rise())
 
+    @skip("This metric is removed production")
     def test_stock_metric_calculator_average_rise_percent_for_average_event(self):
         self.assertEqual(0.07, self.average_event_metric.calculate_average_rise_percent())
 
+    @skip("This metric is removed production")
     def test_stock_metric_calculator_average_rise_percent_for_moving_average_event(self):
         self.assertEqual(0.00, self.moving_average_event_metric.calculate_average_rise_percent())
 
+    @skip("This metric is removed production")
     def test_stock_metric_calculator_average_rise_percent_for_pass_resistance_line_event(self):
         self.assertEqual(1.48, self.pass_resistance_line_event_metric.calculate_average_rise_percent())
 
+    @skip("This metric is removed production")
     def test_stock_metric_calculator_average_rise_percent_for_small_movement_event(self):
         self.assertEqual(0.00, self.small_movement_event_metric.calculate_average_rise_percent())
 
+    @skip("This metric is removed production")
     def test_stock_metric_calculator_average_rise_percent_for_support_line_rebound_event(self):
         self.assertEqual(1.48, self.support_line_rebound_event_metric.calculate_average_rise_percent())
 
     def test_stock_metric_calculator_average_continuous_days_for_average_event(self):
-        self.assertAlmostEquals(100.0, self.average_event_metric.calculate_average_continuous_days())
+        self.assertAlmostEquals(1.0, self.average_event_metric.calculate_average_continuous_days())
 
     def test_stock_metric_calculator_average_continuous_days_for_moving_average_event(self):
         self.assertAlmostEquals(0.0, self.moving_average_event_metric.calculate_average_continuous_days())
 
     def test_stock_metric_calculator_average_continuous_days_for_pass_resistance_line_event(self):
-        self.assertAlmostEquals(100.0, self.pass_resistance_line_event_metric.calculate_average_continuous_days())
+        self.assertAlmostEquals(1.0, self.pass_resistance_line_event_metric.calculate_average_continuous_days())
 
     def test_stock_metric_calculator_average_continuous_days_for_small_movement_event(self):
         self.assertAlmostEquals(0.0, self.small_movement_event_metric.calculate_average_continuous_days())
 
     def test_stock_metric_calculator_average_continuous_days_for_support_line_rebound_event(self):
-        self.assertEqual(100.00, self.support_line_rebound_event_metric.calculate_average_continuous_days())
+        self.assertEqual(1.00, self.support_line_rebound_event_metric.calculate_average_continuous_days())
 
 
 if __name__ == '__main__':
