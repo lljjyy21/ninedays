@@ -90,6 +90,23 @@ class PassResistanceLineEventTest(ExtendedTestCase):
         self.assertRaisesWithMessage("Time period is not int",
                                      PassResistanceLineEvent, price, time_period)
 
+    def test_pass_resistance_line_event_triggered_at_the_last_date_when_triggered(self):
+        price = np.array([10.0, 11.0, 15.0, 16.0, 12.0, 20.0, 10.0, 11.0, 11.0, 12.0, 15.0])
+        pass_resistance_line_event = PassResistanceLineEvent(price, self.time_period)
+
+        self.assertTrue(pass_resistance_line_event.event_triggered_at_the_last_date())
+
+    def test_pass_resistance_line_event_triggered_at_the_last_date_when_not_triggered(self):
+        price = np.array([10.0, 11.0, 16.0, 15.0, 13.0, 13.0, 12.0, 13.5, 12.95, 14.0, 12.0])
+        pass_resistance_line_event = PassResistanceLineEvent(price, self.time_period)
+
+        self.assertFalse(pass_resistance_line_event.event_triggered_at_the_last_date())
+
+    def test_pass_resistance_line_event_triggered_at_the_last_date_when_no_data(self):
+        pass_resistance_line_event = PassResistanceLineEvent(self.price, self.time_period)
+
+        self.assertFalse(pass_resistance_line_event.event_triggered_at_the_last_date())
+
 
 if __name__ == '__main__':
     main()

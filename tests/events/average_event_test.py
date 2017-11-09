@@ -104,6 +104,23 @@ class AverageEventTest(extended_test.ExtendedTestCase):
         self.assertRaisesWithMessage("Close price is not numpy array",
                                      ae.AverageEvent, open_price, close_price)
 
+    def test_average_event_triggered_at_the_last_date_when_triggered(self):
+        open_price, close_price = np.array([1.0, 1.0, 1.0]), np.array([2.0, 2.1, 2.2])
+        average_event = ae.AverageEvent(open_price, close_price)
+
+        self.assertTrue(average_event.event_triggered_at_the_last_date())
+
+    def test_average_event_triggered_at_the_last_date_when_not_triggered(self):
+        open_price, close_price = np.array([1.0, 1.0, 1.0]), np.array([2.0, 2.1, 2.05])
+        average_event = ae.AverageEvent(open_price, close_price)
+
+        self.assertFalse(average_event.event_triggered_at_the_last_date())
+
+    def test_average_event_triggered_at_the_last_date_when_no_data(self):
+        average_event = ae.AverageEvent(self.open_price, self.close_price)
+
+        self.assertFalse(average_event.event_triggered_at_the_last_date())
+
 
 if __name__ == '__main__':
     main()

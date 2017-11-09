@@ -9,6 +9,10 @@ class BaseEvent(object):
     def get_events_sequence(self):
         pass
 
+    def event_triggered_at_the_last_date(self):
+        event_sequence = self.get_events_sequence()
+        return len(event_sequence) > 0 and event_sequence[-1] == 1
+
     def _validate_input(self):
         self._validate_open_price()
         self._validate_close_price()

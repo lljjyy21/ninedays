@@ -73,6 +73,23 @@ class SupportLineReboundEventTest(ExtendedTestCase):
         self.assertTrue((expected == real).all())
         self.assertEqual(expected.dtype, real.dtype)
 
+    def test_support_line_rebound_event_triggered_at_the_last_date_when_triggered(self):
+        price = np.array([10.0, 10.0, 10.0, 10.0, 10.0, 10.5, 10.5, 10.5])
+        support_line_rebound_event = SupportLineReboundEvent(price, self.time_period)
+
+        self.assertTrue(support_line_rebound_event.event_triggered_at_the_last_date())
+
+    def test_support_line_rebound_event_triggered_at_the_last_date_when_not_triggered(self):
+        price = np.array([10.0, 10.0, 10.0, 10.0, 10.0, 10.5, 10.5, 20.0])
+        support_line_rebound_event = SupportLineReboundEvent(price, self.time_period)
+
+        self.assertFalse(support_line_rebound_event.event_triggered_at_the_last_date())
+
+    def test_support_line_rebound_event_triggered_at_the_last_date_when_no_data(self):
+        support_line_rebound_event = SupportLineReboundEvent(self.price, self.time_period)
+
+        self.assertFalse(support_line_rebound_event.event_triggered_at_the_last_date())
+
 
 if __name__ == '__main__':
     main()
