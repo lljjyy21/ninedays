@@ -14,6 +14,7 @@ class MovingAverageEventTest(ExtendedTestCase):
                            u'moving average price. Two MA periods are changeable based on user input'
         self.price = np.empty([0, 0])
         self.short_ma, self.long_ma = 3, 6
+        self.yes, self.no = "Yes", "No"
 
     def test_moving_average_event_metadata(self):
         moving_average_event = MovingAverageEvent(self.price, self.short_ma, self.long_ma)
@@ -100,19 +101,19 @@ class MovingAverageEventTest(ExtendedTestCase):
         short_ma, long_ma = 2, 5
         moving_average_event = MovingAverageEvent(price, short_ma, long_ma)
 
-        self.assertTrue(moving_average_event.event_triggered_at_the_last_date())
+        self.assertEqual(self.yes, moving_average_event.event_triggered_at_the_last_date())
 
     def test_moving_average_event_triggered_at_the_last_date_when_not_triggered(self):
         price = np.array([9.0, 10.0, 10.0, 10.0, 10.0, 10.5, 10.5, 10.5, 10.5])
         short_ma, long_ma = 2, 4
         moving_average_event = MovingAverageEvent(price, short_ma, long_ma)
 
-        self.assertFalse(moving_average_event.event_triggered_at_the_last_date())
+        self.assertEqual(self.no, moving_average_event.event_triggered_at_the_last_date())
 
     def test_moving_average_event_triggered_at_the_last_date_when_no_data(self):
         moving_average_event = MovingAverageEvent(self.price, self.short_ma, self.long_ma)
 
-        self.assertFalse(moving_average_event.event_triggered_at_the_last_date())
+        self.assertEqual(self.no, moving_average_event.event_triggered_at_the_last_date())
 
 
 if __name__ == '__main__':

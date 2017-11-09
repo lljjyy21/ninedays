@@ -4,6 +4,7 @@ import numpy as np
 class StockMetricCalculator:
     def __init__(self, data, event):
         self.data = data
+        self.event = event
         self.open_price = StockMetricCalculator.data_frame_to_numpy_array(data, 'Open')
         self.close_price = StockMetricCalculator.data_frame_to_numpy_array(data, 'Close')
         self.event_sequence = event.get_events_sequence()
@@ -67,6 +68,7 @@ class StockMetricCalculator:
 
         return round((100.0 * next_day_rise_after_event)/event_occurrence, 2)
 
+    # @deprecated("This method does not work properly with definition of rise")
     def calculate_average_rise_percent(self):
         sum_continuous_rise = 0.0
         num_event_triggered_rise = 0
@@ -111,11 +113,10 @@ class StockMetricCalculator:
         if next_day_rise_after_event == 0:
             return 0.0
 
-        return round((100.0 * number_of_continuous_days)/next_day_rise_after_event, 2)
+        return round(number_of_continuous_days/next_day_rise_after_event, 0)
 
     def get_metrics(self):
         metrics = dict()
         metrics["chance-of-rise"] = self.calculate_chance_of_rise()
-        metrics["average-rise-percent"] = self.calculate_average_rise_percent()
         metrics["average-continuous-days"] = self.calculate_average_continuous_days()
         return metrics

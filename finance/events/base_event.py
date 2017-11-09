@@ -2,6 +2,9 @@ import numpy as np
 
 
 class BaseEvent(object):
+    class_name = 'base-event'
+    description = ''
+
     def __init__(self, open_price, close_price=None):
         self.open_price = open_price
         self.close_price = close_price
@@ -11,7 +14,11 @@ class BaseEvent(object):
 
     def event_triggered_at_the_last_date(self):
         event_sequence = self.get_events_sequence()
-        return len(event_sequence) > 0 and event_sequence[-1] == 1
+        return ["No", "Yes"][len(event_sequence) > 0 and event_sequence[-1] == 1]
+
+    def get_event_metadata(self):
+        return {'description': self.description,
+                'class-name': self.class_name}
 
     def _validate_input(self):
         self._validate_open_price()

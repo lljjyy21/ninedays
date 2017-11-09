@@ -600,8 +600,9 @@ var inputFieldsState = new InputState(),
 
 
 function drawWheelByEvent(eventName, eventBody) {
-    var chanceOfRise = eventBody["chance-of-rise"] === undefined ? 0.0 : parseFloat(eventBody["chance-of-rise"]),
-        averageRisePercent = eventBody["average-rise-percent"] === undefined ? 0.0 : parseFloat(eventBody["average-rise-percent"]),
+    var eventWasTrigerredYesterday = eventBody['event-was-triggered'] === undefined ? "Unknown" : eventBody['event-was-triggered'],
+        description = eventBody['description'] === undefined ? "": eventBody['description'],
+        chanceOfRise = eventBody["chance-of-rise"] === undefined ? 0.0 : parseFloat(eventBody["chance-of-rise"]),
         averageContinuousDays = eventBody["average-continuous-days"] === undefined ? 0.0 : parseFloat(eventBody["average-continuous-days"]);
 
     var wheelParentDiv = $("#" + eventName),
@@ -614,9 +615,12 @@ function drawWheelByEvent(eventName, eventBody) {
     var wheelText = $("." + eventName);
     wheelText.text((Math.round(chanceOfRise*10)/10).toFixed(1) + "%");
 
-    var title = 'Chance of rise: ' + chanceOfRise + '%\r\n' +
-                'Average rise percent: ' + averageRisePercent + '%\r\n' +
-                'Average continuous days: ' + averageContinuousDays + '%';
+
+    var newLine = '\r\n',
+        title = 'Description: ' + description + newLine +
+                'Event triggered, ' + eventWasTrigerredYesterday + newLine +
+                'Chance of rise: ' + chanceOfRise + '%' + newLine +
+                'Average continuous days: ' + averageContinuousDays;
 
     wheelText.attr('title', title);
 }

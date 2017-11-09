@@ -9,12 +9,13 @@ import numpy as np
 class SupportLineReboundEventTest(ExtendedTestCase):
 
     def setUp(self):
-        self.event_class_name = 'support-rebound-line-event'
+        self.event_class_name = 'support-line-rebound-event'
         self.description = u'Support line rebound (S line): Similar to the (R line) event, just change the highest ' \
                            u'price to lowest price. The event happens when today’s price is within ' \
                            u'support price × 1.05 and support price'
         self.price = np.empty([0, 0])
         self.time_period = 5
+        self.yes, self.no = "Yes", "No"
 
     def test_support_line_rebound_metadata(self):
         support_line_rebound_event = SupportLineReboundEvent(self.price, self.time_period)
@@ -77,18 +78,18 @@ class SupportLineReboundEventTest(ExtendedTestCase):
         price = np.array([10.0, 10.0, 10.0, 10.0, 10.0, 10.5, 10.5, 10.5])
         support_line_rebound_event = SupportLineReboundEvent(price, self.time_period)
 
-        self.assertTrue(support_line_rebound_event.event_triggered_at_the_last_date())
+        self.assertEqual(self.yes, support_line_rebound_event.event_triggered_at_the_last_date())
 
     def test_support_line_rebound_event_triggered_at_the_last_date_when_not_triggered(self):
         price = np.array([10.0, 10.0, 10.0, 10.0, 10.0, 10.5, 10.5, 20.0])
         support_line_rebound_event = SupportLineReboundEvent(price, self.time_period)
 
-        self.assertFalse(support_line_rebound_event.event_triggered_at_the_last_date())
+        self.assertEqual(self.no, support_line_rebound_event.event_triggered_at_the_last_date())
 
     def test_support_line_rebound_event_triggered_at_the_last_date_when_no_data(self):
         support_line_rebound_event = SupportLineReboundEvent(self.price, self.time_period)
 
-        self.assertFalse(support_line_rebound_event.event_triggered_at_the_last_date())
+        self.assertEqual(self.no, support_line_rebound_event.event_triggered_at_the_last_date())
 
 
 if __name__ == '__main__':

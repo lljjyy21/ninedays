@@ -14,6 +14,7 @@ class AverageEventTest(extended_test.ExtendedTestCase):
         self.description = u'More than average (Avg): Event triggers when stock price rise percent is higher than ' \
                            u'average rise percentage in the calculation period'
         self.open_price, self.close_price = np.empty([0, 0]), np.empty([0, 0])
+        self.yes, self.no = "Yes", "No"
 
     def test_average_event_metadata(self):
         average_event = ae.AverageEvent(self.open_price, self.close_price)
@@ -108,18 +109,18 @@ class AverageEventTest(extended_test.ExtendedTestCase):
         open_price, close_price = np.array([1.0, 1.0, 1.0]), np.array([2.0, 2.1, 2.2])
         average_event = ae.AverageEvent(open_price, close_price)
 
-        self.assertTrue(average_event.event_triggered_at_the_last_date())
+        self.assertEqual(self.yes, average_event.event_triggered_at_the_last_date())
 
     def test_average_event_triggered_at_the_last_date_when_not_triggered(self):
         open_price, close_price = np.array([1.0, 1.0, 1.0]), np.array([2.0, 2.1, 2.05])
         average_event = ae.AverageEvent(open_price, close_price)
 
-        self.assertFalse(average_event.event_triggered_at_the_last_date())
+        self.assertEqual(self.no, average_event.event_triggered_at_the_last_date())
 
     def test_average_event_triggered_at_the_last_date_when_no_data(self):
         average_event = ae.AverageEvent(self.open_price, self.close_price)
 
-        self.assertFalse(average_event.event_triggered_at_the_last_date())
+        self.assertEqual(self.no, average_event.event_triggered_at_the_last_date())
 
 
 if __name__ == '__main__':

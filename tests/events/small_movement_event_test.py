@@ -13,6 +13,7 @@ class SmallMovementEventTest(ExtendedTestCase):
                            u'less than 1 percent (± 1%) for more than 3 business days. Event triggers when today' \
                            u' day\'s stock price percentage change is more than 1%.'
         self.open_price, self.close_price = np.empty([0, 0]), np.empty([0, 0])
+        self.yes, self.no = "Yes", "No"
 
     def test_small_movement_event_metadata(self):
         small_movement_event = SmallMovementEvent(self.open_price, self.close_price)
@@ -74,20 +75,19 @@ class SmallMovementEventTest(ExtendedTestCase):
         close_price = np.array([1.01, 1.01, 1.001, 1.2, 3.6, 1.1, 1.1, 1.41, 1.2, 1.6, 1.0, 0.5])
         small_movement_event = SmallMovementEvent(open_price, close_price)
 
-        self.assertTrue(small_movement_event.event_triggered_at_the_last_date())
+        self.assertEqual(self.yes, small_movement_event.event_triggered_at_the_last_date())
 
     def test_small_movement_event_triggered_at_the_last_date_when_not_triggered(self):
         open_price = np.array([1.0, 1.0, 1.0, 1.2, 1.6, 1.0, 1.2, 1.40, 1.2, 1.6, 1.0, 1.6])
         close_price = np.array([1.01, 1.01, 1.001, 1.2, 3.6, 1.1, 1.1, 1.41, 1.2, 1.6, 1.0, 1.6])
         small_movement_event = SmallMovementEvent(open_price, close_price)
 
-        self.assertFalse(small_movement_event.event_triggered_at_the_last_date())
+        self.assertEqual(self.no, small_movement_event.event_triggered_at_the_last_date())
 
     def test_small_movement_event_triggered_at_the_last_date_when_no_data(self):
         small_movement_event = SmallMovementEvent(self.open_price, self.close_price)
 
-        self.assertFalse(small_movement_event.event_triggered_at_the_last_date())
-
+        self.assertEqual(self.no, small_movement_event.event_triggered_at_the_last_date())
 
 
 if __name__ == '__main__':
