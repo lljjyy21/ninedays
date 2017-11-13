@@ -62,12 +62,28 @@ function Page() {
 }
 
 function BodyStyle() {
-    var FOOTER_HEIGHT = 100, MIN_PAGE_HEIGHT = 650;
+    var FOOTER_HEIGHT = 100, MIN_PAGE_HEIGHT = 882;
     var PAGE_HEIGHT = Math.max(MIN_PAGE_HEIGHT, $(window).height()) - FOOTER_HEIGHT;
     var isMobileLayout = $('#mobile').is(':visible');
     calculatePageHeight();
 
     function calculatePageHeight() {
+
+        var mobileBody = $('#mobile'),
+            desktopBody = $('#desktop');
+        var classes = ['container-fluid'], hiddenClass = 'hidden';
+        if ($(window).height() < MIN_PAGE_HEIGHT) {
+            mobileBody.removeClass();
+            mobileBody.add(classes);
+            desktopBody.addClass(hiddenClass);
+            isMobileLayout = true;
+        }
+        else if ($(window).height() >= MIN_PAGE_HEIGHT && isMobileLayout) {
+            desktopBody.removeClass();
+            mobileBody.addClass(hiddenClass);
+            isMobileLayout = false;
+        }
+
         if (isMobileLayout) {
             PAGE_HEIGHT = $(document).height();
             FOOTER_HEIGHT = 0;

@@ -6,271 +6,273 @@
 
     <link rel="icon" type="image/gif" href="../static/image/logo.gif" />
     <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{url_for('static', filename='css/custom.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='css/content.css')}}" rel="stylesheet">
     <link href="{{url_for('static', filename='css/css-circular-prog-bar.css')}}" rel="stylesheet">
     <title>Ninedays | Stock Analysis</title>
 </head>
 <body>
 
     <!-- BIG TABLETS & LAPTOP & DESKTOP -->
-    <div class="container-fluid hidden-xs hidden-sm invisible-xs invisible-sm">
-        <div class="row">
-            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 container-start-page">
-                <div class="row inherited-height">
-                    <div class="col-md-11 col-lg-11 left-column-background inherited-height">
-                    </div>
-                    <div class="col-md-1 col-lg-1">
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center container-start-page">
-                <div class="row margin-logo">
-                    <div class="col-xs-3 col-sm-3"></div>
-                    <div class="col-xs-6 col-sm-6">
-                        <div class="row">
-                            <div class="col-sm-10 col-xs-10 col-sm-offset-1 col-xs-offset-1">
-                                <img alt="logo" id="start-logo" src="/static/image/logo.jpg" class="img img-responsive full-width"/>
-                            </div>
+    <div id="desktop">
+
+        <div class="container-fluid hidden-xs hidden-sm invisible-xs invisible-sm">
+            <div class="row">
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 container-start-page">
+                    <div class="row inherited-height">
+                        <div class="col-md-11 col-lg-11 left-column-background inherited-height">
+                        </div>
+                        <div class="col-md-1 col-lg-1">
                         </div>
                     </div>
-                    <div class="col-xs-3 col-sm-3"></div>
                 </div>
-
-                <div class="row">
-                    <div id="textLogo" class="text-center letter">
-                        <div>N</div>
-                        <div>I</div>
-                        <div>N</div>
-                        <div>E</div>
-                        <div>D</div>
-                        <div>A</div>
-                        <div>Y</div>
-                        <div>S</div>
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-center container-start-page">
+                    <div class="row margin-logo">
+                        <div class="col-xs-3 col-sm-3"></div>
+                        <div class="col-xs-6 col-sm-6">
+                            <div class="row">
+                                <div class="col-sm-10 col-xs-10 col-sm-offset-1 col-xs-offset-1">
+                                    <img alt="logo" id="start-logo" src="/static/image/logo.jpg" class="img img-responsive full-width"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-3 col-sm-3"></div>
                     </div>
+
+                    <div class="row">
+                        <div id="textLogo" class="text-center letter">
+                            <div>N</div>
+                            <div>I</div>
+                            <div>N</div>
+                            <div>E</div>
+                            <div>D</div>
+                            <div>A</div>
+                            <div>Y</div>
+                            <div>S</div>
+                        </div>
+                    </div>
+
+                    <div id="scrollArrow" class="row scroll-arrow-positioning">
+                        <a href="#functional-page">
+                            <img id="scroll-down" alt="scroll-down" src="static/image/scroll_black.png" class="center-block scroll-arrow img-responsive full-width"/>
+                        </a>
+                     </div>
                 </div>
-
-                <div id="scrollArrow" class="row scroll-arrow-positioning">
-                    <a href="#functional-page">
-                        <img id="scroll-down" alt="scroll-down" src="static/image/scroll_black.png" class="center-block scroll-arrow img-responsive full-width"/>
-                    </a>
-                 </div>
-            </div>
-            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 container-start-page">
-                <div class="row inherited-height">
-                    <div class="col-md-1 col-lg-1">
-                    </div>
-                    <div class="col-md-11 col-lg-11 right-column-background inherited-height">
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 container-start-page">
+                    <div class="row inherited-height">
+                        <div class="col-md-1 col-lg-1">
+                        </div>
+                        <div class="col-md-11 col-lg-11 right-column-background inherited-height">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div id="functional-page" class="container-fluid hidden-xs hidden-sm invisible-xs invisible-sm">
-        <div class="row">
-            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 container">
-                <div class="row inherited-height">
-                    <div class="col-lg-11 col-md-11 left-column-background padding-top-70px inherited-height">
-                        <div class="center-column">
-                            <div class="row input-field text-center">
-                                <div>
-                                    STOCK NAME
-                                </div>
-                                <div>
-                                    <input id="stock-name" class="input input-desktop" type="text" name="stock_name" value="Bidu">
-                                </div>
-                            </div>
-
-                            <div class="row input-field text-center">
-                                <div>
-                                    START DATE
-                                </div>
-                                <div>
-                                    <input id="start-date" class="input input-desktop" type="date" name="start_date" value="2006-01-01" required="required">
-                                </div>
-                            </div>
-
-
-                            <div class="row input-field text-center">
-                                <div>
-                                    END DATE
-                                </div>
-                                <div>
-                                    <input id="end-date" class="input input-desktop" type="date" name="end_date" value="{{ current_date() }}" required="required">
-                                </div>
-                            </div>
-
-                            <div class="row input-field text-center">
-                                <div>
-                                    SHORT MA
-                                </div>
-                                <div>
-                                    <input id="short-ma" class="input input-desktop" type="number" name="short_ma" value="5">
-                                </div>
-                            </div>
-
-                            <div class="row input-field text-center">
-                                <div>
-                                    LONG MA
-                                </div>
-                                <div>
-                                    <input id="long-ma" class="input input-desktop" type="number" name="long_ma" value="60">
-                                </div>
-                            </div>
-
-                            <div class="row input-field text-center">
-                                <div>
-                                    RANGE
-                                </div>
-                                <div>
-                                    <input id="range" class="input input-desktop" type="number" name="range" value="100">
-                                </div>
-                            </div>
-
-                            <div class="margin-error-message text-center error-message"></div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-1 col-md-1 inherited-height btn-area">
-                    </div>
-                </div>
-            </div>
-            <div id="btn" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 container text-center btn-area">
-                <div class="row">
-                    <div id="btn-text" class="text-center letter">
-                        <div>S</div>
-                        <div>T</div>
-                        <div>A</div>
-                        <div>R</div>
-                        <div>T</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 container">
-                <div class="row inherited-height">
-                    <div class="col-lg-1 col-md-1 inherited-height btn-area">
-                    </div>
-                    <div class="col-lg-11 col-md-11 inherited-height padding-top-70px right-column-background">
-                        <div class="row">
-                            <div class="col-sm-offset-3 col-sm-6">
-                                <div id="average-event" class="center-wheels progress-circle p0">
-                                   <span class="average-event" rel="tooltip">0%</span>
-                                   <div class="left-half-clipper">
-                                      <div class="first50-bar"></div>
-                                      <div class="value-bar"></div>
-                                   </div>
-                                </div>
-                                <div>
-                                    <p class="text-center">Average</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-offset-3 col-sm-6">
-                                <div id="moving-average-event" class="center-wheels progress-circle p0">
-                                    <span class="moving-average-event" rel="tooltip">0%</span>
-                                    <div class="left-half-clipper">
-                                        <div class="first50-bar"></div>
-                                        <div class="value-bar"></div>
+        <div id="functional-page" class="container-fluid hidden-xs hidden-sm invisible-xs invisible-sm">
+            <div class="row">
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 container">
+                    <div class="row inherited-height">
+                        <div class="col-lg-11 col-md-11 left-column-background padding-top-70px inherited-height">
+                            <div class="center-column">
+                                <div class="row input-field text-center">
+                                    <div>
+                                        STOCK NAME
+                                    </div>
+                                    <div>
+                                        <input id="stock-name" class="input input-desktop" type="text" name="stock_name" value="Bidu">
                                     </div>
                                 </div>
-                                <div>
-                                    <p class="text-center">Moving average</p>
+
+                                <div class="row input-field text-center">
+                                    <div>
+                                        START DATE
+                                    </div>
+                                    <div>
+                                        <input id="start-date" class="input input-desktop" type="date" name="start_date" value="2006-01-01" required="required">
+                                    </div>
                                 </div>
+
+
+                                <div class="row input-field text-center">
+                                    <div>
+                                        END DATE
+                                    </div>
+                                    <div>
+                                        <input id="end-date" class="input input-desktop" type="date" name="end_date" value="{{ current_date() }}" required="required">
+                                    </div>
+                                </div>
+
+                                <div class="row input-field text-center">
+                                    <div>
+                                        SHORT MA
+                                    </div>
+                                    <div>
+                                        <input id="short-ma" class="input input-desktop" type="number" name="short_ma" value="5">
+                                    </div>
+                                </div>
+
+                                <div class="row input-field text-center">
+                                    <div>
+                                        LONG MA
+                                    </div>
+                                    <div>
+                                        <input id="long-ma" class="input input-desktop" type="number" name="long_ma" value="60">
+                                    </div>
+                                </div>
+
+                                <div class="row input-field text-center">
+                                    <div>
+                                        RANGE
+                                    </div>
+                                    <div>
+                                        <input id="range" class="input input-desktop" type="number" name="range" value="100">
+                                    </div>
+                                </div>
+
+                                <div class="margin-error-message text-center error-message"></div>
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-sm-offset-3 col-sm-6">
-                                <div id="pass-resistance-line-event" class="center-wheels progress-circle p0">
-                                   <span class="pass-resistance-line-event" rel="tooltip">0%</span>
-                                   <div class="left-half-clipper">
-                                      <div class="first50-bar"></div>
-                                      <div class="value-bar"></div>
-                                   </div>
-                                </div>
-                                <div>
-                                    <p class="text-center">Pass resistance line</p>
+                        <div class="col-lg-1 col-md-1 inherited-height btn-area">
+                        </div>
+                    </div>
+                </div>
+                <div id="btn" class="col-xs-2 col-sm-2 col-md-2 col-lg-2 container text-center btn-area">
+                    <div class="row">
+                        <div id="btn-text" class="text-center letter">
+                            <div>S</div>
+                            <div>T</div>
+                            <div>A</div>
+                            <div>R</div>
+                            <div>T</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 container">
+                    <div class="row inherited-height">
+                        <div class="col-lg-1 col-md-1 inherited-height btn-area">
+                        </div>
+                        <div class="col-lg-11 col-md-11 inherited-height padding-top-70px right-column-background">
+                            <div class="row">
+                                <div class="col-sm-offset-3 col-sm-6">
+                                    <div id="average-event" class="center-wheels progress-circle p0">
+                                       <span class="average-event" rel="tooltip">0%</span>
+                                       <div class="left-half-clipper">
+                                          <div class="first50-bar"></div>
+                                          <div class="value-bar"></div>
+                                       </div>
+                                    </div>
+                                    <div>
+                                        <p class="text-center">Average</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-sm-offset-3 col-sm-6">
-                                <div id="small-movement-event" class="center-wheels progress-circle p0">
-                                   <span class="small-movement-event" rel="tooltip">0%</span>
-                                   <div class="left-half-clipper">
-                                      <div class="first50-bar"></div>
-                                      <div class="value-bar"></div>
-                                   </div>
-                                </div>
-                                <div>
-                                    <p class="text-center">Small movement</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-offset-3 col-sm-6">
-                                <div id="support-line-rebound-event" class="center-wheels progress-circle p0">
-                                   <span class="support-line-rebound-event" rel="tooltip">0%</span>
-                                   <div class="left-half-clipper">
-                                      <div class="first50-bar"></div>
-                                      <div class="value-bar"></div>
-                                   </div>
-                                </div>
-                                <div>
-                                    <p class="text-center">Support line rebound</p>
+                            <div class="row">
+                                <div class="col-sm-offset-3 col-sm-6">
+                                    <div id="moving-average-event" class="center-wheels progress-circle p0">
+                                        <span class="moving-average-event" rel="tooltip">0%</span>
+                                        <div class="left-half-clipper">
+                                            <div class="first50-bar"></div>
+                                            <div class="value-bar"></div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="text-center">Moving average</p>
+                                    </div>
                                 </div>
                             </div>
+
+                            <div class="row">
+                                <div class="col-sm-offset-3 col-sm-6">
+                                    <div id="pass-resistance-line-event" class="center-wheels progress-circle p0">
+                                       <span class="pass-resistance-line-event" rel="tooltip">0%</span>
+                                       <div class="left-half-clipper">
+                                          <div class="first50-bar"></div>
+                                          <div class="value-bar"></div>
+                                       </div>
+                                    </div>
+                                    <div>
+                                        <p class="text-center">Pass resistance line</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-offset-3 col-sm-6">
+                                    <div id="small-movement-event" class="center-wheels progress-circle p0">
+                                       <span class="small-movement-event" rel="tooltip">0%</span>
+                                       <div class="left-half-clipper">
+                                          <div class="first50-bar"></div>
+                                          <div class="value-bar"></div>
+                                       </div>
+                                    </div>
+                                    <div>
+                                        <p class="text-center">Small movement</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-offset-3 col-sm-6">
+                                    <div id="support-line-rebound-event" class="center-wheels progress-circle p0">
+                                       <span class="support-line-rebound-event" rel="tooltip">0%</span>
+                                       <div class="left-half-clipper">
+                                          <div class="first50-bar"></div>
+                                          <div class="value-bar"></div>
+                                       </div>
+                                    </div>
+                                    <div>
+                                        <p class="text-center">Support line rebound</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid hidden-xs hidden-sm invisible-xs invisible-sm">
+            <div class="row">
+                <!--LEFT COLUMN FOOTER-->
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 footer">
+                    <div class="row inherited-height">
+                        <div class="col-lg-11 col-md-11 inherited-height left-column-background io">
+                            <p class="io-text text-center">INPUT</p>
                         </div>
 
+                        <div class="col-lg-1 col-md-1 inherited-height btn-area">
+                        </div>
+                    </div>
+                </div>
 
+                <!--CENTER COLUMN FOOTER-->
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 footer btn-area">
+                    <div class="row">
+                        <div id="logo-block" class="image col-lg-1 col-md-1 col-lg-offset-4 col-md-offset-4 logo-img btn-area">
+                            <img alt="logo" id="logo" src="/static/image/logo.gif" class="img img-responsive full-width btn-area"/>
+                        </div>
+                        <div class="col-lg-6 col-md-6 remove-style">
+                            <p id="logo-text" class="logo-text">NINEDAYS</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!--RIGHT COLUMN FOOTER-->
+                <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 footer">
+                    <div class="row inherited-height">
+                        <div class="col-lg-1 col-md-1 inherited-height btn-area"></div>
+                        <div class="col-lg-11 col-md-11 inherited-height right-column-background io">
+                            <p class="io-text text-center">OUTPUT</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="container-fluid hidden-xs hidden-sm invisible-xs invisible-sm">
-        <div class="row">
-            <!--LEFT COLUMN FOOTER-->
-            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 footer">
-                <div class="row inherited-height">
-                    <div class="col-lg-11 col-md-11 inherited-height left-column-background io">
-                        <p class="io-text text-center">INPUT</p>
-                    </div>
-
-                    <div class="col-lg-1 col-md-1 inherited-height btn-area">
-                    </div>
-                </div>
-            </div>
-
-            <!--CENTER COLUMN FOOTER-->
-            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 footer btn-area">
-                <div class="row">
-                    <div id="logo-block" class="image col-lg-1 col-md-1 col-lg-offset-4 col-md-offset-4 logo-img btn-area">
-                        <img alt="logo" id="logo" src="/static/image/logo.gif" class="img img-responsive full-width btn-area"/>
-                    </div>
-                    <div class="col-lg-6 col-md-6 remove-style">
-                        <p id="logo-text" class="logo-text">NINEDAYS</p>
-                    </div>
-                </div>
-            </div>
-
-            <!--RIGHT COLUMN FOOTER-->
-            <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5 footer">
-                <div class="row inherited-height">
-                    <div class="col-lg-1 col-md-1 inherited-height btn-area"></div>
-                    <div class="col-lg-11 col-md-11 inherited-height right-column-background io">
-                        <p class="io-text text-center">OUTPUT</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <!-- MOBILE & TABLETS -->
     <div id="mobile" class="container-fluid hidden-lg hidden-md invisible-lg invisible-md">
@@ -450,6 +452,6 @@
     </div>
 
     <script src="{{ url_for('static', filename='js/jquery-3.2.1.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/content.js') }}"></script>
 </body>
 </html>
