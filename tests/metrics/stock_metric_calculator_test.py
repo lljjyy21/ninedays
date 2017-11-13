@@ -32,19 +32,19 @@ class StockMetricCalculatorTest(TestCase):
         self.support_line_rebound_event_metric = StockMetricCalculator(data, support_line_rebound_event)
 
     def test_stock_metric_calculator_chance_of_rise_for_average_event(self):
-        self.assertEqual(42.86, self.average_event_metric.calculate_chance_of_rise())
+        self.assertEqual(14.29, self.average_event_metric.calculate_chance_of_rise())
 
     def test_stock_metric_calculator_chance_of_rise_for_moving_average_event(self):
-        self.assertEqual(100.0, self.moving_average_event_metric.calculate_chance_of_rise())
+        self.assertEqual(0.0, self.moving_average_event_metric.calculate_chance_of_rise())
 
     def test_stock_metric_calculator_chance_of_rise_for_pass_resistance_line_event(self):
         self.assertEqual(40.0, self.pass_resistance_line_event_metric.calculate_chance_of_rise())
 
     def test_stock_metric_calculator_chance_of_rise_for_small_movement_event(self):
-        self.assertEqual(0.0, self.small_movement_event_metric.calculate_chance_of_rise())
+        self.assertEqual(100.0, self.small_movement_event_metric.calculate_chance_of_rise())
 
     def test_stock_metric_calculator_chance_of_rise_for_support_line_rebound_event(self):
-        self.assertEqual(11.11, self.support_line_rebound_event_metric.calculate_chance_of_rise())
+        self.assertEqual(33.33, self.support_line_rebound_event_metric.calculate_chance_of_rise())
 
     @skip("This metric is removed production")
     def test_stock_metric_calculator_average_rise_percent_for_average_event(self):
@@ -79,7 +79,7 @@ class StockMetricCalculatorTest(TestCase):
         self.assertAlmostEquals(0.0, self.small_movement_event_metric.calculate_average_continuous_days())
 
     def test_stock_metric_calculator_average_continuous_days_for_support_line_rebound_event(self):
-        self.assertEqual(1.00, self.support_line_rebound_event_metric.calculate_average_continuous_days())
+        self.assertEqual(0.00, self.support_line_rebound_event_metric.calculate_average_continuous_days())
 
 
 if __name__ == '__main__':
