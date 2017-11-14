@@ -34,7 +34,7 @@ function Page() {
 
     function updatePage() {
         // Update values of input fields
-        if (applicationState.stateChanged()) {
+        if (applicationState.stateHasChanged()) {
             if (applicationState.state === applicationState.deviceStatuses.MOBILE) {
                 inputFieldsState.updateDesktop();
             }
@@ -435,7 +435,7 @@ function ApplicationState() {
     }
 
     return {
-        stateChanged: stateChanged,
+        stateHasChanged: stateChanged,
         updateCurrentDeviceState: deviceStateObject.updateCurrentState,
         deviceStatuses: device,
         state: deviceState
@@ -557,7 +557,6 @@ function InputState() {
                     desktopIdName = desktopIdNames[i],
                     mobile = $(mobileIdName),
                     desktop = $(desktopIdName);
-
                 mobile.val(desktop.val());
             }
         }
@@ -628,14 +627,16 @@ function drawWheelByEvent(eventName, eventBody) {
     var wheelText = $("." + eventName);
     wheelText.text((Math.round(chanceOfRise*10)/10).toFixed(1) + "%");
 
-    var tooltips = $("*[rel='tooltip']");
+    var tooltipDesktopDiv = wheelParentDiv.find('.' + eventName),
+        tooltipMobileDiv = wheelMobileParentDiv.find('.' + eventName);
     var newLine = '<br>',
         title = 'Description: ' + description + newLine +
                 'Event triggered, ' + eventWasTrigerredYesterday + newLine +
                 'Chance of rise, ' + chanceOfRise + '%' + newLine +
                 'Average continuous days, ' + averageContinuousDays;
 
-    tooltips.attr('title', title);
+    tooltipDesktopDiv.attr('title', title);
+    tooltipMobileDiv.attr('title', title);
 }
 
 function cleanWheel(eventName) {

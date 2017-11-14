@@ -94,15 +94,12 @@ def retrieve_parameters_from_url():
     if len(args) > len(parameters):
         raise ValueError('Redundant parameters are present')
 
-    print(args)
-
     return end, long_ma, range_days, short_ma, start, stock_name
 
 
 def create_response(data_based_on_user_input, events_based_on_long_ma, events_based_on_user_input):
     response = dict()
     for event_based_on_user_input, event_based_on_long_ma in zip(events_based_on_user_input, events_based_on_long_ma):
-        print(type(event_based_on_user_input), type(event_based_on_long_ma))
         metrics = StockMetricCalculator(data_based_on_user_input, event_based_on_user_input)
 
         event_response_data = dict()
