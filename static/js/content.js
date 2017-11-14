@@ -2,6 +2,8 @@
  * Created by Dmytro on 7/18/2017.
  */
 
+$ = jQuery;
+
 $(window).on("load", function () {
     var page = new Page();
     page.update();
@@ -237,16 +239,6 @@ function StockCalculationsDrawer() {
     function getAndDrawCalculations() {
         assignHTMLElementIdsDependingOnDeviceLayout();
 
-        // TODO: Delete variables if unused
-        var stock = $(stockIdName).val(),
-            start_date = $(startDateIdName).val(),
-            end_date = $(endDateIdName).val(),
-            short_ma = $(shortMaIdName).val(),
-            long_ma = $(longMaIdName).val(),
-            range = $(rangeIdName).val();
-
-
-        //TODO: Test
         var inputFieldsValidation = new InputFieldsValidation();
         var isValidInput = inputFieldsValidation.isValid();
 
@@ -293,14 +285,11 @@ function StockCalculationsDrawer() {
             error: function (error) {
                 inputFieldsState.reset();
 
-                var response_object = JSON.parse(error.responseText);
-
                 for (var index in EVENT_NAMES) {
                     if (EVENT_NAMES.hasOwnProperty(index)) {
                         cleanWheel(EVENT_NAMES[index]);
                     }
                 }
-
             }
         });
     }
@@ -493,7 +482,8 @@ function InputState() {
     }
 
     function getState() {
-        var object = {
+        var object;
+        object = {
             'stockName': stockName,
             'startDate': startDate,
             'endDate': endDate,
@@ -612,7 +602,7 @@ var inputFieldsState = new InputState(),
 
 
 function drawWheelByEvent(eventName, eventBody) {
-    var eventWasTrigerredYesterday = eventBody['event-was-triggered'] === undefined ? "Unknown" : eventBody['event-was-triggered'],
+    var eventWasTriggeredYesterday = eventBody['event-was-triggered'] === undefined ? "Unknown" : eventBody['event-was-triggered'],
         description = eventBody['description'] === undefined ? "": eventBody['description'],
         chanceOfRise = eventBody["chance-of-rise"] === undefined ? 0.0 : parseFloat(eventBody["chance-of-rise"]),
         averageContinuousDays = eventBody["average-continuous-days"] === undefined ? 0.0 : parseFloat(eventBody["average-continuous-days"]);
@@ -631,7 +621,7 @@ function drawWheelByEvent(eventName, eventBody) {
         tooltipMobileDiv = wheelMobileParentDiv.find('.' + eventName);
     var newLine = '<br>',
         title = 'Description: ' + description + newLine +
-                'Event triggered, ' + eventWasTrigerredYesterday + newLine +
+                'Event triggered, ' + eventWasTriggeredYesterday + newLine +
                 'Chance of rise, ' + chanceOfRise + '%' + newLine +
                 'Average continuous days, ' + averageContinuousDays;
 
@@ -667,16 +657,15 @@ $( function()
 {
     var targets = $( '[rel~=tooltip]' ),
         target  = false,
-        tooltip = false,
-        title   = false;
+        tooltip = false;
 
     targets.bind( 'mouseenter', function()
     {
         target  = $( this );
-        tip     = target.attr( 'title' );
+        var tip = target.attr('title');
         tooltip = $( '<div id="tooltip"></div>' );
 
-        if( !tip || tip == '' )
+        if( !tip || tip === '' )
             return false;
 
         target.removeAttr( 'title' );
@@ -712,7 +701,7 @@ $( function()
 
             if( pos_top < 0 || pos_top < $(window).height() )
             {
-                var pos_top = target.offset().top + target.outerHeight();
+                pos_top = target.offset().top + target.outerHeight();
                 tooltip.addClass( 'top' );
             }
             else
