@@ -6,8 +6,7 @@ import numpy as np
 # TODO: Add documentation
 class AverageEvent(BaseEvent):
     class_name = 'average-event'
-    description = u'More than average (Avg): Event triggers when stock price rise percent is higher than average rise ' \
-                  u'percentage in the calculation period'
+    description = u'More than average (Avg): Chance of rise when stock price has risen more than average within the calculation period.'
 
     def __init__(self, open_price, close_price):
         BaseEvent.__init__(self, open_price, close_price)

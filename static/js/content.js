@@ -591,8 +591,7 @@ var inputFieldsState = new InputState(),
 
 
 function drawWheelByEvent(eventName, eventBody) {
-    var eventWasTriggeredYesterday = eventBody['event-was-triggered'] === undefined ? "Unknown" : eventBody['event-was-triggered'],
-        description = eventBody['description'] === undefined ? "": eventBody['description'],
+    var description = eventBody['description'] === undefined ? "": eventBody['description'],
         chanceOfRise = eventBody["chance-of-rise"] === undefined ? 0.0 : parseFloat(eventBody["chance-of-rise"]),
         averageContinuousDays = eventBody["average-continuous-days"] === undefined ? 0.0 : parseFloat(eventBody["average-continuous-days"]);
 
@@ -609,10 +608,14 @@ function drawWheelByEvent(eventName, eventBody) {
     var tooltipDesktopDiv = wheelParentDiv.find('.' + eventName),
         tooltipMobileDiv = wheelMobileParentDiv.find('.' + eventName);
     var newLine = '<br>',
-        title = 'Description: ' + description + newLine +
-                'Event triggered, ' + eventWasTriggeredYesterday + newLine +
-                'Chance of rise, ' + chanceOfRise + '%' + newLine +
-                'Average continuous days, ' + averageContinuousDays;
+        title = description + newLine +
+                'Chance of Rise: [' + chanceOfRise + '%]' + newLine +
+                'Average Continues Rising Days: [' + averageContinuousDays + ']' + newLine +
+                'Status:';
+        title += (chanceOfRise < 45.0) ? ' [Under Perform] /' : ' Under Perform /';
+        title += (55.0 >= chanceOfRise && chanceOfRise > 45.0) ? ' [Hold] /' : ' Hold /';
+        title += (70.0 >= chanceOfRise && chanceOfRise > 55.0) ? ' [Buy] /' : ' Buy /';
+        title += (chanceOfRise > 70.0) ? '  [Strong Buy]' : ' Strong Buy';
 
     tooltipDesktopDiv.attr('title', title);
     tooltipMobileDiv.attr('title', title);

@@ -6,8 +6,7 @@ import numpy as np
 # TODO: Add documentation
 class SupportLineReboundEvent(LineEvent):
     class_name = 'support-line-rebound-event'
-    description = u'Support line rebound (S line): Similar to the (R line) event, just change the highest price to ' \
-                  u'lowest price. The event happens when today’s price is within support price × 1.05 and support price'
+    description = u'Support line rebound (S line): Chance of rise when price is close to the support line price.'
 
     def __init__(self, open_price, time_period):
         LineEvent.__init__(self, open_price, time_period)

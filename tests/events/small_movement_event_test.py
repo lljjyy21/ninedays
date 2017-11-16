@@ -9,9 +9,7 @@ class SmallMovementEventTest(ExtendedTestCase):
 
     def setUp(self):
         self.event_class_name = 'small-movement-event'
-        self.description = u'Small movement (SM): Basic requirement: when the total stock price percentage change is ' \
-                           u'less than 1 percent (± 1%) for more than 3 business days. Event triggers when today' \
-                           u' day\'s stock price percentage change is more than 1%.'
+        self.description = u'Small movement (SM): Chance of rise when stock price change percentage is less than 1% for more than 3 days.'
         self.open_price, self.close_price = np.empty([0, 0]), np.empty([0, 0])
         self.yes, self.no = "Yes", "No"
 

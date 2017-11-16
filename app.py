@@ -70,9 +70,7 @@ def calculate_stock_chances():
         input_data = DataConverter(start, end, short_ma, long_ma, range_days)
         events_based_on_user_input, data_based_on_user_input = get_events_based_on_user_input(stock_name, input_data,
                                                                                               start, end)
-        events_based_on_long_ma, data_based_on_long_ma = get_events_based_on_long_ma(stock_name, input_data)
-
-        response = create_response(data_based_on_user_input, events_based_on_long_ma, events_based_on_user_input)
+        response = create_response(data_based_on_user_input, events_based_on_user_input)
     except Exception as e:
         print(e)
         return json.dumps(empty_response_object), 400
@@ -100,38 +98,17 @@ def retrieve_parameters_from_url():
     return end, long_ma, range_days, short_ma, start, stock_name
 
 
-def create_response(data_based_on_user_input, events_based_on_long_ma, events_based_on_user_input):
+def create_response(data_based_on_user_input, events_based_on_user_input):
     response = dict()
-    for event_based_on_user_input, event_based_on_long_ma in zip(events_based_on_user_input, events_based_on_long_ma):
+    for event_based_on_user_input in events_based_on_user_input:
         metrics = StockMetricCalculator(data_based_on_user_input, event_based_on_user_input)
 
         event_response_data = dict()
         event_response_data.update(metrics.get_metrics())
         event_response_data.update(event_based_on_user_input.get_event_metadata())
-        event_response_data.update({'event-was-triggered': event_based_on_long_ma.event_triggered_at_the_last_date()})
 
         response[event_based_on_user_input.class_name] = event_response_data
     return response
-
-
-def get_events_based_on_long_ma(stock_name, input_data):
-    ONE_DAY = 1
-    start = (datetime.datetime.now() - datetime.timedelta(input_data.get_long_ma() + ONE_DAY)).strftime(TIME_PATTERN)\
-        .decode(UTF8)
-    end = (datetime.datetime.now() - datetime.timedelta(ONE_DAY)).strftime(TIME_PATTERN).decode(UTF8)
-
-    stock_data_processor = sdp.StockDataProcessor(stock_name, start, end)
-    data_based_on_long_ma = stock_data_processor.get_stock_data()
-
-    open_price = StockMetricCalculator.data_frame_to_numpy_array(data_based_on_long_ma, OPEN)
-    close_price = StockMetricCalculator.data_frame_to_numpy_array(data_based_on_long_ma, CLOSE)
-
-    events_based_on_long_ma = [AverageEvent(open_price, close_price),
-                               MovingAverageEvent(close_price, input_data.get_short_ma(), input_data.get_long_ma()),
-                               PassResistanceLineEvent(open_price, input_data.get_range()),
-                               SmallMovementEvent(open_price, close_price),
-                               SupportLineReboundEvent(open_price, input_data.get_range())]
-    return events_based_on_long_ma, data_based_on_long_ma
 
 
 def get_events_based_on_user_input(stock_name, input_data, start, end):

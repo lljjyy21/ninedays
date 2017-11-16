@@ -11,8 +11,7 @@ class AverageEventTest(extended_test.ExtendedTestCase):
 
     def setUp(self):
         self.event_class_name = 'average-event'
-        self.description = u'More than average (Avg): Event triggers when stock price rise percent is higher than ' \
-                           u'average rise percentage in the calculation period'
+        self.description = u'More than average (Avg): Chance of rise when stock price has risen more than average within the calculation period.'
         self.open_price, self.close_price = np.empty([0, 0]), np.empty([0, 0])
         self.yes, self.no = "Yes", "No"
 

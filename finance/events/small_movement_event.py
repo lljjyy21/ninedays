@@ -6,9 +6,7 @@ import numpy as np
 # TODO: Add documentation
 class SmallMovementEvent(BaseEvent):
     class_name = 'small-movement-event'
-    description = u'Small movement (SM): Basic requirement: when the total stock price percentage change is less than' \
-                  u' 1 percent (± 1%) for more than 3 business days. Event triggers when today day\'s stock price' \
-                  u' percentage change is more than 1%.'
+    description = u'Small movement (SM): Chance of rise when stock price change percentage is less than 1% for more than 3 days.'
 
     def __init__(self, open_price, close_price):
         BaseEvent.__init__(self, open_price, close_price)

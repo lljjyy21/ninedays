@@ -10,8 +10,7 @@ class MovingAverageEventTest(ExtendedTestCase):
 
     def setUp(self):
         self.event_class_name = 'moving-average-event'
-        self.description = u'Moving average (MA): When short period moving average price is higher than long period ' \
-                           u'moving average price. Two MA periods are changeable based on user input'
+        self.description = u'Moving average (MA): Chance of rise when short MA price is higher than long MA price.'
         self.price = np.empty([0, 0])
         self.short_ma, self.long_ma = 3, 6
         self.yes, self.no = "Yes", "No"

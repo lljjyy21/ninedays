@@ -10,9 +10,7 @@ class SupportLineReboundEventTest(ExtendedTestCase):
 
     def setUp(self):
         self.event_class_name = 'support-line-rebound-event'
-        self.description = u'Support line rebound (S line): Similar to the (R line) event, just change the highest ' \
-                           u'price to lowest price. The event happens when today’s price is within ' \
-                           u'support price × 1.05 and support price'
+        self.description = u'Support line rebound (S line): Chance of rise when price is close to the support line price.'
         self.price = np.empty([0, 0])
         self.time_period = 5
         self.yes, self.no = "Yes", "No"
