@@ -20,7 +20,6 @@ $(window).on("orientationchange", function () {
 });
 
 $(document).bind("ajaxSend", function(){
-
 }).bind("ajaxStop", function(){
     var page = new Page();
     page.update();
@@ -64,6 +63,7 @@ function Page() {
 }
 
 function BodyStyle() {
+    // 882 is the minimal size of the screen when footer doesn't overlap with progress wheels
     var FOOTER_HEIGHT = 100, MIN_PAGE_HEIGHT = 882;
     var PAGE_HEIGHT = Math.max(MIN_PAGE_HEIGHT, $(window).height()) - FOOTER_HEIGHT;
     var isMobileLayout = $('#mobile').is(':visible');
@@ -151,29 +151,18 @@ function ScrollArrow() {
 }
 
 function InputFieldsStyle() {
-    var centerColumnWidth = $('#mobile').find('.center-column').width()/2,
-        inputs = $('.input-mobile');
+    var mobileCenterColumnWidth = $('#mobile').find('.center-column').width()/2,
+        desktopCenterColumnWidth = $('#desktop').find('.center-column').width()*2/3,
+        mobileInputs = $('.input-mobile'),
+        desktopInputs = $('.input-desktop');
 
     function updateInputFieldWidth() {
-        inputs.css({'width': centerColumnWidth});
-    }
-
-    function updateInputDateAlignment() {
-        var inputDate = $('.input-date'),
-            isMobileLayout = $('#mobile').is(':visible');
-
-        if (isMobileLayout) {
-            inputDate.css('padding-left', "6%");
-        }
-        else {
-            inputDate.css('text-align', 'left');
-            inputDate.css('padding-left', '');
-        }
+        mobileInputs.css({'width': mobileCenterColumnWidth});
+        desktopInputs.css({'width': desktopCenterColumnWidth});
     }
 
     function updateInputField() {
         updateInputFieldWidth();
-        updateInputDateAlignment();
     }
 
     return {

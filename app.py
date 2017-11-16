@@ -19,6 +19,9 @@ from finance.events.support_line_rebound_event import SupportLineReboundEvent
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.jinja_env.globals.update(current_date=current_date.get_current_server_date)
+app.jinja_env.globals['stock_name'] = "Enter Stock Name, Like: GOOG, AAPL"
+app.jinja_env.globals['default_stock_name'] = "BIDU"
+
 
 OPEN, CLOSE = 'Open', 'Close'
 TIME_PATTERN, UTF8 = '%Y-%m-%d', 'utf-8'
