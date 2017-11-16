@@ -195,6 +195,15 @@ $('.btn-area').on('click touchstart', function(e) {
     stockCalculationsDrawer.getAndDrawCalculations();
 });
 
+$(window).keypress(function(e) {
+    var key = e.which;
+    if (key === 13)  // the enter key code
+    {
+        var stockCalculationsDrawer = new StockCalculationsDrawer();
+        stockCalculationsDrawer.getAndDrawCalculations();
+    }
+});
+
 
 function StockCalculationsDrawer() {
     var stockIdName = undefined,
