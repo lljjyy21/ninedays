@@ -13,7 +13,6 @@ class SupportLineReboundEventTest(ExtendedTestCase):
         self.description = u'Support line rebound (S line): Chance of rise when price is close to the support line price.'
         self.price = np.empty([0, 0])
         self.time_period = 5
-        self.yes, self.no = "Yes", "No"
 
     def test_support_line_rebound_metadata(self):
         support_line_rebound_event = SupportLineReboundEvent(self.price, self.time_period)
@@ -71,23 +70,6 @@ class SupportLineReboundEventTest(ExtendedTestCase):
         self.assertEqual(expected.shape, real.shape)
         self.assertTrue((expected == real).all())
         self.assertEqual(expected.dtype, real.dtype)
-
-    def test_support_line_rebound_event_triggered_at_the_last_date_when_triggered(self):
-        price = np.array([10.0, 10.0, 10.0, 10.0, 10.0, 10.5, 10.5, 10.5])
-        support_line_rebound_event = SupportLineReboundEvent(price, self.time_period)
-
-        self.assertEqual(self.yes, support_line_rebound_event.event_triggered_at_the_last_date())
-
-    def test_support_line_rebound_event_triggered_at_the_last_date_when_not_triggered(self):
-        price = np.array([10.0, 10.0, 10.0, 10.0, 10.0, 10.5, 10.5, 20.0])
-        support_line_rebound_event = SupportLineReboundEvent(price, self.time_period)
-
-        self.assertEqual(self.no, support_line_rebound_event.event_triggered_at_the_last_date())
-
-    def test_support_line_rebound_event_triggered_at_the_last_date_when_no_data(self):
-        support_line_rebound_event = SupportLineReboundEvent(self.price, self.time_period)
-
-        self.assertEqual(self.no, support_line_rebound_event.event_triggered_at_the_last_date())
 
 
 if __name__ == '__main__':

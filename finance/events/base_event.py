@@ -12,10 +12,6 @@ class BaseEvent(object):
     def get_events_sequence(self):
         pass
 
-    def event_triggered_at_the_last_date(self):
-        event_sequence = self.get_events_sequence()
-        return ["No", "Yes"][len(event_sequence) > 0 and event_sequence[-1] == 1]
-
     def get_event_metadata(self):
         return {'description': self.description,
                 'class-name': self.class_name}

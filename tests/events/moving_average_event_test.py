@@ -13,7 +13,6 @@ class MovingAverageEventTest(ExtendedTestCase):
         self.description = u'Moving average (MA): Chance of rise when short MA price is higher than long MA price.'
         self.price = np.empty([0, 0])
         self.short_ma, self.long_ma = 3, 6
-        self.yes, self.no = "Yes", "No"
 
     def test_moving_average_event_metadata(self):
         moving_average_event = MovingAverageEvent(self.price, self.short_ma, self.long_ma)
@@ -94,25 +93,6 @@ class MovingAverageEventTest(ExtendedTestCase):
         self.assertEqual(expected.shape, real.shape)
         self.assertTrue((expected == real).all())
         self.assertEqual(expected.dtype, real.dtype)
-
-    def test_moving_average_event_triggered_at_the_last_date_when_triggered(self):
-        price = np.array([10.0, 11.0, 15.0, 16.0, 12.0, 15.01, 10.0, 11.0, 11.0, 12.0, 14.7])
-        short_ma, long_ma = 2, 5
-        moving_average_event = MovingAverageEvent(price, short_ma, long_ma)
-
-        self.assertEqual(self.yes, moving_average_event.event_triggered_at_the_last_date())
-
-    def test_moving_average_event_triggered_at_the_last_date_when_not_triggered(self):
-        price = np.array([9.0, 10.0, 10.0, 10.0, 10.0, 10.5, 10.5, 10.5, 10.5])
-        short_ma, long_ma = 2, 4
-        moving_average_event = MovingAverageEvent(price, short_ma, long_ma)
-
-        self.assertEqual(self.no, moving_average_event.event_triggered_at_the_last_date())
-
-    def test_moving_average_event_triggered_at_the_last_date_when_no_data(self):
-        moving_average_event = MovingAverageEvent(self.price, self.short_ma, self.long_ma)
-
-        self.assertEqual(self.no, moving_average_event.event_triggered_at_the_last_date())
 
 
 if __name__ == '__main__':
