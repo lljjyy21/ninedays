@@ -245,7 +245,7 @@ function StockCalculationsDrawer() {
             var stateObject = inputFieldsState.get();
         }
         else {
-            inputFieldsState.reset();
+            inputFieldsState.flushError();
             return;
         }
 
@@ -281,7 +281,7 @@ function StockCalculationsDrawer() {
                 }
             },
             error: function (error) {
-                inputFieldsState.reset();
+                inputFieldsState.flushError();
 
                 for (var index in EVENT_NAMES) {
                     if (EVENT_NAMES.hasOwnProperty(index)) {
@@ -492,16 +492,6 @@ function InputState() {
         return object;
     }
 
-    function resetInputFields() {
-        assignHTMLElementIdsDependingOnDeviceLayout();
-        $(stockIdName).val(stockName);
-        $(startDateIdName).val(startDate);
-        $(endDateIdName).val(endDate);
-        $(longMaIdName).val(longMA);
-        $(shortMaIdName).val(shortMA);
-        $(rangeIdName).val(range);
-    }
-
     function showFlushMessage() {
         var error_message = $('.error-message');
         error_message.css('visibility', 'hidden');
@@ -511,15 +501,6 @@ function InputState() {
         });
         error_message.css('visibility', 'visible');
     }
-
-    function resetState() {
-        // Reset input values
-        resetInputFields();
-
-        // Show flush message
-        showFlushMessage();
-    }
-
 
     var mobileIdNames = ['#stock-name-mobile', '#start-date-mobile',
                          '#end-date-mobile', '#short-ma-mobile',
@@ -553,7 +534,7 @@ function InputState() {
     return {
         update: updateState,
         get: getState,
-        reset: resetState,
+        flushError: showFlushMessage,
         updateMobile: updateDesktopToMobile,
         updateDesktop: updateMobileToDesktop
     }
@@ -561,10 +542,6 @@ function InputState() {
 
 var inputFieldsState = new InputState(),
     applicationState = new ApplicationState();
-
-
-
-
 
 
 // NOTE: Solution is used from https://jsfiddle.net/BaylorRae/vwvAd/
