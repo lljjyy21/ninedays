@@ -497,7 +497,7 @@ function InputState() {
         var error_message = $('.error-message');
         error_message.css('visibility', 'hidden');
         error_message.flash_message({
-            text: 'Input is incorrect.',
+            text: 'Can\'t Find The Stock Data',
             how: 'append'
         });
         error_message.css('visibility', 'visible');
