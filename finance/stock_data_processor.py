@@ -1,8 +1,8 @@
 import datetime as dt
 import pandas_datareader.data as web
+import requests
 
 
-# TODO: Add documentation
 class StockDataProcessor:
     def __init__(self, name, start, end, data_source='google'):
         if name is None or not isinstance(name, basestring) or \
@@ -23,9 +23,10 @@ class StockDataProcessor:
     def get_stock_data(self):
         if self.stock_data is None:
             try:
-                self.stock_data = web.DataReader('NASDAQ:' + self.name, self.data_source, self.start, self.end)
+                self.stock_data = web.DataReader(self.name, self.data_source, self.start, self.end)
             except NotImplementedError as _:
                 raise RuntimeError
+        
         data = self.stock_data[:]
 
         return data
