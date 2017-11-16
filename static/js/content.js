@@ -598,10 +598,11 @@ function drawWheelByEvent(eventName, eventBody) {
                 'Chance of Rise: [' + chanceOfRise + '%]' + newLine +
                 'Average Continues Rising Days: [' + averageContinuousDays + ']' + newLine +
                 'Status:';
-        title += (chanceOfRise < 45.0) ? ' [Under Perform] /' : ' Under Perform /';
+        title += (chanceOfRise <= 45.0) ? ' [Under Perform] /' : ' Under Perform /';
         title += (55.0 >= chanceOfRise && chanceOfRise > 45.0) ? ' [Hold] /' : ' Hold /';
         title += (70.0 >= chanceOfRise && chanceOfRise > 55.0) ? ' [Buy] /' : ' Buy /';
         title += (chanceOfRise > 70.0) ? '  [Strong Buy]' : ' Strong Buy';
+    console.log("Chance of rise:", chanceOfRise);
 
     tooltipDesktopDiv.attr('title', title);
     tooltipMobileDiv.attr('title', title);

@@ -26,7 +26,7 @@ class StockDataProcessor:
                 self.stock_data = web.DataReader(self.name, self.data_source, self.start, self.end)
             except NotImplementedError as _:
                 raise RuntimeError
-        
+
         data = self.stock_data[:]
 
         return data
