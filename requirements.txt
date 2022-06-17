@@ -14,7 +14,7 @@ click==6.7
 idna==2.5
 itsdangerous==0.24
 gunicorn==19.7.1
-numpy==1.13.1
+numpy==1.21.0
 pandas==0.20.3
 pandas-datareader==0.4.0
 python-dateutil==2.6.1
